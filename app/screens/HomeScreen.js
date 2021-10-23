@@ -16,7 +16,7 @@ export default function HomeScreen({ navigation }) {
           </View>
             <View style={styles.icon2}>
               <Ionicons name='ios-alert' size={35} color='teal' onPress={() => {
-              navigation.navigate("MyModal");
+              navigation.navigate("HelpScreen");
             }}/>
             </View>
         </View>

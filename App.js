@@ -17,6 +17,7 @@ import QrModalScreen from './app/screens/qrModal'
 import HomeScreen from './app/screens/HomeScreen'
 import QuesionsModal from './app/screens/QuestionsModal'
 import TokenScreen from './app/screens/TokenScreen'
+import HelpScreen from './app/screens/HelpModal'
 
 const Stack = createStackNavigator();
 
@@ -63,8 +64,8 @@ function RootStackScreen() {
         }}
       />
       <RootStack.Screen
-        name="SecondMyModal"
-        component={QuesionsModal}
+        name="HelpScreen"
+        component={HelpScreen}
         options={{
           headerShown: false,
           headerStyle: {
