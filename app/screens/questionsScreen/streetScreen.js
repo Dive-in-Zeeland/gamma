@@ -32,7 +32,7 @@ export default function QrModalScreen( route, navigation) {
       questionName: 'STREET',
       QuestionLocation: 'STREET',
       questionText: 'HOW WILL ARTIC MELTING ICE AFFECT THE ZEELANDS LAND?',
-		answerOptions: [
+		  answerOptions: [
 			{ answerText: 'It will get flooded.', isCorrect: true },
 			{ answerText: 'Zeelands becomes desert.', isCorrect: false },
 			{ answerText: 'Nothing', isCorrect: true },
