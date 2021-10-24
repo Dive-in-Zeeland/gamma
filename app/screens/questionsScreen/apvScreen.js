@@ -8,7 +8,7 @@ export default function QrModalScreen( route, navigation) {
   //QR check
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-  const [text, setText] = useState('Not yet Scanned')
+  const [text, setText] = useState('Not yet Scanned');
 
   const askForCameraPermission = () => {
     (async () => {
@@ -26,29 +26,29 @@ export default function QrModalScreen( route, navigation) {
     setText(data)
   };
 
-  //Quiz Questions
-  const fish =
+  //Quiz Question
+  const apv =
 		{ 
       questionName: 'APV',
       QuestionLocation: 'APV',
-			questionText: 'Who was in APV?',
-			answerOptions: [
-				{ answerText: 'Kanye', isCorrect: false },
-				{ answerText: 'Ye', isCorrect: false },
-				{ answerText: 'Your  mom', isCorrect: true },
-				{ answerText: 'N', isCorrect: false },
-			],
-		}
-	;
+      questionText: 'What is the most common fish in around waters in ZEELAND',
+      answerOptions: [
+          { answerText: 'Salmonela', isCorrect: false },
+          { answerText: 'Carp', isCorrect: false },
+          { answerText: 'Fluke', isCorrect: true },
+          { answerText: 'Salmon', isCorrect: false },
+      ],
+  };
 
 	const [showScore, setShowScore] = useState(false);
-	const [score, setScore] = useState(0);
+	const [correct, setCorrect] = useState('');
 
 	const handleAnswerOptionClick = (isCorrect) => {
 		if (isCorrect) {
-			setScore(score + 1);
-		}
-    
+			setCorrect('Your answer is correct!');
+		} else {
+      setCorrect('Your answer is incorrect!');
+    }
     setShowScore(true);
 	};
 
@@ -61,7 +61,9 @@ export default function QrModalScreen( route, navigation) {
       </View>)
   }
 
-  if (scanned === false || scanned === true && text !== fish.questionName) {
+  
+  //Scanned incorrect qr code, or scanned qr code that is not inside the data base 
+  if (scanned === false || scanned === true && text !== apv.questionName) {
     return (
       <View style={styles.main}>
           <View style={styles.container}>
@@ -69,6 +71,7 @@ export default function QrModalScreen( route, navigation) {
               <View style={styles.exit}>
               <Ionicons name='ios-close' size={50} color='teal' onPress={() => {
               route.navigation.goBack(); }}/>
+              {/* <Text>{JSON.stringify(location)}</Text> */}
               </View>
             </View>
             <View style={styles.qrSection}> 
@@ -90,42 +93,40 @@ export default function QrModalScreen( route, navigation) {
   }
 
 
-  if (scanned === true && fish.questionName === text) {
+  if (scanned === true && apv.questionName === text) {
     return (
       <View style={styles.main}>
-          <View style={styles.container}>
+        <View style={styles.container}>
           <View style={styles.helperContainer}>
-          <View style={styles.exit}>
-          <Ionicons name='ios-close' size={50} color='teal' onPress={() => {
-            route.navigation.goBack(); }}/>
-          </View>
+            <View style={styles.exit}>
+              <Ionicons name='ios-close' size={50} color='teal' onPress={() => {
+                    route.navigation.goBack(); }}/>
+            </View>
           </View>
           <View style={styles.qrSection}> 
-                <View style={styles.questionContainer}>
-                {showScore ? ( <Text> You scored {score} out of 1 </Text>
-			        ) : (
-				  <View>
-					<View >
-					<Text>{fish.questionText}</Text>
-					</View>
-					<View>
-					{fish.answerOptions.map((answerOption) => (
-					<Button onPress={() => handleAnswerOptionClick(answerOption.isCorrect)} title={answerOption.answerText}></Button>
-					))}
-					</View>
-				  </View>
-			    )}
-          </View>
+            <View style={styles.questionContainer}>
+              {showScore ? ( <Text>{correct}</Text>
+              ) : (
+              <View>
+                <View>
+                  <Text>{apv.questionText}</Text>
+                </View>
+                <View>
+                  {apv.answerOptions.map((answerOption) => (
+                  <Button onPress={() => handleAnswerOptionClick(answerOption.isCorrect)} title={answerOption.answerText}></Button>
+                  ))}
+                </View>
+              </View>
+              )}
+            </View>
           </View> 
-          </View>
+        </View>
       </View>
     );
   }
 }
 
-
-
-
+//Styles for the elements of the view
 const styles = StyleSheet.create({
     main:{
         flex: 1,

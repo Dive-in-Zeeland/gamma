@@ -13,9 +13,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { TransitionPresets } from '@react-navigation/stack';
 
 //Importing Screens to the main App file
-import QrModalScreen from './app/screens/qrModal'
 import HomeScreen from './app/screens/HomeScreen'
-import QuesionsModal from './app/screens/QuestionsModal'
+import ahScreen from './app/screens/questionsScreen/ahScreen'
+import apvScreen from './app/screens/questionsScreen/apvScreen'
+import hzScreen from './app/screens/questionsScreen/hzScreen'
+import streetScreen from './app/screens/questionsScreen/streetScreen'
 import TokenScreen from './app/screens/TokenScreen'
 import HelpScreen from './app/screens/HelpModal'
 
@@ -36,6 +38,34 @@ function MainStackScreen() {
           title: "Home Screen",
         }}
       />
+      <MainStack.Screen
+        name="apvScreen"
+        component={apvScreen}
+        options={{
+          title: "APV Question",
+        }}
+      />
+      <MainStack.Screen
+        name="streetScreen"
+        component={streetScreen}
+        options={{
+          title: "STREET Question",
+        }}
+      />
+      <MainStack.Screen
+        name="hzScreen"
+        component={hzScreen}
+        options={{
+          title: "HZ Question",
+        }}
+      />
+      <MainStack.Screen
+        name="ahScreen"
+        component={ahScreen}
+        options={{
+          title: "AH Question",
+        }}
+      />
     </MainStack.Navigator>
   );
 }
@@ -53,16 +83,6 @@ function RootStackScreen() {
       }}
     >
       <RootStack.Screen name="MainStack" component={MainStackScreen} />
-      <RootStack.Screen
-        name="MyModal"
-        component={QrModalScreen}
-        options={{
-          headerShown: false,
-          headerStyle: {
-            backgroundColor: "skyblue",
-          },
-        }}
-      />
       <RootStack.Screen
         name="HelpScreen"
         component={HelpScreen}

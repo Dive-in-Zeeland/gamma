@@ -10,12 +10,9 @@ export default function HomeScreen({ navigation }) {
         <View style={styles.home} >  
         <View style={styles.helperContainer}>
           <View style={styles.icon1}>
-            <Ionicons name='ios-barcode' size={35} color='teal' onPress={() => {
-              navigation.navigate("MyModal");
-            }}/> 
           </View>
             <View style={styles.icon2}>
-              <Ionicons name='ios-alert' size={35} color='teal' onPress={() => {
+              <Ionicons name='ios-warning' size={35} color='teal' onPress={() => {
               navigation.navigate("HelpScreen");
             }}/>
             </View>
@@ -32,10 +29,8 @@ export default function HomeScreen({ navigation }) {
                           latitude: 51.497833,
                           longitude: 3.608876,
                       }}>
-                          <Callout onPress={() => {
-                          navigation.navigate("MyModal");
-                          }}>
-                              <Text>STREET</Text>
+                          <Callout onPress={() => {navigation.navigate("streetScreen");}} style={{justifyContent: 'center'}}>
+                          <Ionicons name='ios-barcode' size={35} color='teal'/> 
                           </Callout>
                       </Marker>
   
@@ -44,9 +39,9 @@ export default function HomeScreen({ navigation }) {
                           longitude: 3.607978,
                       }}>
                           <Callout onPress={() => {
-                          navigation.navigate("MyModal");
-                          }}>
-                              <Text>APV</Text>
+                          navigation.navigate("apvScreen");
+                          }} style={{justifyContent: 'center'}}>
+                              <Ionicons name='ios-barcode' size={35} color='teal'/> 
                           </Callout>
                       </Marker>
   
@@ -55,9 +50,9 @@ export default function HomeScreen({ navigation }) {
                           longitude: 3.609632,
                       }}>
                           <Callout onPress={() => {
-                          navigation.navigate("MyModal");
-                          }}>
-                              <Text>HZ</Text>
+                          navigation.navigate("hzScreen");
+                          }} style={{justifyContent: 'center'}}>
+                              <Ionicons name='ios-barcode' size={35} color='teal'/> 
                           </Callout>
                       </Marker>
   
@@ -66,15 +61,15 @@ export default function HomeScreen({ navigation }) {
                           longitude: 3.608172,
                       }}>
                           <Callout onPress={() => {
-                          navigation.navigate("MyModal");
-                          }}>
-                              <Text>AH</Text>
+                          navigation.navigate("ahScreen");
+                          }} style={{justifyContent: 'center'}}>
+                              <Ionicons name='ios-barcode' size={35} color='teal'/> 
                           </Callout>
                       </Marker>
   
                       </MapView>
                   </View>
-              </View>  
+          </View>  
         </View>
       </View>
   );
