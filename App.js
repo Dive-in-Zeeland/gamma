@@ -1,6 +1,6 @@
 import "react-native-gesture-handler";
 import React from "react";
-import { Text, View, Button, TextInput, StyleSheet } from "react-native";
+import { Text, View, Button, TextInput, StyleSheet, Dimensions } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -10,78 +10,18 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { TransitionPresets } from '@react-navigation/stack';
+
+//Importing Screens to the main App file
+import HomeScreen from './app/screens/HomeScreen'
+import ahScreen from './app/screens/questionsScreen/ahScreen'
+import apvScreen from './app/screens/questionsScreen/apvScreen'
+import hzScreen from './app/screens/questionsScreen/hzScreen'
+import streetScreen from './app/screens/questionsScreen/streetScreen'
+import TokenScreen from './app/screens/TokenScreen'
+import HelpScreen from './app/screens/HelpModal'
+
 const Stack = createStackNavigator();
-
-function HomeScreen({ navigation }) {
-  return (
-    <View style={styles.main}> 
-      <View style={styles.home} >  
-      <Button
-        title="Open PopUp"
-        onPress={() => {
-        navigation.navigate("MyModal");
-        }}
-        />
-      <Button
-        title="Open PopUp 2"
-        onPress={() => {
-        navigation.navigate("SecondMyModal");
-        }}
-      />
-      </View>
-    </View>
-);
-}
-
-const styles = StyleSheet.create({
-  main:{
-      flex: 1,
-      backgroundColor:"teal",
-  },
-  home: {
-      flex: 1,
-      margin: 10,
-      backgroundColor: "white",
-      borderRadius: 15,
-  },
-});
-
-
-
-function ModalScreen(route) {
-  return (
-    <View style={styles.main}> 
-    <View style={styles.home} >  
-    <View style={{ margin: 60 }}>
-    <Text style={{ fontSize: 24 }}>Modal 1</Text>
-    <Button
-        title="Close this modal"
-        onPress={() => {
-          route.navigation.goBack();
-        }}
-    />
-    </View>
-    </View>
-    </View>
-  );
-}
-function SecondModalScreen(route) {
-  return (
-    <View style={styles.main}> 
-    <View style={styles.home} >  
-    <View style={{ margin: 60 }}>
-    <Text style={{ fontSize: 24 }}>Modal 2</Text>
-    <Button
-        title="Close this modal"
-        onPress={() => {
-          route.navigation.goBack();
-        }}
-    />
-    </View>
-    </View>
-    </View>
-  );
-}
 
 
 const MainStack = createStackNavigator();
@@ -98,6 +38,34 @@ function MainStackScreen() {
           title: "Home Screen",
         }}
       />
+      <MainStack.Screen
+        name="apvScreen"
+        component={apvScreen}
+        options={{
+          title: "APV Question",
+        }}
+      />
+      <MainStack.Screen
+        name="streetScreen"
+        component={streetScreen}
+        options={{
+          title: "STREET Question",
+        }}
+      />
+      <MainStack.Screen
+        name="hzScreen"
+        component={hzScreen}
+        options={{
+          title: "HZ Question",
+        }}
+      />
+      <MainStack.Screen
+        name="ahScreen"
+        component={ahScreen}
+        options={{
+          title: "AH Question",
+        }}
+      />
     </MainStack.Navigator>
   );
 }
@@ -108,6 +76,7 @@ function RootStackScreen() {
     headerMode="none"
       mode="modal"
       screenOptions={{
+        ...TransitionPresets.SlideFromRightIOS,
         headerStyle: {
           backgroundColor: "tomato",
         },
@@ -115,18 +84,8 @@ function RootStackScreen() {
     >
       <RootStack.Screen name="MainStack" component={MainStackScreen} />
       <RootStack.Screen
-        name="MyModal"
-        component={ModalScreen}
-        options={{
-          headerShown: false,
-          headerStyle: {
-            backgroundColor: "skyblue",
-          },
-        }}
-      />
-      <RootStack.Screen
-        name="SecondMyModal"
-        component={SecondModalScreen}
+        name="HelpScreen"
+        component={HelpScreen}
         options={{
           headerShown: false,
           headerStyle: {
@@ -138,14 +97,6 @@ function RootStackScreen() {
   );
 }
 
-function SettingsScreen() {
-  return (
-    <View style={{ margin: 60 }}>
-      <Text style={{ fontSize: 24 }}>This is a Settings Tab</Text>
-    </View>
-  );
-}
-
 function TabNavigation() {
   return (
     <Tabs.Navigator
@@ -154,11 +105,9 @@ function TabNavigation() {
             let iconName;
 
             if (route.name === 'Home') {
-              iconName = focused
-                ? 'ios-information-circle'
-                : 'ios-information-circle-outline';
-            } else if (route.name === 'Settings') {
-              iconName = focused ? 'ios-list-box' : 'ios-list';
+              iconName = 'ios-home';
+            } else if (route.name === 'Token List') {
+              iconName = focused ? 'ios-list' : 'ios-list';
             }
 
             // You can return any component that you like here!
@@ -169,7 +118,9 @@ function TabNavigation() {
           activeTintColor: 'teal',
           inactiveTintColor: 'grey',
           style: {
-            margin: 10,
+            marginBottom:10,
+            marginLeft:10,
+            marginRight:10,
             padding: 1,
             borderRadius: 15,
             elavation: 0,
@@ -178,8 +129,8 @@ function TabNavigation() {
       >
       <Tabs.Screen name="Home" component={RootStackScreen} />
       <Tabs.Screen
-        name="Settings"
-        component={SettingsScreen}
+        name="Token List"
+        component={TokenScreen}
         options={{
           tabBarBadge: 3,
         }}
