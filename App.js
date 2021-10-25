@@ -20,6 +20,7 @@ import hzScreen from './app/screens/questionsScreen/hzScreen'
 import streetScreen from './app/screens/questionsScreen/streetScreen'
 import TokenScreen from './app/screens/TokenScreen'
 import HelpScreen from './app/screens/HelpModal'
+import giftModal from './app/screens/giftModal'
 
 const Stack = createStackNavigator();
 
@@ -75,6 +76,7 @@ function RootStackScreen() {
     <RootStack.Navigator 
     headerMode="none"
       mode="modal"
+      
       screenOptions={{
         ...TransitionPresets.SlideFromRightIOS,
         headerStyle: {
@@ -86,6 +88,16 @@ function RootStackScreen() {
       <RootStack.Screen
         name="HelpScreen"
         component={HelpScreen}
+        options={{
+          headerShown: false,
+          headerStyle: {
+            backgroundColor: "skyblue",
+          },
+        }}
+      />
+      <RootStack.Screen
+        name="giftScreen"
+        component={giftModal}
         options={{
           headerShown: false,
           headerStyle: {
@@ -106,34 +118,38 @@ function TabNavigation() {
 
             if (route.name === 'Home') {
               iconName = 'ios-home';
+              size = 40;
             } else if (route.name === 'Token List') {
               iconName = focused ? 'ios-list' : 'ios-list';
+            } else if (route.name === 'Settins') {
+              iconName = 'ios-settings';
             }
 
             // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color} />;
+            return <Ionicons name={iconName} size={size} color={color}/>;
           },
         })}
         tabBarOptions={{
           activeTintColor: 'teal',
           inactiveTintColor: 'grey',
           style: {
+            flex:0.1,
             marginBottom:10,
             marginLeft:10,
             marginRight:10,
-            padding: 1,
+            paddingBottom:10,
             borderRadius: 15,
-            elavation: 0,
           }
       }}
       >
-      <Tabs.Screen name="Home" component={RootStackScreen} />
       <Tabs.Screen
         name="Token List"
         component={TokenScreen}
-        options={{
-          tabBarBadge: 3,
-        }}
+      />
+      <Tabs.Screen name="Home" options={{ tabBarLabel: '' }} component={RootStackScreen} />
+      <Tabs.Screen
+        name="Settings"
+        component={TokenScreen}
       />
     </Tabs.Navigator>
   );
