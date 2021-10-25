@@ -8,15 +8,6 @@ export default function HomeScreen({ navigation }) {
     return (
       <View style={styles.main}> 
         <View style={styles.home} >  
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
-          </View>
-            <View style={styles.icon2}>
-              <Ionicons name='ios-warning' size={35} color='teal' onPress={() => {
-              navigation.navigate("HelpScreen");
-            }}/>
-            </View>
-        </View>
         <View style={styles.location}> 
                   <View style={styles.container}>
                       <MapView style={styles.map} initialRegion={{
@@ -66,10 +57,21 @@ export default function HomeScreen({ navigation }) {
                               <Ionicons name='ios-barcode' size={35} color='teal'/> 
                           </Callout>
                       </Marker>
-  
                       </MapView>
                   </View>
-          </View>  
+        </View>
+        <View style={styles.helperContainer}>
+          <View style={styles.icon1}>
+              <Text style={{fontSize:30, color:'white'}} onPress={() => {
+              navigation.navigate("giftScreen");
+            }}>GIFT CODE</Text>
+          </View>
+            <View style={styles.icon2}>
+              <Ionicons name='ios-warning' size={35} color='teal' onPress={() => {
+              navigation.navigate("HelpScreen");
+            }}/>
+            </View>
+        </View>  
         </View>
       </View>
   );
@@ -90,29 +92,23 @@ const styles = StyleSheet.create({
       flex: 0.1,
       flexDirection: "row",
       borderRadius: 15,
-      marginTop: 10,
       marginLeft:20,
       marginRight:20,
     },
     icon1:{
-      flex:0.50,
+      flex:0.70,
+      backgroundColor: 'teal',
+      borderRadius:15,
+      alignItems: 'center',
       justifyContent: 'center',
-      alignItems: 'flex-start'
     },
     icon2:{
-      flex:0.50,
+      flex:0.3,
       justifyContent: 'center',
-      alignItems: 'flex-end'
+      alignItems: 'center'
     },
     location:{   
       flex: 0.8,
-    },
-    info:{   
-        borderRadius: 15,
-        flex: 0.1,
-        margin: 20,
-        marginTop: 10,
-        backgroundColor: "teal"
     },
     container: {
         flex: 1,
@@ -121,10 +117,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
       },
       map: {
-        height:420,
+        height:350,
         borderWidth:2,
         borderColor:'teal',
-        width:300,
+        width:310,
         borderRadius: 15,
     },
 });

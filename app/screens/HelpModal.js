@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button} from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-export default function QrModalScreen( route) {
+export default function HelpScreen( route) {
 
 return (
       <View style={styles.main}>
@@ -16,7 +16,12 @@ return (
             </View>
             <View style={styles.qrSection}> 
                 <View style={styles.qrContainer}>
-                    <Text>Help</Text>
+                    <Text style={{margin:20}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
+                </View>
+            </View> 
+            <View style={styles.qrSection}> 
+                <View style={styles.qrContainer}>
+                    <Text style={{margin:20}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
                 </View>
             </View> 
           </View>
@@ -42,40 +47,25 @@ const styles = StyleSheet.create({
       marginRight:20,
     },
     exit:{
+      zIndex:50,
       flex:1,
       justifyContent: 'center',
       alignItems: 'flex-end'
     }, 
     qrSection:{   
-      flex: 0.7,
+      flex: 0.5,
     },
     qrContainer: {
       flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
-    },
-    maintext: {
-      fontSize: 16,
-      margin: 20,
-      zIndex:50,
-    },
-    barcodebox: {
-      zIndex:25,
-      justifyContent: 'center',
-      height: 350,
-      width: 300,
-      overflow: 'hidden',
-      borderRadius: 15,
-      borderColor: 'teal',
-      backgroundColor: 'tomato'
-    },
-    scanButtonContainer:{   
-      borderRadius: 15,
-      flex: 0.1,
-      margin: 10,
-    },
-    scanButton:{
-
+      borderWidth:3,
+      borderColor:'teal',
+      borderRadius:15,
+      marginLeft:30,
+      marginRight:30,
+      marginTop:20,
+      marginBottom:20
     },
 });

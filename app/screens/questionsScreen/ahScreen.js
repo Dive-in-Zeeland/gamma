@@ -4,7 +4,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Sharing } from 'expo';
 
-export default function QrModalScreen( route, navigation) {
+export default function ahScreen( route, navigation) {
   //QR check
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
@@ -92,7 +92,6 @@ export default function QrModalScreen( route, navigation) {
     );
   }
 
-
   if (scanned === true && apv.questionName === text) {
     return (
       <View style={styles.main}>
@@ -108,13 +107,16 @@ export default function QrModalScreen( route, navigation) {
               {showScore ? ( <Text>{correct}</Text>
               ) : (
               <View>
-                <View>
-                  <Text>{apv.questionText}</Text>
+                <View style={{flex:0.5, borderColor:"teal", alignItems: 'center',justifyContent: 'center', margin:10, borderRadius:15, borderWidth:2}}>
+                  <Text style={{margin:10, color:'gray'}}>{apv.questionText}</Text>
                 </View>
-                <View>
+                <View style={{flex:1, backgroundColor:'teal', alignItems: 'center', justifyContent: 'center',margin:10, borderRadius:15}}>
                   {apv.answerOptions.map((answerOption) => (
-                  <Button onPress={() => handleAnswerOptionClick(answerOption.isCorrect)} title={answerOption.answerText}></Button>
+                    <Button color="#ffffff" onPress={() => handleAnswerOptionClick(answerOption.isCorrect)} title={answerOption.answerText}></Button>
                   ))}
+                </View>
+                <View style={{flex:0.2, backgroundColor:'red', alignItems: 'center', justifyContent: 'center',margin:10, borderRadius:15}}>
+                    <Text style={{color:'white'}}>! Test Questions - Not Final !</Text>
                 </View>
               </View>
               )}
@@ -164,8 +166,6 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       margin: 20,
       borderRadius:15,
-      borderColor: 'teal',
-      borderWidth:2,
       alignItems: 'center',
       justifyContent: 'center',
     },
