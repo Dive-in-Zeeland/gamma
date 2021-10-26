@@ -113,7 +113,7 @@ export default function apvScreen( route, navigation) {
                 </View>
                 <View style={{flex:1, backgroundColor:'teal', alignItems: 'center', justifyContent: 'center',margin:10, borderRadius:15}}>
                   {apv.answerOptions.map((answerOption) => (
-                    <Button color="#ffffff" onPress={() => handleAnswerOptionClick(answerOption.isCorrect)} title={answerOption.answerText}></Button>
+                    <Button onPress={() => handleAnswerOptionClick(answerOption.isCorrect)} title={answerOption.answerText}></Button>
                   ))}
                 </View>
                 <View style={{flex:0.2, backgroundColor:'red', alignItems: 'center', justifyContent: 'center',margin:10, borderRadius:15}}>
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     barcodebox: {
       zIndex:25,
       justifyContent: 'center',
-      height: 350,
+      height: 250,
       width: 300,
       overflow: 'hidden',
       borderRadius: 15,

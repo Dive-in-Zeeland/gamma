@@ -121,34 +121,35 @@ function TabNavigation() {
               size = 40;
             } else if (route.name === 'Token List') {
               iconName = focused ? 'ios-list' : 'ios-list';
-            } else if (route.name === 'Settins') {
+              size = 40;
+            } else if (route.name === 'Settings') {
               iconName = 'ios-settings';
+              size = 40;
             }
 
             // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color}/>;
+            return <Ionicons name={iconName} size={size} color={color} style={{marginTop:10,}}/>;
           },
         })}
         tabBarOptions={{
           activeTintColor: 'teal',
           inactiveTintColor: 'grey',
           style: {
-            flex:0.1,
-            marginBottom:10,
-            marginLeft:10,
-            marginRight:10,
-            paddingBottom:10,
+            flex:0.15,
+            margin:10,
             borderRadius: 15,
           }
       }}
       >
       <Tabs.Screen
         name="Token List"
+        options={{ tabBarLabel: '' }}
         component={TokenScreen}
       />
       <Tabs.Screen name="Home" options={{ tabBarLabel: '' }} component={RootStackScreen} />
       <Tabs.Screen
         name="Settings"
+        options={{ tabBarLabel: '' }}
         component={TokenScreen}
       />
     </Tabs.Navigator>
