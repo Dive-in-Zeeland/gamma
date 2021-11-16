@@ -131,64 +131,67 @@ export default function streetScreen( route, navigation) {
 
 //Styles for the elements of the view
 const styles = StyleSheet.create({
-    main:{
-        flex: 1,
-        backgroundColor:"teal",
-    },
-    container: {
-        flex: 1,
-        margin: 10,
-        backgroundColor: "white",
-        borderRadius: 15,
-    },
-    helperContainer:{
-      flex: 0.1,
-      flexDirection: "row",
-      marginLeft:20,
-      marginRight:20,
-    },
-    exit:{
-      flex:1,
-      margin:5,
-      justifyContent: 'center',
-      alignItems: 'flex-end'
-    }, 
-    qrSection:{   
-      flex: 0.7,
-    },
-    qrContainer: {
+  main:{
       flex: 1,
-      backgroundColor: '#fff',
-      borderColor: 'teal',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    questionContainer: {
+      backgroundColor:"teal",
+  },
+  container: {
       flex: 1,
-      backgroundColor: '#fff',
-      margin: 20,
-      borderRadius:15,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    maintext: {
-      fontSize: 16,
-      margin: 20,
-      zIndex:50,
-    },
-    barcodebox: {
-      zIndex:25,
-      justifyContent: 'center',
-      height: 350,
-      width: 300,
-      overflow: 'hidden',
-      borderRadius: 15,
-      borderColor: 'teal',
-      backgroundColor: 'tomato'
-    },
-    scanButtonContainer:{   
-      borderRadius: 15,
-      flex: 0.1,
       margin: 10,
-    },
-});
+      backgroundColor: "white",
+      borderRadius: 15,
+  },
+  helperContainer:{
+    flex: 0.1,
+    flexDirection: "row",
+    marginLeft:20,
+    marginRight:20,
+  },
+  exit:{
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'flex-end'
+  }, 
+  qrSection:{   
+    flex: 0.7,
+  },
+  qrContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    borderColor: 'teal',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  questionContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    margin: 20,
+    borderRadius:15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  maintext: {
+    fontSize: 16,
+    margin: 20,
+    zIndex:50,
+  },
+  barcodebox: {
+    zIndex:25,
+    justifyContent: 'center',
+    height: 350,
+    width: 300,
+    overflow: 'hidden',
+    borderRadius: 15,
+    borderColor: 'teal',
+    backgroundColor: 'tomato'
+  },
+  scanButtonContainer:{   
+    borderRadius: 15,
+    flex: 0.1,
+    margin: 10,
+  },
+  scanButton:{
+
+  },
+})
+

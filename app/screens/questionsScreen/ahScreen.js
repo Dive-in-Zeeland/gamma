@@ -192,4 +192,5 @@ const styles = StyleSheet.create({
     scanButton:{
 
     },
-});
+})
+
