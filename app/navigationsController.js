@@ -4,20 +4,19 @@ import { Text, View, Button, TextInput, StyleSheet, Dimensions } from "react-nat
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { TransitionPresets } from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { TransitionPresets } from '@react-navigation/stack';
-
-//Importing Screens to the main App file
-import HomeScreen from './HomeScreen'
-import questionsScreen from './questionScreen'
-import TokenScreen from './TokenScreen'
-import HelpScreen from './HelpModal'
-import giftModal from './giftModal'
+//Importing Screens to the main navigations controller
+import HomeScreen from './screens/HomeScreen'
+import questionsScreen from './screens/questionScreen'
+import TokenScreen from './screens/TokenScreen'
+import HelpScreen from './screens/HelpModal'
+import giftModal from './screens/giftModal'
 
 const Stack = createStackNavigator();
 

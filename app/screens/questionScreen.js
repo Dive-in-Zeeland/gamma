@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, Button} from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Sharing } from 'expo';
-export default function apvScreen( route, navigation) {
+
+export default function questionScreen( route, navigation) {
   //QR check
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
