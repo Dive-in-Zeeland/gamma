@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-   Create by Team 9 of the HZ University of Applied Sciences
+   Created by Team 9 of the HZ University of Applied Sciences ICT course
 </p>
 
 <h3>
