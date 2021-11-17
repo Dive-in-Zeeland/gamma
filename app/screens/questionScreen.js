@@ -3,12 +3,13 @@ import { StyleSheet, Text, View, Button} from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Sharing } from 'expo';
-
-export default function ahScreen( route, navigation) {
+export default function apvScreen( route, navigation) {
   //QR check
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState('Not yet Scanned');
+  const [correctCode, setCorrectCode]  = useState(false);
+  const [currentQuestion, setCurrentQuestion]  = useState(null);
 
   const askForCameraPermission = () => {
     (async () => {
@@ -26,19 +27,53 @@ export default function ahScreen( route, navigation) {
     setText(data)
   };
 
-  //Quiz Questions
-  const apv =
-		{ 
+  //Quiz Question
+  const questions =[
+    { 
+        questionName: 'APV',
+        QuestionLocation: 'APV',
+        questionText: 'What is the most common fish in around waters in ZEELAND',
+        answerOptions: [
+            { answerText: 'Salmonela', isCorrect: false },
+            { answerText: 'Carp', isCorrect: false },
+            { answerText: 'Fluke', isCorrect: true },
+            { answerText: 'Salmon', isCorrect: false },
+        ],
+    },
+    { 
+      questionName: 'HZ',
+      QuestionLocation: 'HZ',
+      questionText: 'What is the tasties sea food in ZEELAND according to the articles?',
+			answerOptions: [
+				{ answerText: 'Measles', isCorrect: false },
+				{ answerText: 'Musels', isCorrect: true },
+				{ answerText: 'Muscules', isCorrect: false },
+				{ answerText: 'Fish', isCorrect: false },
+			],
+    },
+    { 
       questionName: 'AH',
       QuestionLocation: 'AH',
       questionText: 'Where is Gondola now?',
-		answerOptions: [
-			{ answerText: 'Knowhere', isCorrect: false },
-			{ answerText: 'Knowhere', isCorrect: false },
-			{ answerText: 'GERMANY', isCorrect: true },
-			{ answerText: 'Knowhere', isCorrect: false },
-	],
-  };
+		  answerOptions: [
+        { answerText: 'Knowhere', isCorrect: false },
+        { answerText: 'Knowhere', isCorrect: false },
+        { answerText: 'GERMANY', isCorrect: true },
+        { answerText: 'Knowhere', isCorrect: false },
+	    ],
+    },
+    { 
+      questionName: 'STREET',
+      QuestionLocation: 'STREET',
+      questionText: 'HOW WILL ARTIC MELTING ICE AFFECT THE ZEELANDS LAND?',
+		  answerOptions: [
+        { answerText: 'It will get flooded.', isCorrect: true },
+        { answerText: 'Zeelands becomes desert.', isCorrect: false },
+        { answerText: 'Nothing', isCorrect: true },
+        { answerText: 'No Smoske for Deyan.', isCorrect: false },
+	    ],
+    }
+  ];
 
 	const [showScore, setShowScore] = useState(false);
 	const [correct, setCorrect] = useState('');
@@ -63,7 +98,15 @@ export default function ahScreen( route, navigation) {
 
   
   //Scanned incorrect qr code, or scanned qr code that is not inside the data base 
-  if (scanned === false || scanned === true && text !== apv.questionName) {
+  if (scanned === false || scanned === true && correctCode === false) {
+
+    questions.forEach(element => {
+      if(element.questionName === text) {
+        setCurrentQuestion(element);
+        setCorrectCode(true);
+      }
+    });
+
     return (
       <View style={styles.main}>
           <View style={styles.container}>
@@ -92,7 +135,8 @@ export default function ahScreen( route, navigation) {
     );
   }
 
-  if (scanned === true && apv.questionName === text) {
+
+  if (scanned === true) {
     return (
       <View style={styles.main}>
         <View style={styles.container}>
@@ -108,10 +152,10 @@ export default function ahScreen( route, navigation) {
               ) : (
               <View>
                 <View style={{flex:0.5, borderColor:"teal", alignItems: 'center',justifyContent: 'center', margin:10, borderRadius:15, borderWidth:2}}>
-                  <Text style={{margin:10, color:'gray'}}>{apv.questionText}</Text>
+                  <Text style={{margin:10, color:'gray'}}>{currentQuestion.questionText}</Text>
                 </View>
                 <View style={{flex:1, backgroundColor:'teal', alignItems: 'center', justifyContent: 'center',margin:10, borderRadius:15}}>
-                  {apv.answerOptions.map((answerOption) => (
+                  {currentQuestion.answerOptions.map((answerOption) => (
                     <Button color="#ffffff" onPress={() => handleAnswerOptionClick(answerOption.isCorrect)} title={answerOption.answerText}></Button>
                   ))}
                 </View>
@@ -130,67 +174,66 @@ export default function ahScreen( route, navigation) {
 
 //Styles for the elements of the view
 const styles = StyleSheet.create({
-    main:{
-        flex: 1,
-        backgroundColor:"teal",
-    },
-    container: {
-        flex: 1,
-        margin: 10,
-        backgroundColor: "white",
-        borderRadius: 15,
-    },
-    helperContainer:{
-      flex: 0.1,
-      flexDirection: "row",
-      marginLeft:20,
-      marginRight:20,
-    },
-    exit:{
-      flex:1,
-      justifyContent: 'center',
-      alignItems: 'flex-end'
-    }, 
-    qrSection:{   
-      flex: 0.7,
-    },
-    qrContainer: {
+  main:{
       flex: 1,
-      backgroundColor: '#fff',
-      borderColor: 'teal',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    questionContainer: {
+      backgroundColor:"teal",
+  },
+  container: {
       flex: 1,
-      backgroundColor: '#fff',
-      margin: 20,
-      borderRadius:15,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    maintext: {
-      fontSize: 16,
-      margin: 20,
-      zIndex:50,
-    },
-    barcodebox: {
-      zIndex:25,
-      justifyContent: 'center',
-      height: 350,
-      width: 300,
-      overflow: 'hidden',
-      borderRadius: 15,
-      borderColor: 'teal',
-      backgroundColor: 'tomato'
-    },
-    scanButtonContainer:{   
-      borderRadius: 15,
-      flex: 0.1,
       margin: 10,
-    },
-    scanButton:{
+      backgroundColor: "white",
+      borderRadius: 15,
+  },
+  helperContainer:{
+    flex: 0.1,
+    flexDirection: "row",
+    marginLeft:20,
+    marginRight:20,
+  },
+  exit:{
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'flex-end'
+  }, 
+  qrSection:{   
+    flex: 0.7,
+  },
+  qrContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    borderColor: 'teal',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  questionContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    margin: 20,
+    borderRadius:15,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  maintext: {
+    fontSize: 16,
+    margin: 20,
+    zIndex:50,
+  },
+  barcodebox: {
+    zIndex:25,
+    justifyContent: 'center',
+    height: 350,
+    width: 300,
+    overflow: 'hidden',
+    borderRadius: 15,
+    borderColor: 'teal',
+    backgroundColor: 'tomato'
+  },
+  scanButtonContainer:{   
+    borderRadius: 15,
+    flex: 0.1,
+    margin: 10,
+  },
+  scanButton:{
 
-    },
+  },
 })
-
