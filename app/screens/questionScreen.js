@@ -5,30 +5,19 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { Sharing } from 'expo';
 
 export default function questionScreen( route, navigation) {
-  //QR check
+
+  /**
+   * Variables used inside questions screen
+   */
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState('Not yet Scanned');
   const [correctCode, setCorrectCode]  = useState(false);
   const [currentQuestion, setCurrentQuestion]  = useState(null);
+  const [showScore, setShowScore] = useState(false);
+	const [correct, setCorrect] = useState('Not correct!');
 
-  const askForCameraPermission = () => {
-    (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync()
-      setHasPermission(status === 'granted')
-    })()
-  }
-
-  useEffect(() => {
-    askForCameraPermission()
-  }, [])
-
-  const handleBarCodeScanned = ({ type, data }) => {
-    setScanned(true);
-    setText(data)
-  };
-
-  //Quiz Question
+  //Array of object of the Token questions
   const questions =[
     { 
         questionName: 'APV',
@@ -45,40 +34,70 @@ export default function questionScreen( route, navigation) {
       questionName: 'HZ',
       QuestionLocation: 'HZ',
       questionText: 'What is the tasties sea food in ZEELAND according to the articles?',
-			answerOptions: [
-				{ answerText: 'Measles', isCorrect: false },
-				{ answerText: 'Musels', isCorrect: true },
-				{ answerText: 'Muscules', isCorrect: false },
-				{ answerText: 'Fish', isCorrect: false },
-			],
+      answerOptions: [
+        { answerText: 'Measles', isCorrect: false },
+        { answerText: 'Musels', isCorrect: true },
+        { answerText: 'Muscules', isCorrect: false },
+        { answerText: 'Fish', isCorrect: false },
+      ],
     },
     { 
       questionName: 'AH',
       QuestionLocation: 'AH',
       questionText: 'Where is Gondola now?',
-		  answerOptions: [
+      answerOptions: [
         { answerText: 'Knowhere', isCorrect: false },
         { answerText: 'Knowhere', isCorrect: false },
         { answerText: 'GERMANY', isCorrect: true },
         { answerText: 'Knowhere', isCorrect: false },
-	    ],
+      ],
     },
     { 
       questionName: 'STREET',
       QuestionLocation: 'STREET',
       questionText: 'HOW WILL ARTIC MELTING ICE AFFECT THE ZEELANDS LAND?',
-		  answerOptions: [
+      answerOptions: [
         { answerText: 'It will get flooded.', isCorrect: true },
         { answerText: 'Zeelands becomes desert.', isCorrect: false },
         { answerText: 'Nothing', isCorrect: true },
         { answerText: 'No Smoske for Deyan.', isCorrect: false },
-	    ],
+      ],
     }
   ];
 
-	const [showScore, setShowScore] = useState(false);
-	const [correct, setCorrect] = useState('');
+  /**
+   * Function to ask the user if he allows 
+   * to use the mobile phones camera
+   */
+  const askForCameraPermission = () => {
+    (async () => {
+      const { status } = await BarCodeScanner.requestPermissionsAsync()
+      setHasPermission(status === 'granted')
+    })()
+  }
 
+  /**
+   * Calling camera permission function
+   *  */  
+  useEffect(() => {
+    askForCameraPermission()
+  }, [])
+
+  /**
+   * Function to assign scanned qr code values
+   * 
+   * @param {*} data Scanned content of the QR code
+   */
+  const handleBarCodeScanned = ({ data }) => {
+    setScanned(true);
+    setText(data)
+  };
+
+  /**
+   * Function that sets score of the quiz
+   * 
+   * @param {*} isCorrect Boolean if the question answear is correct
+   */
 	const handleAnswerOptionClick = (isCorrect) => {
 		if (isCorrect) {
 			setCorrect('Your answer is correct!');
@@ -88,7 +107,7 @@ export default function questionScreen( route, navigation) {
     setShowScore(true);
 	};
 
-  //Permission check
+  //Camera permission checking
   if (hasPermission === false) {
     return (
       <View style={styles.container}>
@@ -98,9 +117,15 @@ export default function questionScreen( route, navigation) {
   }
 
   
+  //TODO rewrite the QR check in different fucntion
   //Scanned incorrect qr code, or scanned qr code that is not inside the data base 
   if (scanned === false || scanned === true && correctCode === false) {
 
+    /**
+     * Checking if QR code is correct and exsists in data base
+     * &&
+     * Setting the current question
+     */
     questions.forEach(element => {
       if(element.questionName === text) {
         setCurrentQuestion(element);
@@ -136,7 +161,7 @@ export default function questionScreen( route, navigation) {
     );
   }
 
-
+  //Quiz screen
   if (scanned === true) {
     return (
       <View style={styles.main}>
@@ -173,7 +198,9 @@ export default function questionScreen( route, navigation) {
   }
 }
 
-//Styles for the elements of the view
+//TODO Edit the current styles and make the styles global
+
+//Styles for the screen view elements
 const styles = StyleSheet.create({
   main:{
       flex: 1,

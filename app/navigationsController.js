@@ -46,9 +46,9 @@ function MainStackScreen() {
   );
 }
 
-function RootStackScreen() {
+function HomeStackScreen() {
   return (
-    <RootStack.Navigator 
+    <HomStack.Navigator 
     headerMode="none"
       mode="modal"
       
@@ -80,7 +80,7 @@ function RootStackScreen() {
           },
         }}
       />
-    </RootStack.Navigator>
+    </HomStack.Navigator>
   );
 }
 
