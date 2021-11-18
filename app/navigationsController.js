@@ -104,17 +104,20 @@ function TabNavigation() {
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
+            size = 30;
 
-            if (route.name === 'Home') {
-              iconName = 'ios-home';
-              size = 40;
+            if (route.name === 'Map') {
+              iconName = 'map';
             } else if (route.name === 'Token List') {
-              iconName = 'ios-list';
-              size = 40;
+              iconName = 'grid';
+            } else if (route.name === 'Camera') {
+              iconName = 'camera';
+            } else if (route.name === 'Home') {
+              iconName = 'ios-home';
             } else if (route.name === 'Settings') {
-              iconName = 'ios-settings';
-              size = 40;
+              iconName = 'settings';
             }
+
 
             // returns icon to the tab view
             return <Ionicons name={iconName} size={size} color={color} style={{marginTop:10,}}/>;
@@ -124,7 +127,7 @@ function TabNavigation() {
           activeTintColor: 'teal',
           inactiveTintColor: 'grey',
           style: {
-            flex:0.15,
+            flex:0.10,
             margin:10,
             borderRadius: 15,
           }
@@ -135,7 +138,17 @@ function TabNavigation() {
         options={{ tabBarLabel: '' }}
         component={TokenScreen}
       />
-      <Tabs.Screen name="Home" options={{ tabBarLabel: '' }} component={RootStackScreen}/>
+      <Tabs.Screen name="Map" options={{ tabBarLabel: '' }} component={RootStackScreen}/>
+      <Tabs.Screen
+        name="Home"
+        options={{ tabBarLabel: '' }}
+        component={HelpScreen}
+      />
+      <Tabs.Screen
+        name="Camera"
+        options={{ tabBarLabel: '' }}
+        component={questionsScreen}
+      />
       <Tabs.Screen
         name="Settings"
         options={{ tabBarLabel: '' }}

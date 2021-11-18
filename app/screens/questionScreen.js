@@ -81,7 +81,20 @@ export default function questionScreen( route, navigation) {
    *  */  
   useEffect(() => {
     askForCameraPermission()
-  }, [])
+  }, [])  
+
+  /**
+   * IMPORTANT FUNCTION IF YOU DELETE I WILL DELETE YOU, I SEE EVERYTHING I AM THE ULTIMATE TRACKER
+   * 
+   * made by Daniks
+   * 
+   * Function that resets qr code scanning
+   */
+  const reset = () => {
+    setScanned(false);
+    setCorrectCode(false);
+    setText('Not yet Scanned');
+  }
 
   /**
    * Function to assign scanned qr code values
@@ -118,6 +131,7 @@ export default function questionScreen( route, navigation) {
 
   
   //TODO rewrite the QR check in different fucntion
+  //TODO https://stackoverflow.com/questions/41912313/element-overflow-hidden-in-react-native-android for overflow hidden
   //Scanned incorrect qr code, or scanned qr code that is not inside the data base 
   if (scanned === false || scanned === true && correctCode === false) {
 
@@ -125,6 +139,7 @@ export default function questionScreen( route, navigation) {
      * Checking if QR code is correct and exsists in data base
      * &&
      * Setting the current question
+     * 
      */
     questions.forEach(element => {
       if(element.questionName === text) {
@@ -136,28 +151,21 @@ export default function questionScreen( route, navigation) {
     return (
       <View style={styles.main}>
           <View style={styles.container}>
-            <View style={styles.helperContainer}>
-              <View style={styles.exit}>
-              <Ionicons name='ios-close' size={50} color='teal' onPress={() => {
-              route.navigation.goBack(); }}/>
-              {/* <Text>{JSON.stringify(location)}</Text> */}
-              </View>
-            </View>
             <View style={styles.qrSection}> 
                 <View style={styles.qrContainer}>
                 <View style={styles.barcodebox}>
                 <BarCodeScanner
                 onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-                style={{ height: 600, width: 600 }} />
-                <Text style={styles.maintext}>{text}</Text>
+                style={{ flex:1}} />
                 </View>
                 </View>
             </View> 
             <View sttyle={styles.scanButton}>
-            {scanned && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='teal' />}
+            {scanned && <Button style={{width:'20%'}} title={'Scan again?'} onPress={() => reset()} color='teal' />}
             </View> 
           </View>
       </View>
+      
     );
   }
 
@@ -166,15 +174,14 @@ export default function questionScreen( route, navigation) {
     return (
       <View style={styles.main}>
         <View style={styles.container}>
-          <View style={styles.helperContainer}>
-            <View style={styles.exit}>
-              <Ionicons name='ios-close' size={50} color='teal' onPress={() => {
-                    route.navigation.goBack(); }}/>
-            </View>
-          </View>
+
           <View style={styles.qrSection}> 
             <View style={styles.questionContainer}>
-              {showScore ? ( <Text>{correct}</Text>
+              {showScore ? (
+                <View>
+                  <Text>{correct}</Text>
+                  <Button color="#000000" onPress={() => reset()} title='To camera'></Button>
+                </View>
               ) : (
               <View>
                 <View style={{flex:0.5, borderColor:"teal", alignItems: 'center',justifyContent: 'center', margin:10, borderRadius:15, borderWidth:2}}>
@@ -224,7 +231,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   }, 
   qrSection:{   
-    flex: 0.7,
+    flex: 0.9,
   },
   qrContainer: {
     flex: 1,
@@ -241,24 +248,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  maintext: {
-    fontSize: 16,
-    margin: 20,
-    zIndex:50,
-  },
   barcodebox: {
-    zIndex:25,
-    justifyContent: 'center',
-    height: 350,
-    width: 300,
+    height: '90%',
+    width: '90%',
     overflow: 'hidden',
     borderRadius: 15,
-    borderColor: 'teal',
-    backgroundColor: 'tomato'
+
   },
   scanButtonContainer:{   
     borderRadius: 15,
-    flex: 0.1,
     margin: 10,
   },
   scanButton:{
