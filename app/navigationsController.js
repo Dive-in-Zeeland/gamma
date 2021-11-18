@@ -24,6 +24,10 @@ const Stack = createStackNavigator();
 const MainStack = createStackNavigator();
 const RootStack = createStackNavigator();
 
+/**
+ * 
+ * @returns Home screen main page and questions page
+ */
 function MainStackScreen() {
   return (
     <MainStack.Navigator headerMode="none">
@@ -46,9 +50,13 @@ function MainStackScreen() {
   );
 }
 
-function HomeStackScreen() {
+/**
+ * 
+ * @returns Home screen stack 
+ */
+function RootStackScreen() {
   return (
-    <HomStack.Navigator 
+    <RootStack.Navigator 
     headerMode="none"
       mode="modal"
       
@@ -80,13 +88,19 @@ function HomeStackScreen() {
           },
         }}
       />
-    </HomStack.Navigator>
+    </RootStack.Navigator>
   );
 }
 
+/**
+ * Main navigator of the application
+ * 
+ * @returns Tab Navigations
+ */
 function TabNavigation() {
   return (
     <Tabs.Navigator
+        initialRouteName="Home"
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
@@ -95,14 +109,14 @@ function TabNavigation() {
               iconName = 'ios-home';
               size = 40;
             } else if (route.name === 'Token List') {
-              iconName = focused ? 'ios-list' : 'ios-list';
+              iconName = 'ios-list';
               size = 40;
             } else if (route.name === 'Settings') {
               iconName = 'ios-settings';
               size = 40;
             }
 
-            // You can return any component that you like here!
+            // returns icon to the tab view
             return <Ionicons name={iconName} size={size} color={color} style={{marginTop:10,}}/>;
           },
         })}
@@ -121,7 +135,7 @@ function TabNavigation() {
         options={{ tabBarLabel: '' }}
         component={TokenScreen}
       />
-      <Tabs.Screen name="Home" options={{ tabBarLabel: '' }} component={RootStackScreen} />
+      <Tabs.Screen name="Home" options={{ tabBarLabel: '' }} component={RootStackScreen}/>
       <Tabs.Screen
         name="Settings"
         options={{ tabBarLabel: '' }}
@@ -132,7 +146,6 @@ function TabNavigation() {
 }
 
 const Tabs = createBottomTabNavigator();
-const Drawer = createDrawerNavigator();
 
 export default function NavigationController() {
   return (

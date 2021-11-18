@@ -5,7 +5,7 @@ export default function TokenScreen({ navigation }) {
     return (
       <View style={styles.main}> 
         <View style={styles.home} >  
-         
+         <Text>Token Screen</Text>
         </View>
       </View>
   );
