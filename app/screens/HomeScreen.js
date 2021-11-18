@@ -20,58 +20,46 @@ export default function HomeScreen({ navigation }) {
                           latitude: 51.497833,
                           longitude: 3.608876,
                       }}>
-                          <Callout onPress={() => {navigation.navigate("questions");}} style={{justifyContent: 'center'}}>
+                          {/* <Callout onPress={() => {navigation.navigate("questions");}} style={{justifyContent: 'center'}}>
                           <Ionicons name='ios-barcode' size={35} color='teal'/> 
-                          </Callout>
+                          </Callout> */}
                       </Marker>
   
                       <Marker coordinate={{
                           latitude: 51.492899,
                           longitude: 3.607978,
                       }}>
-                          <Callout onPress={() => {
+                          {/* <Callout onPress={() => {
                           navigation.navigate("questions");
                           }} style={{justifyContent: 'center'}}>
                               <Ionicons name='ios-barcode' size={35} color='teal'/> 
-                          </Callout>
+                          </Callout> */}
                       </Marker>
   
                       <Marker coordinate={{
                           latitude: 51.495142,
                           longitude: 3.609632,
                       }}>
-                          <Callout onPress={() => {
+                          {/* <Callout onPress={() => {
                           navigation.navigate("questions");
                           }} style={{justifyContent: 'center'}}>
                               <Ionicons name='ios-barcode' size={35} color='teal'/> 
-                          </Callout>
+                          </Callout> */}
                       </Marker>
   
                       <Marker coordinate={{
                           latitude: 51.496209,
                           longitude: 3.608172,
                       }}>
-                          <Callout onPress={() => {
+                          {/* <Callout onPress={() => {
                           navigation.navigate("questions");
                           }} style={{justifyContent: 'center'}}>
                               <Ionicons name='ios-barcode' size={35} color='teal'/> 
-                          </Callout>
+                          </Callout> */}
                       </Marker>
                       </MapView>
                   </View>
         </View>
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
-              <Text style={{fontSize:30, color:'white'}} onPress={() => {
-              navigation.navigate("giftScreen");
-            }}>GIFT CODE</Text>
-          </View>
-            <View style={styles.icon2}>
-              <Ionicons name='ios-warning' size={35} color='teal' onPress={() => {
-              navigation.navigate("HelpScreen");
-            }}/>
-            </View>
-        </View>  
         </View>
       </View>
   );
@@ -96,7 +84,7 @@ const styles = StyleSheet.create({
       marginRight:20,
     },
     icon1:{
-      flex:0.70,
+      flex:0.8,
       backgroundColor: 'teal',
       borderRadius:15,
       alignItems: 'center',
@@ -108,7 +96,7 @@ const styles = StyleSheet.create({
       alignItems: 'center'
     },
     location:{   
-      flex: 0.8,
+      flex: 1,
     },
     container: {
         flex: 1,
@@ -117,10 +105,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
       },
       map: {
-        height:350,
+        height:'91%',
+        width:'90%',
         borderWidth:2,
         borderColor:'teal',
-        width:310,
         borderRadius: 15,
     },
 });
