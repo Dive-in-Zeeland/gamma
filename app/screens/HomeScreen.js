@@ -20,7 +20,7 @@ export default function HomeScreen({ navigation }) {
                           latitude: 51.497833,
                           longitude: 3.608876,
                       }}>
-                          <Callout onPress={() => {navigation.navigate("streetScreen");}} style={{justifyContent: 'center'}}>
+                          <Callout onPress={() => {navigation.navigate("questions");}} style={{justifyContent: 'center'}}>
                           <Ionicons name='ios-barcode' size={35} color='teal'/> 
                           </Callout>
                       </Marker>
@@ -30,7 +30,7 @@ export default function HomeScreen({ navigation }) {
                           longitude: 3.607978,
                       }}>
                           <Callout onPress={() => {
-                          navigation.navigate("apvScreen");
+                          navigation.navigate("questions");
                           }} style={{justifyContent: 'center'}}>
                               <Ionicons name='ios-barcode' size={35} color='teal'/> 
                           </Callout>
@@ -41,7 +41,7 @@ export default function HomeScreen({ navigation }) {
                           longitude: 3.609632,
                       }}>
                           <Callout onPress={() => {
-                          navigation.navigate("hzScreen");
+                          navigation.navigate("questions");
                           }} style={{justifyContent: 'center'}}>
                               <Ionicons name='ios-barcode' size={35} color='teal'/> 
                           </Callout>
@@ -52,7 +52,7 @@ export default function HomeScreen({ navigation }) {
                           longitude: 3.608172,
                       }}>
                           <Callout onPress={() => {
-                          navigation.navigate("ahScreen");
+                          navigation.navigate("questions");
                           }} style={{justifyContent: 'center'}}>
                               <Ionicons name='ios-barcode' size={35} color='teal'/> 
                           </Callout>

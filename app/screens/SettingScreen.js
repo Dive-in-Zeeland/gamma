@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, Button, Platform} from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
-import Ionicons from "@expo/vector-icons/Ionicons";
-import MapView, {Marker, Callout} from 'react-native-maps';
 
 export default function TokenScreen({ navigation }) {
     return (
       <View style={styles.main}> 
         <View style={styles.home} >  
-         
+          Setting Screen
         </View>
       </View>
   );
