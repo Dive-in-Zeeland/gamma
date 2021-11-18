@@ -86,13 +86,14 @@ export default function questionScreen( route, navigation) {
   /**
    * IMPORTANT FUNCTION IF YOU DELETE I WILL DELETE YOU, I SEE EVERYTHING I AM THE ULTIMATE TRACKER
    * 
-   * made by Daniks
+   * Made by Daniks
    * 
    * Function that resets qr code scanning
    */
   const reset = () => {
     setScanned(false);
     setCorrectCode(false);
+    setShowScore(false);
     setText('Not yet Scanned');
   }
 
@@ -132,6 +133,7 @@ export default function questionScreen( route, navigation) {
   
   //TODO rewrite the QR check in different fucntion
   //TODO https://stackoverflow.com/questions/41912313/element-overflow-hidden-in-react-native-android for overflow hidden
+  
   //Scanned incorrect qr code, or scanned qr code that is not inside the data base 
   if (scanned === false || scanned === true && correctCode === false) {
 
