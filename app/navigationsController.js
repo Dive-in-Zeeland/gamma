@@ -17,6 +17,7 @@ import questionsScreen from './screens/questionScreen'
 import TokenScreen from './screens/TokenScreen'
 import HelpScreen from './screens/HelpModal'
 import giftModal from './screens/giftModal'
+import SettingScreen from './screens/SettingScreen'
 
 const Stack = createStackNavigator();
 
@@ -140,7 +141,7 @@ function TabNavigation() {
       />
       <Tabs.Screen name="Map" options={{ tabBarLabel: '' }} component={RootStackScreen}/>
       <Tabs.Screen
-        name="Home"
+        name="Home"fffffffffff
         options={{ tabBarLabel: '' }}
         component={HelpScreen}
       />
@@ -152,7 +153,7 @@ function TabNavigation() {
       <Tabs.Screen
         name="Settings"
         options={{ tabBarLabel: '' }}
-        component={TokenScreen}
+        component={SettingScreen}
       />
     </Tabs.Navigator>
   );

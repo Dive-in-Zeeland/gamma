@@ -182,7 +182,7 @@ export default function questionScreen( route, navigation) {
               {showScore ? (
                 <View>
                   <Text>{correct}</Text>
-                  <Button color="#000000" onPress={() => reset()} title='To camera'></Button>
+                  <Button color="#000000" onPress={() => reset()} title='Back to camera'></Button>
                 </View>
               ) : (
               <View>
