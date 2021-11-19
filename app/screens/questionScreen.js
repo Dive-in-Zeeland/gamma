@@ -152,18 +152,19 @@ export default function questionScreen( route, navigation) {
 
     return (
       <View style={styles.main}>
-          <View style={styles.container}>
-            <View style={styles.qrSection}> 
-                <View style={styles.qrContainer}>
-                <View style={styles.barcodebox}>
+          <View style={styles.home}>
+            <View style={styles.modalHelper}>
+            <Ionicons name="help-circle" size={40} color="white"/>
+            </View>
+            <View style={styles.container}> 
+                
                 <BarCodeScanner
                 onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-                style={{ flex:1}} />
-                </View>
-                </View>
-            </View> 
-            <View sttyle={styles.scanButton}>
-            {scanned && <Button style={{width:'20%'}} title={'Scan again?'} onPress={() => reset()} color='teal' />}
+                style={styles.barcode} />
+                <View style={styles.scanButton}>
+                  {/* <Text>RED</Text> */}
+                  {scanned && <Button style={{width:'20%'}} title={'Scan again'} onPress={() => reset()} color='black' />}
+                </View> 
             </View> 
           </View>
       </View> 
@@ -174,8 +175,7 @@ export default function questionScreen( route, navigation) {
   if (scanned === true) {
     return (
       <View style={styles.main}>
-        <View style={styles.container}>
-
+        <View style={styles.home}>
           <View style={styles.qrSection}> 
             <View style={styles.questionContainer}>
               {showScore ? (
@@ -214,11 +214,12 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor:"teal",
   },
-  container: {
+  home: {
       flex: 1,
       margin: 10,
       backgroundColor: "white",
       borderRadius: 15,
+
   },
   helperContainer:{
     flex: 0.1,
@@ -233,6 +234,7 @@ const styles = StyleSheet.create({
   }, 
   qrSection:{   
     flex: 0.9,
+    
   },
   qrContainer: {
     flex: 1,
@@ -249,18 +251,33 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  barcodebox: {
-    height: '90%',
-    width: '90%',
+  barcode: {
+    width:"90%",
+    height:"90%",
     overflow: 'hidden',
     borderRadius: 15,
-
+    borderColor: "teal",
+    borderWidth: 2,
   },
-  scanButtonContainer:{   
-    borderRadius: 15,
-    margin: 10,
+  container: {
+    flex: 1,
+    // backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   scanButton:{
-
+    position: 'absolute',
+    backgroundColor: "teal",
+    zIndex:9,
+    borderRadius:10,
+    top: "80%"
+  },
+  modalHelper:{
+    position: 'absolute',
+    zIndex:9,
+    elevation:9,
+    borderRadius:360,
+    top: "7%",
+    right: "9%"
   },
 })

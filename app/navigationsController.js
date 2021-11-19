@@ -110,7 +110,7 @@ function TabNavigation() {
             } else if (route.name === 'Token List') {
               iconName = 'grid';
             } else if (route.name === 'Camera') {
-              iconName = 'camera';
+              iconName = 'aperture';
             } else if (route.name === 'Home') {
               iconName = 'ios-home';
             } else if (route.name === 'Settings') {
