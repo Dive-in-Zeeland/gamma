@@ -8,9 +8,12 @@ export default function HomeScreen({ navigation }) {
     return (
       <View style={styles.main}> 
         <View style={styles.home} >  
+        <View style={styles.modalHelper}>
+            <Ionicons name="help-circle" size={40} color="teal"/>
+        </View>
         <View style={styles.location}> 
                   <View style={styles.container}>
-                      <MapView style={styles.map} initialRegion={{
+                      <MapView style={styles.map} showsUserLocation={true} initialRegion={{
                           latitude: 51.495142,
                           longitude: 3.609632,
                           latitudeDelta: 0.009,
@@ -105,10 +108,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
       },
       map: {
-        height:'91%',
+        height:'90%',
         width:'90%',
         borderWidth:2,
         borderColor:'teal',
         borderRadius: 15,
     },
+    modalHelper:{
+        position: 'absolute',
+        zIndex:9,
+        elevation:9,
+        borderRadius:360,
+        top: "7%",
+        right: "9%"
+      },
 });
