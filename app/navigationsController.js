@@ -139,7 +139,7 @@ function TabNavigation() {
       />
       <Tabs.Screen name="Map" options={{ tabBarLabel: '' }} component={RootStackScreen}/>
       <Tabs.Screen
-        name="Home"fffffffffff
+        name="Home"
         options={{ tabBarLabel: '' }}
         component={HelpScreen}
       />

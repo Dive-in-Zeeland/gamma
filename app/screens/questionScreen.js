@@ -42,7 +42,7 @@ export default function questionScreen( route, navigation) {
       ],
     },
     { 
-      questionName: 'AH',
+      questionName: 'hz',
       QuestionLocation: 'AH',
       questionText: 'Where is Gondola now?',
       answerOptions: [
