@@ -166,10 +166,9 @@ export default function questionScreen( route, navigation) {
             {scanned && <Button style={{width:'20%'}} title={'Scan again?'} onPress={() => reset()} color='teal' />}
             </View> 
           </View>
-      </View>
-      
-    );
-  }
+      </View> 
+     );
+    }
 
   //Quiz screen
   if (scanned === true) {

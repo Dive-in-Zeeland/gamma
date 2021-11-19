@@ -1,12 +1,10 @@
 import "react-native-gesture-handler";
 import React from "react";
-import { Text, View, Button, TextInput, StyleSheet, Dimensions } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { TransitionPresets } from '@react-navigation/stack';
+import { TransitionPresets, createDrawerNavigator  } from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -68,8 +66,8 @@ function RootStackScreen() {
         },
       }}
     >
-      <RootStack.Screen name="MainStack" component={MainStackScreen} />
-      <RootStack.Screen
+    <RootStack.Screen name="MainStack" component={MainStackScreen} />
+    <RootStack.Screen
         name="HelpScreen"
         component={HelpScreen}
         options={{
@@ -78,8 +76,8 @@ function RootStackScreen() {
             backgroundColor: "skyblue",
           },
         }}
-      />
-      <RootStack.Screen
+    />
+    <RootStack.Screen
         name="giftScreen"
         component={giftModal}
         options={{
@@ -88,7 +86,7 @@ function RootStackScreen() {
             backgroundColor: "skyblue",
           },
         }}
-      />
+    />
     </RootStack.Navigator>
   );
 }
