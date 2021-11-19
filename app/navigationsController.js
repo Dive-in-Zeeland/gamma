@@ -110,7 +110,7 @@ function TabNavigation() {
             } else if (route.name === 'Token List') {
               iconName = 'grid';
             } else if (route.name === 'Camera') {
-              iconName = 'camera';
+              iconName = 'aperture';
             } else if (route.name === 'Home') {
               iconName = 'ios-home';
             } else if (route.name === 'Settings') {
@@ -139,7 +139,7 @@ function TabNavigation() {
       />
       <Tabs.Screen name="Map" options={{ tabBarLabel: '' }} component={RootStackScreen}/>
       <Tabs.Screen
-        name="Home"fffffffffff
+        name="Home"
         options={{ tabBarLabel: '' }}
         component={HelpScreen}
       />
