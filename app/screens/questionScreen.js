@@ -166,10 +166,9 @@ export default function questionScreen( route, navigation) {
             {scanned && <Button style={{width:'20%'}} title={'Scan again?'} onPress={() => reset()} color='teal' />}
             </View> 
           </View>
-      </View>
-      
-    );
-  }
+      </View> 
+     );
+    }
 
   //Quiz screen
   if (scanned === true) {
@@ -182,7 +181,7 @@ export default function questionScreen( route, navigation) {
               {showScore ? (
                 <View>
                   <Text>{correct}</Text>
-                  <Button color="#000000" onPress={() => reset()} title='To camera'></Button>
+                  <Button color="#000000" onPress={() => reset()} title='Back to camera'></Button>
                 </View>
               ) : (
               <View>

@@ -5,7 +5,9 @@ export default function TokenScreen({ navigation }) {
     return (
       <View style={styles.main}> 
         <View style={styles.home} >  
+        <Text>
           Setting Screen
+        </Text>
         </View>
       </View>
   );
