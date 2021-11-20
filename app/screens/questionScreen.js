@@ -245,8 +245,8 @@ export default function questionScreen(route, navigation) {
                       borderRadius: 15,
                     }}
                   >
-                    <Text style={{ color: "white" }}>
-                      ! Test Questions - Not Final !
+                    <Text style={{ color: "white" }} onPress={()=>{reset()}}>
+                      Cancel
                     </Text>
                   </View>
                 </View>
