@@ -5,6 +5,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import MapView, {Marker, Callout} from 'react-native-maps';
 import { questions } from '../store/Questions';
 
+const filteredQuestions = questions.filter(question => !question.collected);
+
 export default function HomeScreen({ navigation }) {
     return (
       <View style={styles.main}> 
@@ -20,47 +22,15 @@ export default function HomeScreen({ navigation }) {
                           latitudeDelta: 0.009,
                           longitudeDelta: 0.009,
                       }}>
-                      <Marker coordinate={{
-                          latitude: 51.497833,
-                          longitude: 3.608876,
-                      }}>
-                          {/* <Callout onPress={() => {navigation.navigate("questions");}} style={{justifyContent: 'center'}}>
-                          <Ionicons name='ios-barcode' size={35} color='teal'/> 
-                          </Callout> */}
-                      </Marker>
-  
-                      <Marker coordinate={{
-                          latitude: 51.492899,
-                          longitude: 3.607978,
-                      }}>
-                          {/* <Callout onPress={() => {
-                          navigation.navigate("questions");
-                          }} style={{justifyContent: 'center'}}>
-                              <Ionicons name='ios-barcode' size={35} color='teal'/> 
-                          </Callout> */}
-                      </Marker>
-  
-                      <Marker coordinate={{
-                          latitude: 51.495142,
-                          longitude: 3.609632,
-                      }}>
-                          {/* <Callout onPress={() => {
-                          navigation.navigate("questions");
-                          }} style={{justifyContent: 'center'}}>
-                              <Ionicons name='ios-barcode' size={35} color='teal'/> 
-                          </Callout> */}
-                      </Marker>
-  
-                      <Marker coordinate={{
-                          latitude: 51.496209,
-                          longitude: 3.608172,
-                      }}>
-                          {/* <Callout onPress={() => {
-                          navigation.navigate("questions");
-                          }} style={{justifyContent: 'center'}}>
-                              <Ionicons name='ios-barcode' size={35} color='teal'/> 
-                          </Callout> */}
-                      </Marker>
+                      {filteredQuestions.map((place) => {
+                          return (
+                            <Marker coordinate={{
+                                latitude: place.latitude,
+                                longitude: place.longitude,
+                            }}>
+                            </Marker>
+                          );
+                      })}  
                       </MapView>
                   </View>
         </View>
