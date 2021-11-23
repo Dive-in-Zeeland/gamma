@@ -4,7 +4,7 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Sharing } from "expo";
 
-export default function questionScreen(route, navigation) {
+export default function questionScreen({navigation}) {
   /**
    * Variables used inside questions screen
    */
@@ -42,7 +42,7 @@ export default function questionScreen(route, navigation) {
       ],
     },
     {
-      questionName: "hz",
+      questionName: "AH",
       QuestionLocation: "AH",
       questionText: "Where is Gondola now?",
       answerOptions: [
@@ -59,7 +59,7 @@ export default function questionScreen(route, navigation) {
       answerOptions: [
         { answerText: "It will get flooded.", isCorrect: true },
         { answerText: "Zeelands becomes desert.", isCorrect: false },
-        { answerText: "Nothing", isCorrect: true },
+        { answerText: "Nothing", isCorrect: false },
         { answerText: "No Smoske for Deyan.", isCorrect: false },
       ],
     },
@@ -158,7 +158,7 @@ export default function questionScreen(route, navigation) {
           <View style={styles.qrTarget}></View>
           <Text style={styles.qrText}>QR Code Target</Text>
           <View style={styles.modalHelper}>
-            <Ionicons name="help-circle" size={40} color="white" />
+          <Ionicons name="help-circle" size={40} color="white" onPress={()=>{navigation.navigate("QrHelper")}}/>
           </View>
           <View style={styles.container}>
             <BarCodeScanner
