@@ -42,7 +42,7 @@ export default function questionScreen({navigation}) {
       ],
     },
     {
-      questionName: "hz",
+      questionName: "AH",
       QuestionLocation: "AH",
       questionText: "Where is Gondola now?",
       answerOptions: [
@@ -59,7 +59,7 @@ export default function questionScreen({navigation}) {
       answerOptions: [
         { answerText: "It will get flooded.", isCorrect: true },
         { answerText: "Zeelands becomes desert.", isCorrect: false },
-        { answerText: "Nothing", isCorrect: true },
+        { answerText: "Nothing", isCorrect: false },
         { answerText: "No Smoske for Deyan.", isCorrect: false },
       ],
     },
