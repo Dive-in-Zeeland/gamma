@@ -9,7 +9,7 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.main}> 
         <View style={styles.home} >  
         <View style={styles.modalHelper} >
-            <Ionicons name="help-circle" size={40} color="teal" onPress={()=>{navigation.navigate("HelpScreen")}}/>
+            <Ionicons name="help-circle" size={40} color="teal" onPress={()=>{navigation.navigate("MapHelper")}}/>
         </View>
         <View style={styles.location}> 
                   <View style={styles.container}>
