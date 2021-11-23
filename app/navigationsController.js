@@ -2,8 +2,7 @@ import "react-native-gesture-handler";
 import React from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { TransitionPresets, createDrawerNavigator  } from '@react-navigation/stack';
+import { TransitionPresets, createDrawerNavigator, createStackNavigator  } from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -16,7 +15,6 @@ import HomeScreen from './screens/HomeScreen';
 import questionsScreen from './screens/questionScreen';
 import TokenScreen from './screens/TokenScreen';
 import HelpScreen from './screens/HelpModal';
-import giftModal from './screens/giftModal';
 import SettingScreen from './screens/SettingScreen';
 
 const Stack = createStackNavigator();
