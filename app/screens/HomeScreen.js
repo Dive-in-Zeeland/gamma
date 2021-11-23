@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, Platform} from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MapView, {Marker, Callout} from 'react-native-maps';
+import { questions } from '../store/Questions';
 
 export default function HomeScreen({ navigation }) {
     return (
@@ -18,7 +19,7 @@ export default function HomeScreen({ navigation }) {
                           longitude: 3.609632,
                           latitudeDelta: 0.009,
                           longitudeDelta: 0.009,
-                      }}> 
+                      }}>
                       <Marker coordinate={{
                           latitude: 51.497833,
                           longitude: 3.608876,
