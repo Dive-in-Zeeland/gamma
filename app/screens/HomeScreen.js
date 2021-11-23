@@ -8,8 +8,8 @@ export default function HomeScreen({ navigation }) {
     return (
       <View style={styles.main}> 
         <View style={styles.home} >  
-        <View style={styles.modalHelper}>
-            <Ionicons name="help-circle" size={40} color="teal"/>
+        <View style={styles.modalHelper} >
+            <Ionicons name="help-circle" size={40} color="teal" onPress={()=>{navigation.navigate("HelpScreen")}}/>
         </View>
         <View style={styles.location}> 
                   <View style={styles.container}>
@@ -23,9 +23,8 @@ export default function HomeScreen({ navigation }) {
                           latitude: 51.497833,
                           longitude: 3.608876,
                       }}>
-                          {/* <Callout onPress={() => {navigation.navigate("questions");}} style={{justifyContent: 'center'}}>
-                          <Ionicons name='ios-barcode' size={35} color='teal'/> 
-                          </Callout> */}
+                          <Callout>
+                          </Callout>
                       </Marker>
   
                       <Marker coordinate={{
@@ -120,6 +119,6 @@ const styles = StyleSheet.create({
         elevation:9,
         borderRadius:360,
         top: "7%",
-        right: "9%"
+        left: "9%"
       },
 });
