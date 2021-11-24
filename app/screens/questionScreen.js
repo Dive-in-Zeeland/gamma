@@ -1,3 +1,12 @@
+/*
+
+WARNING
+
+There is a refactore version of that file (Stars with a Q, not q)
+This file is to be deleted (after you guys merge)
+
+*/
+
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
