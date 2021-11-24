@@ -70,7 +70,7 @@ export default function questionScreen( route, navigation) {
 		if (isCorrect) {
 			setCorrect('Your answer is correct!');
       currentQuestion.collected = true;
-      console.log(questions);
+      console.log(currentQuestion);
 		} else {
       setCorrect('Your answer is incorrect!');
     }
