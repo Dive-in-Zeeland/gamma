@@ -22,12 +22,14 @@ export default function HomeScreen({ navigation }) {
                           latitudeDelta: 0.009,
                           longitudeDelta: 0.009,
                       }}>
-                      {filteredQuestions.map((place) => {
+                      {filteredQuestions.map((place, index) => {
                           return (
                             <Marker coordinate={{
                                 latitude: place.latitude,
                                 longitude: place.longitude,
-                            }}>
+                            }}
+                            key={index}
+                            >
                             </Marker>
                           );
                       })}  
