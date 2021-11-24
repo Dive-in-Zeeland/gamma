@@ -11,7 +11,8 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Sharing } from "expo";
+import { Sharing } from 'expo';
+import { questions } from '../store/Questions';
 
 export default function questionScreen({navigation}) {
   /**
@@ -25,54 +26,6 @@ export default function questionScreen({navigation}) {
   const [showScore, setShowScore] = useState(false);
   const [correct, setCorrect] = useState("Not correct!");
 
-  //Array of object of the Token questions
-  const questions = [
-    {
-      questionName: "APV",
-      QuestionLocation: "APV",
-      questionText: "What is the most common fish in around waters in ZEELAND",
-      answerOptions: [
-        { answerText: "Salmonela", isCorrect: false },
-        { answerText: "Carp", isCorrect: false },
-        { answerText: "Fluke", isCorrect: true },
-        { answerText: "Salmon", isCorrect: false },
-      ],
-    },
-    {
-      questionName: "HZ",
-      QuestionLocation: "HZ",
-      questionText:
-        "What is the tasties sea food in ZEELAND according to the articles?",
-      answerOptions: [
-        { answerText: "Measles", isCorrect: false },
-        { answerText: "Musels", isCorrect: true },
-        { answerText: "Muscules", isCorrect: false },
-        { answerText: "Fish", isCorrect: false },
-      ],
-    },
-    {
-      questionName: "AH",
-      QuestionLocation: "AH",
-      questionText: "Where is Gondola now?",
-      answerOptions: [
-        { answerText: "Knowhere", isCorrect: false },
-        { answerText: "Knowhere", isCorrect: false },
-        { answerText: "GERMANY", isCorrect: true },
-        { answerText: "Knowhere", isCorrect: false },
-      ],
-    },
-    {
-      questionName: "STREET",
-      QuestionLocation: "STREET",
-      questionText: "HOW WILL ARTIC MELTING ICE AFFECT THE ZEELANDS LAND?",
-      answerOptions: [
-        { answerText: "It will get flooded.", isCorrect: true },
-        { answerText: "Zeelands becomes desert.", isCorrect: false },
-        { answerText: "Nothing", isCorrect: false },
-        { answerText: "No Smoske for Deyan.", isCorrect: false },
-      ],
-    },
-  ];
 
   /**
    * Function to ask the user if he allows
@@ -121,11 +74,13 @@ export default function questionScreen({navigation}) {
    *
    * @param {*} isCorrect Boolean if the question answear is correct
    */
-  const handleAnswerOptionClick = (isCorrect) => {
-    if (isCorrect) {
-      setCorrect("Your answer is correct!");
-    } else {
-      setCorrect("Your answer is incorrect!");
+	const handleAnswerOptionClick = (isCorrect) => {
+		if (isCorrect) {
+			setCorrect('Your answer is correct!');
+      currentQuestion.collected = true;
+      console.log(currentQuestion);
+		} else {
+      setCorrect('Your answer is incorrect!');
     }
     setShowScore(true);
   };
