@@ -12,7 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import MapHelper from "./screens/helpScreens/MapHelper";
 import QrHelper from "./screens/helpScreens/QrHelper";
 import HomeScreen from './screens/HomeScreen';
-import questionsScreen from './screens/questionScreen';
+import QuestionScreen from './screens/QuestionScreen';
 import TokenScreen from './screens/TokenScreen';
 import HelpScreen from './screens/HelpModal';
 import SettingScreen from './screens/SettingScreen';
@@ -50,7 +50,7 @@ function SubMapStackScreen() {
     <SubStackQr.Navigator headerMode="none">
       <SubStackQr.Screen
         name="QrScreen"
-        component={questionsScreen}
+        component={QuestionScreen}
       />
     </SubStackQr.Navigator>
   );
