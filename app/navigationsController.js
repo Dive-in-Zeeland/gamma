@@ -2,50 +2,57 @@ import "react-native-gesture-handler";
 import React from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { TransitionPresets, createDrawerNavigator  } from '@react-navigation/stack';
+import { TransitionPresets, createDrawerNavigator, createStackNavigator  } from '@react-navigation/stack';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 //Importing Screens to the main navigations controller
-import HomeScreen from './screens/HomeScreen'
-import questionsScreen from './screens/questionScreen'
-import TokenScreen from './screens/TokenScreen'
-import HelpScreen from './screens/HelpModal'
-import giftModal from './screens/giftModal'
-import SettingScreen from './screens/SettingScreen'
+import MapHelper from "./screens/helpScreens/MapHelper";
+import QrHelper from "./screens/helpScreens/QrHelper";
+import HomeScreen from './screens/HomeScreen';
+import questionsScreen from './screens/questionScreen';
+import TokenScreen from './screens/TokenScreen';
+import HelpScreen from './screens/HelpModal';
+import SettingScreen from './screens/SettingScreen';
 
 const Stack = createStackNavigator();
 
 
-const MainStack = createStackNavigator();
-const RootStack = createStackNavigator();
+const SubStackMap = createStackNavigator();
+const MapStack = createStackNavigator();
+const SubStackQr = createStackNavigator();
+const QrStack = createStackNavigator();
+
 
 /**
  * 
- * @returns Home screen main page and questions page
+ * @returns Map Screen 
  */
-function MainStackScreen() {
+function SubMapStackScreen() {
   return (
-    <MainStack.Navigator headerMode="none">
-      
-      <MainStack.Screen
-        name="HomeScreen"
+    <SubStackMap.Navigator headerMode="none">
+      <SubStackMap.Screen
+        name="MapScreen"
         component={HomeScreen}
-        options={{
-          title: "Home Screen",
-        }}
       />
-      <MainStack.Screen
-        name="questions"
+    </SubStackMap.Navigator>
+  );
+}
+
+/**
+ * 
+ * @returns QR Screen
+ */
+ function SubQrStackScreen() {
+  return (
+    <SubStackQr.Navigator headerMode="none">
+      <SubStackQr.Screen
+        name="QrScreen"
         component={questionsScreen}
-        options={{
-          title: "Questions",
-        }}
       />
-    </MainStack.Navigator>
+    </SubStackQr.Navigator>
   );
 }
 
@@ -53,9 +60,9 @@ function MainStackScreen() {
  * 
  * @returns Home screen stack 
  */
-function RootStackScreen() {
+function MapStackScreen() {
   return (
-    <RootStack.Navigator 
+    <MapStack.Navigator 
     headerMode="none"
       mode="modal"
       
@@ -66,10 +73,10 @@ function RootStackScreen() {
         },
       }}
     >
-    <RootStack.Screen name="MainStack" component={MainStackScreen} />
-    <RootStack.Screen
-        name="HelpScreen"
-        component={HelpScreen}
+    <MapStack.Screen name="SubMapStack" component={SubMapStackScreen} />
+    <MapStack.Screen
+        name="MapHelper"
+        component={MapHelper}
         options={{
           headerShown: false,
           headerStyle: {
@@ -77,9 +84,34 @@ function RootStackScreen() {
           },
         }}
     />
-    <RootStack.Screen
-        name="giftScreen"
-        component={giftModal}
+    </MapStack.Navigator>
+  );
+}
+
+/**
+ * 
+ * @returns QR screen stack 
+ */
+ function QrStackScreen() {
+  return (
+    <QrStack.Navigator 
+    headerMode="none"
+      mode="modal"
+      
+      screenOptions={{
+        ...TransitionPresets.SlideFromRightIOS,
+        headerStyle: {
+          backgroundColor: "tomato",
+        },
+      }}
+    >
+    <QrStack.Screen
+        name="QrSubStack"
+        component={SubQrStackScreen}
+    />
+     <QrStack.Screen
+        name="QrHelper"
+        component={QrHelper}
         options={{
           headerShown: false,
           headerStyle: {
@@ -87,7 +119,7 @@ function RootStackScreen() {
           },
         }}
     />
-    </RootStack.Navigator>
+    </QrStack.Navigator>
   );
 }
 
@@ -137,17 +169,13 @@ function TabNavigation() {
         options={{ tabBarLabel: '' }}
         component={TokenScreen}
       />
-      <Tabs.Screen name="Map" options={{ tabBarLabel: '' }} component={RootStackScreen}/>
+      <Tabs.Screen name="Map" options={{ tabBarLabel: '' }} component={MapStackScreen}/>
       <Tabs.Screen
         name="Home"
         options={{ tabBarLabel: '' }}
         component={HelpScreen}
       />
-      <Tabs.Screen
-        name="Camera"
-        options={{ tabBarLabel: '' }}
-        component={questionsScreen}
-      />
+      <Tabs.Screen name="Camera" options={{ tabBarLabel: '' }} component={QrStackScreen}/>
       <Tabs.Screen
         name="Settings"
         options={{ tabBarLabel: '' }}
