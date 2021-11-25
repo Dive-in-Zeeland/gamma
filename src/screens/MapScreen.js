@@ -9,23 +9,37 @@ import { useAtom } from 'jotai';
 
 const MapScreen = ({ navigation: nav }) => {
 
-  const [tokens] = useAtom(tokensAtom);
+  const [tokens, setTokens] = useAtom(tokensAtom);
   const filtered = Object.values(tokens).filter(token => !token.isCollected);
+  
+  function onHelpPress() {
+    nav.navigate("MapHelpScreen")
+  }
+
+  const initialRegion = {
+      latitude: 51.495142,
+      longitude: 3.609632,
+      latitudeDelta: 0.009,
+      longitudeDelta: 0.009,
+  }
 
   return (
     <View style={styles.main}>
       <View style={styles.home} >
+
         <View style={styles.modalHelper} >
-          <Ionicons name="help-circle" size={40} color="teal" onPress={() => { nav.navigate("MapHelpScreen") }} />
+          <Ionicons 
+            name="help-circle" 
+            size={40} 
+            color="teal" 
+            onPress={onHelpPress} 
+          />
         </View>
+
         <View style={styles.location}>
           <View style={styles.container}>
-            <MapView style={styles.map} showsUserLocation={true} initialRegion={{
-              latitude: 51.495142,
-              longitude: 3.609632,
-              latitudeDelta: 0.009,
-              longitudeDelta: 0.009,
-            }}>
+            <MapView style={styles.map} showsUserLocation={true} initialRegion={initialRegion}>
+              
               {filtered.map(({ coords: [latitude, longitude] }, index) => (
                 <Marker
                   coordinate={{
@@ -35,9 +49,11 @@ const MapScreen = ({ navigation: nav }) => {
                   key={index}
                 />
               ))}
+
             </MapView>
           </View>
         </View>
+
       </View>
     </View>
   );

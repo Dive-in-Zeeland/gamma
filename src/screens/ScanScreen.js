@@ -72,9 +72,7 @@ const ScanScreen = ({ navigation: nav }) => {
   }, []);
 
   if (!isCameraAllowed) {
-    return (
-      <PermissionView {...theProps} />
-    );
+    return <PermissionView {...theProps} />;
   }
   else if (!isScanValid) {
     return <ScanningView {...theProps} />;
