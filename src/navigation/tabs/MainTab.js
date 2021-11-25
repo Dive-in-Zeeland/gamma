@@ -32,7 +32,7 @@ const MainTab = () => {
   }
 
   const navOpts = {
-    initialRouteName: "Home",
+    initialRouteName: "HomeScreen",
     screenOptions: ({route}) => ({
       tabBarIcon: ({ color }) => configureIcons(route, color)
     }),
