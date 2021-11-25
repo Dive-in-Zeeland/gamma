@@ -1,232 +1,272 @@
-/*
-
-WARNING
-
-There is a refactore version of that file (Stars with a Q, not q)
-This file is to be deleted (after you guys merge)
-
-*/
-
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Sharing } from 'expo';
-import { questions } from '../store/Questions';
-
-export default function questionScreen({navigation}) {
-  /**
-   * Variables used inside questions screen
-   */
-  const [hasPermission, setHasPermission] = useState(null);
-  const [scanned, setScanned] = useState(false);
-  const [text, setText] = useState("Not yet Scanned");
-  const [correctCode, setCorrectCode] = useState(false);
-  const [currentQuestion, setCurrentQuestion] = useState(null);
-  const [showScore, setShowScore] = useState(false);
-  const [correct, setCorrect] = useState("Not correct!");
+import { useAtom } from 'jotai'
+import tokensAtom from '../store/tokens.js'
 
 
-  /**
-   * Function to ask the user if he allows
-   * to use the mobile phones camera
-   */
-  const askForCameraPermission = () => {
-    (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === "granted");
-    })();
-  };
+/***********************************************************/
+/***********************************************************/
+/* Separated React Components
+/***********************************************************/
 
-  /**
-   * Calling camera permission function
-   *  */
+
+
+const PermissionScreen = ({
+  askForCameraPermission
+}) => (
+  <View style={styles.container}>
+
+    <Text style={{ margin: 10 }}>
+      No access to camera
+    </Text>
+
+    <Button
+      title={"Allow Camera"}
+      onPress={() => askForCameraPermission()}
+    />
+
+  </View>
+)
+
+const ScanningScreen = ({
+  isScanned,
+  isScanValid,
+  handleBarCodeScanned,
+  reset,
+}) => (
+  <View style={styles.main}>
+    <View style={styles.home}>
+      <View style={styles.qrTarget} />
+      <Text style={styles.qrText}>QR Code Target</Text>
+      <View style={styles.modalHelper}>
+        <Ionicons name="help-circle" size={40} color="white" onPress={() => { navigation.navigate("QrHelper") }} />
+      </View>
+      <View style={styles.container}>
+        <BarCodeScanner
+          onBarCodeScanned={isScanned ? undefined : handleBarCodeScanned}
+          style={styles.barcode}
+        />
+        {isScanned &&
+          (
+            <View style={styles.scanButton}>
+              <Button
+                style={{ width: "20%" }}
+                title={"Scan again"}
+                onPress={() => reset()}
+                color="black"
+              />
+            </View>
+          )
+        }
+      </View>
+    </View>
+  </View>
+)
+
+const AfterScanScreen = (props) => (
+  <View style={styles.main}>
+    <View style={styles.home}>
+      <View style={styles.qrSection}>
+        <View style={styles.questionContainer}>
+          {props.isAnswered
+            ?
+            <ScoreView {...props} />
+            :
+            <QuestionView {...props} />
+          }
+        </View>
+      </View>
+    </View>
+  </View>
+)
+
+const ScoreView = ({
+  postAnswerMsg,
+  reset,
+}) => (
+  <View>
+    <Text>{postAnswerMsg}</Text>
+    <Button
+      color="#000000"
+      onPress={() => reset()}
+      title="Back to camera"
+    ></Button>
+  </View>
+)
+
+
+const QuestionView = ({
+  scannedToken,
+  handleAnswerOptionClick,
+  reset,
+}) => (
+  <View>
+    <View style={styles.questionViewTitle}>
+      <Text style={styles.questionViewTitleText}>
+        {scannedToken.question}
+      </Text>
+    </View>
+    <View style={styles.questionViewAnswerOptions}>
+      {scannedToken.answers.map((answer, index) => (
+        <Button
+          color="#ffffff"
+          onPress={() =>
+            handleAnswerOptionClick(answer.isCorrect)
+          }
+          title={answer.text}
+          key={index}
+        />
+      ))}
+    </View>
+    <View style={styles.questionViewCancel}>
+      <Text style={styles.questionViewCancelText} onPress={() => reset()}>
+        Cancel
+      </Text>
+    </View>
+  </View>
+)
+
+
+
+/***********************************************************/
+/***********************************************************/
+/* Main Component (With states and functions)
+/***********************************************************/
+
+
+
+const questionScreen = () => {
+
+  const [isCameraAllowed, setIsCameraAllowed] = useState(null);
+  const [isScanned, setIsScanned] = useState(false);
+  const [isScanValid, setIsScanValid] = useState(false);
+  const [isAnswered, setIsAnswered] = useState(false);
+  const [postAnswerMsg, setPostAnswerMsg] = useState("Not correct!");
+  const [tokens, setTokens] = useAtom(tokensAtom);
+  const [scannedName, setScannedName] = useState('');
+
+  async function askForCameraPermission() {
+    const { status } = await BarCodeScanner.requestPermissionsAsync();
+    setIsCameraAllowed(status === "granted");
+  }
+
+  function trySetToken(name) {
+    if (!(name in tokens)) return false;
+    setScannedName(name);
+    return true;
+  }
+
+  function reset() {
+    setIsScanValid(false);
+    setIsScanned(false);
+    setIsAnswered(false);
+  }
+
+  function handleBarCodeScanned({ data: scannedText }) {
+    setIsScanValid(trySetToken(scannedText));
+    setIsScanned(true);
+  }
+
+  function handleAnswerOptionClick(isCorrect) {
+    if (isCorrect) {
+      setPostAnswerMsg("Your answer is correct!");
+      setTokens(prev => ({
+        ...prev, [scannedName]: {
+          ...tokens[scannedName],
+          isCollected: true,
+        }
+      }));
+    } else {
+      setPostAnswerMsg("Your answer is incorrect!");
+    }
+    setIsAnswered(true);
+  }
+
+  const theProps = {
+    isAnswered,
+    postAnswerMsg,
+    reset,
+    scannedToken: tokens[scannedName],
+    handleAnswerOptionClick,
+    askForCameraPermission,
+    isScanned,
+    handleBarCodeScanned,
+  }
+
   useEffect(() => {
     askForCameraPermission();
   }, []);
 
-  /**
-   * IMPORTANT FUNCTION IF YOU DELETE I WILL DELETE YOU, I SEE EVERYTHING I AM THE ULTIMATE TRACKER
-   *
-   * Made by Daniks
-   *
-   * Function that resets qr code scanning
-   */
-  const reset = () => {
-    setScanned(false);
-    setCorrectCode(false);
-    setShowScore(false);
-    setText("Not yet Scanned");
-  };
-
-  /**
-   * Function to assign scanned qr code values
-   *
-   * @param {*} data Scanned content of the QR code
-   */
-  const handleBarCodeScanned = ({ data }) => {
-    setScanned(true);
-    setText(data);
-  };
-
-  /**
-   * Function that sets score of the quiz
-   *
-   * @param {*} isCorrect Boolean if the question answear is correct
-   */
-	const handleAnswerOptionClick = (isCorrect) => {
-		if (isCorrect) {
-			setCorrect('Your answer is correct!');
-      currentQuestion.collected = true;
-      console.log(currentQuestion);
-		} else {
-      setCorrect('Your answer is incorrect!');
-    }
-    setShowScore(true);
-  };
-
-  //Camera permission checking
-  if (hasPermission === false) {
+  if (!isCameraAllowed) {
     return (
-      <View style={styles.container}>
-        <Text style={{ margin: 10 }}>No access to camera</Text>
-        <Button
-          title={"Allow Camera"}
-          onPress={() => askForCameraPermission()}
-        />
-      </View>
+      <PermissionScreen {...theProps} />
     );
   }
-
-  //TODO rewrite the QR check in different fucntion
-  //TODO https://stackoverflow.com/questions/41912313/element-overflow-hidden-in-react-native-android for overflow hidden
-
-  //Scanned incorrect qr code, or scanned qr code that is not inside the data base
-  if (scanned === false || (scanned === true && correctCode === false)) {
-    /**
-     * Checking if QR code is correct and exsists in data base
-     * &&
-     * Setting the current question
-     *
-     */
-    questions.forEach((element) => {
-      if (element.questionName === text) {
-        setCurrentQuestion(element);
-        setCorrectCode(true);
-      }
-    });
-
+  else if (!isScanValid) {
     return (
-      <View style={styles.main}>
-        <View style={styles.home}>
-          <View style={styles.qrTarget}></View>
-          <Text style={styles.qrText}>QR Code Target</Text>
-          <View style={styles.modalHelper}>
-          <Ionicons name="help-circle" size={40} color="white" onPress={()=>{navigation.navigate("QrHelper")}}/>
-          </View>
-          <View style={styles.container}>
-            <BarCodeScanner
-              onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-              style={styles.barcode}
-            />
-            <View style={styles.scanButton}>
-              {/* <Text>RED</Text> */}
-              {scanned && (
-                <Button
-                  style={{ width: "20%" }}
-                  title={"Scan again"}
-                  onPress={() => reset()}
-                  color="black"
-                />
-              )}
-            </View>
-          </View>
-        </View>
-      </View>
+      <ScanningScreen {...theProps} />
     );
   }
-
-  //Quiz screen
-  if (scanned === true) {
+  else {
     return (
-      <View style={styles.main}>
-        <View style={styles.home}>
-          <View style={styles.qrSection}>
-            <View style={styles.questionContainer}>
-              {showScore ? (
-                <View>
-                  <Text>{correct}</Text>
-                  <Button
-                    color="#000000"
-                    onPress={() => reset()}
-                    title="Back to camera"
-                  ></Button>
-                </View>
-              ) : (
-                <View>
-                  <View
-                    style={{
-                      flex: 0.5,
-                      borderColor: "teal",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      margin: 10,
-                      borderRadius: 15,
-                      borderWidth: 2,
-                    }}
-                  >
-                    <Text style={{ margin: 10, color: "gray" }}>
-                      {currentQuestion.questionText}
-                    </Text>
-                  </View>
-                  <View
-                    style={{
-                      flex: 1,
-                      backgroundColor: "teal",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      margin: 10,
-                      borderRadius: 15,
-                    }}
-                  >
-                    {currentQuestion.answerOptions.map((answerOption) => (
-                      <Button
-                        color="#ffffff"
-                        onPress={() =>
-                          handleAnswerOptionClick(answerOption.isCorrect)
-                        }
-                        title={answerOption.answerText}
-                      ></Button>
-                    ))}
-                  </View>
-                  <View
-                    style={{
-                      flex: 0.2,
-                      backgroundColor: "red",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      margin: 10,
-                      borderRadius: 15,
-                    }}
-                  >
-                    <Text style={{ color: "white" }} onPress={()=>{reset()}}>
-                      Cancel
-                    </Text>
-                  </View>
-                </View>
-              )}
-            </View>
-          </View>
-        </View>
-      </View>
+      <AfterScanScreen {...theProps} />
     );
   }
+  
 }
 
-//TODO Edit the current styles and make the styles global
+export default questionScreen;
 
-//Styles for the screen view elements
+
+
+/***********************************************************/
+/***********************************************************/
+/* Styles (Need to leave this file)
+/***********************************************************/
+
+
+
 const styles = StyleSheet.create({
+
+  // Question View Start
+  questionViewTitle: {
+    flex: 0.5,
+    borderColor: "teal",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 10,
+    borderRadius: 15,
+    borderWidth: 2,
+  },
+  questionViewTitleText: {
+    margin: 10,
+    color: "gray"
+  },
+  questionViewAnswerOptions: {
+    flex: 1,
+    backgroundColor: "teal",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 10,
+    borderRadius: 15,
+  },
+  questionViewCancel: {
+    flex: 0.2,
+    backgroundColor: "red",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 10,
+    borderRadius: 15,
+  },
+  questionViewCancelText: {
+    color: "white"
+  },
+  // Question View End
+
+
+
   main: {
     flex: 1,
     backgroundColor: "teal",
@@ -314,7 +354,7 @@ const styles = StyleSheet.create({
     color: "white",
     top: "66%",
     right: "29%",
-    fontSize:20,
-    fontWeight:"bold",
+    fontSize: 20,
+    fontWeight: "bold",
   },
 });
