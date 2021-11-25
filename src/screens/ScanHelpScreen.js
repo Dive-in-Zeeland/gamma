@@ -3,7 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 
-const ScanHelpScreen = (nav) => {
+
+const ScanHelpScreen = ({ navigation: nav }) => {
 
   return (
     <View style={styles.main}>
@@ -11,7 +12,7 @@ const ScanHelpScreen = (nav) => {
         <View style={styles.qrSection}>
           <View style={styles.qrContainer}>
             <View>
-              <Ionicons name="arrow-back" size={40} color="teal" onPress={() => { nav.navigation.goBack() }} />
+              <Ionicons name="arrow-back" size={40} color="teal" onPress={() => { nav.goBack() }} />
             </View>
             <Text style={{ margin: 20 }}>
               QR HELPER

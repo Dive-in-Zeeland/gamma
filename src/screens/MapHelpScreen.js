@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 
-const MapHelpScreen = (nav) => {
+const MapHelpScreen = ({ navigation: nav }) => {
 
   return (
     <View style={styles.main}>
@@ -11,7 +11,7 @@ const MapHelpScreen = (nav) => {
         <View style={styles.qrSection}>
           <View style={styles.qrContainer}>
             <View>
-              <Ionicons name="arrow-back" size={40} color="teal" onPress={() => { nav.navigation.goBack() }} />
+              <Ionicons name="arrow-back" size={40} color="teal" onPress={() => { nav.goBack() }} />
             </View>
             <Text style={{ margin: 20 }}>
               MAP HELPER

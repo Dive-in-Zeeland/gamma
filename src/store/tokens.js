@@ -3,7 +3,7 @@ import { atom } from 'jotai'
 
 //Array of object of the Token questions
 const tokens = {
-    'APV': { 
+    'APV': {
         place: 'APV',
         question: 'What is the most common fish in around waters in ZEELAND',
         answers: [
@@ -26,9 +26,8 @@ const tokens = {
         ],
         isCollected: false,
         coords: [51.495142, 3.609632],
-
     },
-    'AH': { 
+    'AH': {
         place: 'AH',
         question: 'Where is Gondola now?',
         answers: [
@@ -39,8 +38,6 @@ const tokens = {
         ],
         isCollected: false,
         coords: [51.496209, 3.608172],
-
-
     },
     'STREET': {
         place: 'STREET',
@@ -56,4 +53,6 @@ const tokens = {
     }
 };
 
-  export default atom(tokens);
+const tokensAtom = atom(tokens);
+
+export default tokensAtom;

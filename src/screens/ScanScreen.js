@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useAtom } from 'jotai'
-import tokensAtom from '../store/tokens.js'
+import tokensAtom from '../store/tokens';
+
 
 
 /***********************************************************/
@@ -34,13 +35,14 @@ const ScanningScreen = ({
   isScanned,
   handleBarCodeScanned,
   reset,
+  nav,
 }) => (
   <View style={styles.main}>
     <View style={styles.home}>
       <View style={styles.qrTarget} />
       <Text style={styles.qrText}>QR Code Target</Text>
       <View style={styles.modalHelper}>
-        <Ionicons name="help-circle" size={40} color="white" onPress={() => { navigation.navigate("QrHelper") }} />
+        <Ionicons name="help-circle" size={40} color="white" onPress={() => { nav.navigate("ScanHelpScreen") }} />
       </View>
       <View style={styles.container}>
         <BarCodeScanner
@@ -136,7 +138,7 @@ const QuestionView = ({
 
 
 
-const questionScreen = () => {
+const ScanScreen = ({ navigation: nav }) => {
 
   const [isCameraAllowed, setIsCameraAllowed] = useState(null);
   const [isScanned, setIsScanned] = useState(false);
@@ -166,6 +168,7 @@ const questionScreen = () => {
   function handleBarCodeScanned({ data: scannedText }) {
     setIsScanValid(trySetToken(scannedText));
     setIsScanned(true);
+    console.log(scannedText);
   }
 
   function handleAnswerOptionClick(isCorrect) {
@@ -192,6 +195,7 @@ const questionScreen = () => {
     askForCameraPermission,
     isScanned,
     handleBarCodeScanned,
+    nav,
   }
 
   useEffect(() => {
@@ -213,10 +217,10 @@ const questionScreen = () => {
       <AfterScanScreen {...theProps} />
     );
   }
-  
+
 }
 
-export default questionScreen;
+export default ScanScreen;
 
 
 

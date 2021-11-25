@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, Platform } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from "@expo/vector-icons/Ionicons";
-import MapView, { Marker, Callout } from 'react-native-maps';
-import tokensAtom from '../../store/tokens';
+import MapView, { Marker } from 'react-native-maps';
+import tokensAtom from '../store/tokens';
 import { useAtom } from 'jotai';
 
 
 
-const HomeScreen = ({
-  navigation,
-}) => {
+const MapScreen = ({ navigation: nav }) => {
 
   const [tokens] = useAtom(tokensAtom);
   const filtered = Object.values(tokens).filter(token => !token.isCollected);
@@ -19,7 +16,7 @@ const HomeScreen = ({
     <View style={styles.main}>
       <View style={styles.home} >
         <View style={styles.modalHelper} >
-          <Ionicons name="help-circle" size={40} color="teal" onPress={() => { navigation.navigate("MapHelper") }} />
+          <Ionicons name="help-circle" size={40} color="teal" onPress={() => { nav.navigate("MapHelpScreen") }} />
         </View>
         <View style={styles.location}>
           <View style={styles.container}>
@@ -46,7 +43,7 @@ const HomeScreen = ({
   );
 }
 
-export default HomeScreen;
+export default MapScreen;
 
 const styles = StyleSheet.create({
   main: {
