@@ -14,7 +14,6 @@ const HomeScreen = ({
 
   const [tokens] = useAtom(tokensAtom);
   const filtered = Object.values(tokens).filter(token => !token.isCollected);
-  console.log(Object.keys(tokens));
 
   return (
     <View style={styles.main}>
