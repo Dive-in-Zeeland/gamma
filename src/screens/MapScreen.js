@@ -1,45 +1,50 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MapView, { Marker } from 'react-native-maps';
 import tokensAtom from '../store/tokens';
+import mapPositionAtom from '../store/mapPosition';
 import { useAtom } from 'jotai';
+import { getBoundsOfDistance } from 'geolib';
 
 
 
 const MapScreen = ({ navigation: nav }) => {
 
-  const [tokens, setTokens] = useAtom(tokensAtom);
+  const [tokens] = useAtom(tokensAtom);
+  const [mapPosition] = useAtom(mapPositionAtom);
+  const mapRef = useRef(null);
+
   const filtered = Object.values(tokens).filter(token => !token.isCollected);
-  
+
   function onHelpPress() {
     nav.navigate("MapHelpScreen")
   }
 
-  const initialRegion = {
-      latitude: 51.495142,
-      longitude: 3.609632,
-      latitudeDelta: 0.009,
-      longitudeDelta: 0.009,
-  }
+  useEffect(() => {
+    if (!mapRef) return;
+    console.log(mapRef.current);
+    const coords = getBoundsOfDistance({ latitude: mapPosition.latitude, longitude: mapPosition.longitude }, 130);
+    mapRef.current.fitToCoordinates(coords);
+  }, [mapPosition]);
 
   return (
     <View style={styles.main}>
       <View style={styles.home} >
 
         <View style={styles.modalHelper} >
-          <Ionicons 
-            name="help-circle" 
-            size={40} 
-            color="teal" 
-            onPress={onHelpPress} 
+          <Ionicons
+            name="help-circle"
+            size={40}
+            color="teal"
+            onPress={onHelpPress}
           />
         </View>
 
         <View style={styles.location}>
           <View style={styles.container}>
-            <MapView style={styles.map} showsUserLocation={true} initialRegion={initialRegion}>
-              
+            <MapView ref={mapRef} style={styles.map} showsUserLocation={true} initialRegion={mapPosition} >
+
               {filtered.map(({ coords: [latitude, longitude] }, index) => (
                 <Marker
                   coordinate={{
