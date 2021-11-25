@@ -82,8 +82,8 @@ const MainTab = () => {
 
   return (
     <Tab.Navigator {...navOpts}>
-      {screens.map(screenOpts => (
-        <Tab.Screen {...screenOpts} />
+      {screens.map((screenOpts, i) => (
+        <Tab.Screen {...screenOpts} key={i}/>
       ))}
     </Tab.Navigator>
   );
