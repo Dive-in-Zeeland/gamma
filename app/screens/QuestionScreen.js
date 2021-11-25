@@ -32,7 +32,6 @@ const PermissionScreen = ({
 
 const ScanningScreen = ({
   isScanned,
-  isScanValid,
   handleBarCodeScanned,
   reset,
 }) => (
