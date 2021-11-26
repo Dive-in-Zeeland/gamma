@@ -1,105 +1,53 @@
 import React from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
+
+import tokensAtom from '../store/tokens';
+import mapPositionAtom from "../store/mapPosition";
+import { useAtom } from 'jotai';
 
 
+const TokenScreen = ({ navigation: nav }) => {
 
-const TokenScreen = () => (
-  <View style={styles.main}>
-    <View style={styles.home}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}
-        style={styles.scrollView}
-      >
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
-            <Text style={{ fontSize: 30, color: "white", margin: 10 }}>
-              TEST ELEMENT
-            </Text>
-          </View>
-        </View>
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
-            <Text style={{ fontSize: 30, color: "white", margin: 10 }}>
-              TEST ELEMENT
-            </Text>
-          </View>
-        </View>
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
-            <Text style={{ fontSize: 30, color: "white", margin: 10 }}>
-              TEST ELEMENT
-            </Text>
-          </View>
-        </View>
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
-            <Text style={{ fontSize: 30, color: "white", margin: 10 }}>
-              TEST ELEMENT
-            </Text>
-          </View>
-        </View>
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
-            <Text style={{ fontSize: 30, color: "white", margin: 10 }}>
-              TEST ELEMENT
-            </Text>
-          </View>
-        </View>
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
-            <Text style={{ fontSize: 30, color: "white", margin: 10 }}>
-              TEST ELEMENT
-            </Text>
-          </View>
-        </View>
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
-            <Text style={{ fontSize: 30, color: "white", margin: 10 }}>
-              TEST ELEMENT
-            </Text>
-          </View>
-        </View>
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
-            <Text style={{ fontSize: 30, color: "white", margin: 10 }}>
-              TEST ELEMENT
-            </Text>
-          </View>
-        </View>
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
-            <Text style={{ fontSize: 30, color: "white", margin: 10 }}>
-              TEST ELEMENT
-            </Text>
-          </View>
-        </View>
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
-            <Text style={{ fontSize: 30, color: "white", margin: 10 }}>
-              TEST ELEMENT
-            </Text>
-          </View>
-        </View>
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
-            <Text style={{ fontSize: 30, color: "white", margin: 10 }}>
-              TEST ELEMENT
-            </Text>
-          </View>
-        </View>
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
-            <Text style={{ fontSize: 30, color: "white", margin: 10 }}>
-              TEST ELEMENT
-            </Text>
-          </View>
-        </View>
-      </ScrollView>
+  const [tokens] = useAtom(tokensAtom);
+  const [mapPosition, setMapPosition] = useAtom(mapPositionAtom);
+
+  function goToToken(token) {
+    console.log('go to token pressed');
+    setMapPosition({
+      ...mapPosition,
+      latitude: token.coords[0],
+      longitude: token.coords[1],
+    });
+    nav.navigate("MapStack");
+  }
+
+  return (
+    <View style={styles.main}>
+      <View style={styles.home}>
+        <Text>Overview your tokens</Text>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+          style={styles.scrollView}
+        >
+
+          {Object.entries(tokens).map(([tokenName, token], i) => (
+            <Pressable onPress={() => goToToken(token)} key={i}>
+              <View style={styles.helperContainer}>
+                <View style={[styles.icon1, token.isCollected && styles.collectedToken]}>
+                  <Text style={{ fontSize: 30, color: "white", margin: 10 }}>
+                    {tokenName}
+                  </Text>
+                </View>
+              </View>
+            </Pressable>
+          ))}
+
+        </ScrollView>
+      </View>
     </View>
-  </View>
-);
-
+  );
+}
 export default TokenScreen;
 
 const styles = StyleSheet.create({
@@ -152,4 +100,7 @@ const styles = StyleSheet.create({
   scrollView: {
     marginHorizontal: 20,
   },
+  collectedToken: {
+    backgroundColor: "#7FABAB",
+  }
 });
