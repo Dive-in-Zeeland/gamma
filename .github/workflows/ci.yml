@@ -21,7 +21,7 @@ jobs:
           yarn global add react-native-cli
       - name: Install yarn dependencies
         run: |
-          yarn install
+          npm install
       - name: Running test
         run: |
           yarn jest
