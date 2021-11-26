@@ -30,13 +30,6 @@ const HomeScreen = () => (
           </Text>
         </View>
       </View>
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
-            <Text style={{ fontSize: 30, color: "white" }}>
-              Free Gift Code
-            </Text>
-          </View>
-        </View>
     </View>
   </View>
 );
@@ -58,7 +51,7 @@ const styles = StyleSheet.create({
     flex: 0.1,
     flexDirection: "row",
     borderRadius: 15,
-    marginTop:40,
+    marginTop:30,
     marginLeft:30,
     marginRight:30,
   },
@@ -76,7 +69,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   qrSection: {
-    flex: 0.7,
+    flex: 0.8,
   },
   qrContainer: {
     flex: 1,
@@ -89,6 +82,5 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginRight: 30,
     marginTop: 20,
-    marginBottom: 20
   },
 });
