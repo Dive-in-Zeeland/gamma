@@ -23,6 +23,7 @@
     "expo-status-bar": "~1.0.3",
     "express": "^4.17.1",
     "geolib": "^3.3.3",
+    "jest": "^27.3.1",
     "jotai": "^1.4.5",
     "mysql": "^2.18.1",
     "qrcode.react": "^1.0.1",

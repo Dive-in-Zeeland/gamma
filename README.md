@@ -22,7 +22,7 @@ Setting up the application
 
 <ul>
   <li>Clone the repo on your local machine.</li>
-  <li>Download EXPO Application to your mobile device (Or set up simulator on local machine, more in EXPO Documentation).</li>
+  <li>Download EXPO GO Application to your mobile device (Or set up simulator on local machine, more in EXPO Documentation).</li>
   <li>Run <b>npm install</b> and then <b>npm start</b> inside terminal.</li>
   <li>Scan the QR code to view application output on your device.</li>
   <li>Happy coding 😙 ...</li>
