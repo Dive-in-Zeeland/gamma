@@ -6,12 +6,12 @@ on:
       - main
 
 jobs:
-  test-adhoc:
+  ci-pipeline:
     runs-on: ubuntu-latest
     steps:
-      - name: Getting the repo
+      - name: Get Repo
         uses: actions/checkout@v2
-      - name: Installing node
+      - name: Node Installation
         uses: actions/setup-node@v1
       - name: Install React Native CLI
         run: |
@@ -19,6 +19,6 @@ jobs:
       - name: Install NPM dependencies
         run: |
           npm install
-      - name: Running test
+      - name: Running tests
         run: |
           yarn jest
