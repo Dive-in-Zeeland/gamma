@@ -19,7 +19,7 @@ jobs:
       - name: Install React Native CLI
         run: |
           yarn global add react-native-cli
-      - name: Install yarn dependencies
+      - name: Install NPM dependencies
         run: |
           npm install
       - name: Running test
