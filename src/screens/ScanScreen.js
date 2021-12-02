@@ -6,8 +6,6 @@ import PermissionView from "../components/big/forScanScreen/PermissionView";
 import ScanningView from "../components/big/forScanScreen/ScanningView";
 import AfterScanView from "../components/big/forScanScreen/AfterScanView";
 import ContentView from "../components/big/forScanScreen/ContentView"
-import {useRoute} from '@react-navigation/native';
-
 
 const ScanScreen = ({ navigation: nav }) => {
 
@@ -46,9 +44,6 @@ const ScanScreen = ({ navigation: nav }) => {
     setAnswerQuestion(false)
   }
   
-  const route = useRoute();
-  console.log(route.name); 
-
   function handleBarCodeScanned({ data: scannedText }) {
     setIsScanValid(trySetToken(scannedText));
     setIsScanned(true);
