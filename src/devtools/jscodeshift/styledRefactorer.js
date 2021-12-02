@@ -50,6 +50,7 @@ const camelToKebab = camel =>
     /(?!^)[A-Z]/, char => '-' + char.toLowerCase()
   );
 
+// Take care of px and other differences between native and css styles
 const fixCssValue = (prop, value) => {
   if (prop !== 'flex' && typeof value === 'number') return value + 'px';
   return value;
@@ -82,21 +83,24 @@ const styledDeclaration = (name, css, type) => j.variableDeclaration('const',
   )]
 );
 
-
+// Make sure names dont collide in elements like <Text style={ styles.text }>
+const removeNameCollision = elementType => styleName => {
+  return styleName === elementType ? styleName + 'Styled' : styleName;
+}
 
 // Create a styled-component and put it to new source code
 const insertStyledComponent = (source, name, nativeStyle, type) => {
   const root = j(source);
-  const fixedName = name === type ? name + 'Styled' : name;
   root
     .find(j.VariableDeclaration)
     .get()
     .insertBefore(
-      styledDeclaration(fixedName, getCss(nativeStyle), type)
+      styledDeclaration(name, getCss(nativeStyle), type)
     )
   return root.toSource()
 }
 
+// Get all elements to refactor (elements that have style = styles.something)
 const getElementsWithStyle = source => j(source)
   .find(j.JSXElement)
   .filter(nodePath =>
@@ -110,25 +114,27 @@ const getElementsWithStyle = source => j(source)
       )
   );
 
+// Get name for a new styled-component from styles.<styleName>
+const getNameForStyledComponent = nodePath => compose(
+  getStyleName,
+  formatName,
+  removeNameCollision(
+    getJsxTagName(nodePath)
+  )
+)(nodePath)
+
 // Fill source with styled-components (ahhhh, not by the rules??)
 const populateWithStyledComponents = source => {
   let newSource = source;
   const styles = getStyles(source);
   getElementsWithStyle(source)
     .forEach((nodePath) => {
-      console.log(321);
-
-      console.log(nodePath
-        .node
-        .openingElement
-        .attributes
-        .find(
-          attr => attr.name.name === 'style'
-        ));
-      const name = getStyleName(nodePath);
-      const type = getJsxTagName(nodePath);
       newSource = insertStyledComponent(
-        newSource, formatName(name), styles[name], type);
+        newSource,
+        getNameForStyledComponent(nodePath),
+        styles[getStyleName(nodePath)],
+        getJsxTagName(nodePath)
+      );
     });
 
   return newSource;
@@ -142,19 +148,13 @@ const getAttribute = attrName => nodePath => nodePath
   .find(attr => attr.name.name === attrName);
 
 // Get native style name out of JSX element
-const getStyleName = nodePath => {
-  // todo: remove
-  console.log(123);
-  console.log(getAttribute('style')(nodePath));
+const getStyleName = nodePath => getAttribute('style')(nodePath)
+  .value
+  .expression
+  .property
+  .name;
 
-  return getAttribute('style')(nodePath)
-    .value
-    .expression
-    .property
-    .name;
-}
-
-
+// Get tag name of a JSX element
 const getJsxTagName = nodePath => nodePath
   .node
   .openingElement
@@ -194,9 +194,8 @@ const refactorJsx = source =>
     .replaceWith(
       (nodePath) => compose(
         compose(
-          getStyleName,
-          formatName,
-          renameElement
+          getNameForStyledComponent,
+          renameElement,
         )(nodePath),
         removeAttrFromElem('style'),
       )(nodePath.node)
