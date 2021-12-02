@@ -2,6 +2,9 @@
 // My first functional programming attempt, although some bits are not by the rules i got tired.
 // Bugs:
 // elevation, styles in [], name collision appends styled only to new comp declaration, not its usage, {...props}, zindex px
+// Fixed bugs: 
+// name collision
+
 
 // jscodeshift api so it is globally accessible
 let j = null;
