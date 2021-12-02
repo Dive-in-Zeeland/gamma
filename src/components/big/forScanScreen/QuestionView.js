@@ -6,7 +6,7 @@ import styles from '../../../styles/toBeRefactored/ScanScreenStyles';
 const QuestionView = ({
   scannedToken,
   handleAnswerOptionClick,
-  reset,
+  cancelQuestion,
 }) => (
   <View>
     <View style={styles.questionViewTitle}>
@@ -27,7 +27,7 @@ const QuestionView = ({
       ))}
     </View>
     <View style={styles.questionViewCancel}>
-      <Text style={styles.questionViewCancelText} onPress={() => reset()}>
+      <Text style={styles.questionViewCancelText} onPress={() => cancelQuestion()}>
         Cancel
       </Text>
     </View>
