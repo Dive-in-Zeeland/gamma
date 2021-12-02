@@ -126,12 +126,34 @@ const getNameForStyledComponent = nodePath => compose(
   )
 )(nodePath)
 
+// Check if styled-component with that name is already created on a source
+const doesStyledComponentExist = (source, name) => j(source)
+  .find(j.VariableDeclarator, {
+    id: {
+      name: name,
+    },
+    init: {
+      tag: {
+        callee: {
+          name: 'styled'
+        }
+      }
+    }
+  })
+  .size() > 0;
+
 // Fill source with styled-components (ahhhh, not by the rules??)
 const populateWithStyledComponents = source => {
   let newSource = source;
   const styles = getStyles(source);
   getElementsWithStyle(source)
     .forEach((nodePath) => {
+      if (
+        doesStyledComponentExist(
+          newSource,
+          getNameForStyledComponent(nodePath)
+        )
+      ) return;
       newSource = insertStyledComponent(
         newSource,
         getNameForStyledComponent(nodePath),

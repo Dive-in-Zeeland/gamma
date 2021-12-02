@@ -1,76 +1,37 @@
 import React from "react";
+import styled from "styled-components";
 import { StyleSheet, Text, View } from "react-native";
 import { WebView } from "react-native-webview";
 
+const Container = styled(WebView)`
+  flex: 1;
+  border-radius: 15px;
+  margin: 10px;
+  border-width: 2px;
+  border-color: teal;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Home = styled(View)`
+  flex: 1;
+  margin: 10px;
+  background-color: white;
+  border-radius: 15px;
+`;
+
+const Main = styled(View)`
+  flex: 1;
+  background-color: teal;
+`;
+
 const GameScreen = ({ navigation: nav }) => {
     return (
-        <View style={styles.main}>
-        <View style={styles.home}>
-            <WebView
-            style={styles.container}
-            source={{ uri: "https://puginarug.com/" }}
-            />
-        </View>
-        </View>
+      (<Main>
+        <Home>
+          <Container source={{ uri: "https://puginarug.com/" }} />
+        </Home>
+      </Main>)
     );
 };
 export default GameScreen;
-
-const styles = StyleSheet.create({
-  main: {
-    flex: 1,
-    backgroundColor: "teal",
-  },
-  home: {
-    flex: 1,
-    margin: 10,
-    backgroundColor: "white",
-    borderRadius: 15,
-  },
-  helperContainer: {
-    flex: 0.1,
-    flexDirection: "row",
-    borderRadius: 15,
-    margin: 10,
-  },
-  icon1: {
-    flex: 1,
-    backgroundColor: "teal",
-    borderRadius: 15,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  location: {
-    flex: 0.8,
-  },
-  info: {
-    borderRadius: 15,
-    flex: 0.1,
-    margin: 20,
-    marginTop: 10,
-    backgroundColor: "teal",
-  },
-  container: {
-    flex: 1,
-    // backgroundColor: 'red',
-    borderRadius: 15,
-    margin: 10,
-    borderWidth:2,
-    borderColor:"teal",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  map: {
-    height: 420,
-    borderWidth: 2,
-    borderColor: "teal",
-    width: 300,
-    borderRadius: 15,
-  },
-  scrollView: {
-    marginHorizontal: 20,
-  },
-  collectedToken: {
-    backgroundColor: "#7FABAB",
-  },
-});
