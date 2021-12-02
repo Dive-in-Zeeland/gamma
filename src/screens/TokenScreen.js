@@ -8,7 +8,7 @@ import { useAtom } from 'jotai';
 
 
 const HelperContainer = styled(View)`
-  flex: 0.1;
+  flex: 1;
   flex-direction: row;
   border-radius: 15px;
   margin: 10px;

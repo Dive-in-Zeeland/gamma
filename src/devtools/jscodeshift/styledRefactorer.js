@@ -1,7 +1,7 @@
 // isnt it better to spend 20 hours of automizing instead of 20 minutes of manual work?
 // My first functional programming attempt, although some bits are not by the rules i got tired.
 // Bugs:
-// elevation, styles in [], name collision appends styled only to new comp declaration, not its usage
+// elevation, styles in [], name collision appends styled only to new comp declaration, not its usage, {...props}, zindex px
 
 // jscodeshift api so it is globally accessible
 let j = null;
@@ -171,7 +171,7 @@ const renameTag = name => tag => ({
 const renameElement = name => elem => ({
   ...elem,
   openingElement: renameTag(name)(elem.openingElement),
-  closingElement: renameTag(name)(elem.closingElement),
+  ...(elem.closingElement && { closingElement: renameTag(name)(elem.closingElement) }),
 })
 
 // Remove attribute from a JSX tag

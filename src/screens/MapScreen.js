@@ -36,9 +36,9 @@ const Location = styled(View)`
 
 const ModalHelper = styled(View)`
   position: absolute;
-  z-index: 9px;
-  /* elevation: 9px; */
-  box-shadow: 9px 9px 9px rgba(0, 0, 0, 0.3);
+  z-index: 9;
+  elevation: 9;
+  /* box-shadow: 9px 9px 9px rgba(0, 0, 0, 0.3); */
   border-radius: 360px;
   top: 7%;
   left: 9%;
