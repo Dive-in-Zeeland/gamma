@@ -5,6 +5,8 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import PermissionView from "../components/big/forScanScreen/PermissionView";
 import ScanningView from "../components/big/forScanScreen/ScanningView";
 import AfterScanView from "../components/big/forScanScreen/AfterScanView";
+import ContentView from "../components/big/forScanScreen/ContentView"
+import {useRoute} from '@react-navigation/native';
 
 
 const ScanScreen = ({ navigation: nav }) => {
@@ -16,6 +18,7 @@ const ScanScreen = ({ navigation: nav }) => {
   const [postAnswerMsg, setPostAnswerMsg] = useState("Not correct!");
   const [tokens, setTokens] = useAtom(tokensAtom);
   const [scannedName, setScannedName] = useState('');
+  const [answerQuestion, setAnswerQuestion] = useState(false);
 
   async function askForCameraPermission() {
     const { status } = await BarCodeScanner.requestPermissionsAsync();
@@ -32,7 +35,19 @@ const ScanScreen = ({ navigation: nav }) => {
     setIsScanValid(false);
     setIsScanned(false);
     setIsAnswered(false);
+    setAnswerQuestion(false);
   }
+
+  function answerQuestionNow(){
+    setAnswerQuestion(true);
+  }
+
+  function cancelQuestion(){
+    setAnswerQuestion(false)
+  }
+  
+  const route = useRoute();
+  console.log(route.name); 
 
   function handleBarCodeScanned({ data: scannedText }) {
     setIsScanValid(trySetToken(scannedText));
@@ -65,6 +80,8 @@ const ScanScreen = ({ navigation: nav }) => {
     isScanned,
     handleBarCodeScanned,
     nav,
+    answerQuestionNow,
+    cancelQuestion
   }
 
   useEffect(() => {
@@ -78,7 +95,11 @@ const ScanScreen = ({ navigation: nav }) => {
     return <ScanningView {...theProps} />;
   }
   else {
-    return <AfterScanView {...theProps} />;
+    if (answerQuestion){
+      return <AfterScanView {...theProps}/>;
+    } else{
+      return <ContentView {...theProps} />;
+    }
   }
 }
 
