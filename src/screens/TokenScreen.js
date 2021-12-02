@@ -1,9 +1,45 @@
 import React from "react";
+import styled from "styled-components";
 import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
 
 import tokensAtom from '../store/tokens';
 import mapPositionAtom from "../store/mapPosition";
 import { useAtom } from 'jotai';
+
+
+const HelperContainer = styled(View)`
+  flex: 0.1;
+  flex-direction: row;
+  border-radius: 15px;
+  margin: 10px;
+`;
+
+
+const ScrollViewStyled = styled(ScrollView)`
+  margin: 0 20px;
+`;
+
+
+const Home = styled(View)`
+  flex: 1;
+  margin: 10px;
+  background-color: white;
+  border-radius: 15px;
+`;
+
+
+const Main = styled(View)`
+  flex: 1;
+  background-color: teal;
+`;
+
+const Icon1 = styled(View)`
+  flex: 1;
+  background-color: teal;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: center;
+`;
 
 
 const TokenScreen = ({ navigation: nav }) => {
@@ -22,85 +58,26 @@ const TokenScreen = ({ navigation: nav }) => {
   }
 
   return (
-    <View style={styles.main}>
-      <View style={styles.home}>
+    (<Main>
+      <Home>
         <Text>Overview your tokens</Text>
-        <ScrollView
+        <ScrollViewStyled
           showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-          style={styles.scrollView}
-        >
-
+          showsHorizontalScrollIndicator={false}>
           {Object.entries(tokens).map(([tokenName, token], i) => (
             <Pressable onPress={() => goToToken(token)} key={i}>
-              <View style={styles.helperContainer}>
-                <View style={[styles.icon1, token.isCollected && styles.collectedToken]}>
+              <HelperContainer>
+                <Icon1 style={[token.isCollected && { backgroundColor: "#7FABAB" }]}>
                   <Text style={{ fontSize: 30, color: "white", margin: 10 }}>
                     {tokenName}
                   </Text>
-                </View>
-              </View>
+                </Icon1>
+              </HelperContainer>
             </Pressable>
           ))}
-
-        </ScrollView>
-      </View>
-    </View>
+        </ScrollViewStyled>
+      </Home>
+    </Main>)
   );
 }
 export default TokenScreen;
-
-const styles = StyleSheet.create({
-  main: {
-    flex: 1,
-    backgroundColor: "teal",
-  },
-  home: {
-    flex: 1,
-    margin: 10,
-    backgroundColor: "white",
-    borderRadius: 15,
-  },
-  helperContainer: {
-    flex: 0.1,
-    flexDirection: "row",
-    borderRadius: 15,
-    margin: 10,
-  },
-  icon1: {
-    flex: 1,
-    backgroundColor: "teal",
-    borderRadius: 15,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  location: {
-    flex: 0.8,
-  },
-  info: {
-    borderRadius: 15,
-    flex: 0.1,
-    margin: 20,
-    marginTop: 10,
-    backgroundColor: "teal",
-  },
-  container: {
-    flex: 1,
-    // backgroundColor: 'red',
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  map: {
-    height: 420,
-    borderWidth: 2,
-    borderColor: "teal",
-    width: 300,
-    borderRadius: 15,
-  },
-  scrollView: {
-    marginHorizontal: 20,
-  },
-  collectedToken: {
-    backgroundColor: "#7FABAB",
-  }
-});

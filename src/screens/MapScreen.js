@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import styled from "styled-components";
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MapView, { Marker } from 'react-native-maps';
@@ -6,6 +7,58 @@ import tokensAtom from '../store/tokens';
 import mapPositionAtom from '../store/mapPosition';
 import { useAtom } from 'jotai';
 import { getBoundsOfDistance } from 'geolib';
+
+
+
+const Map = styled(MapView)`
+  height: 90%;
+  width: 90%;
+  border-width: 2px;
+  border-color: teal;
+  border-radius: 15px;
+`;
+
+
+
+const Container = styled(View)`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
+
+
+const Location = styled(View)`
+  flex: 1;
+`;
+
+
+
+const ModalHelper = styled(View)`
+  position: absolute;
+  z-index: 9px;
+  /* elevation: 9px; */
+  box-shadow: 9px 9px 9px rgba(0, 0, 0, 0.3);
+  border-radius: 360px;
+  top: 7%;
+  left: 9%;
+`;
+
+
+
+const Home = styled(View)`
+  flex: 1;
+  margin: 10px;
+  background-color: white;
+  border-radius: 15px;
+`;
+
+
+
+const Main = styled(View)`
+  flex: 1;
+  background-color: teal;
+`;
 
 
 
@@ -29,22 +82,19 @@ const MapScreen = ({ navigation: nav }) => {
   }, [mapPosition]);
 
   return (
-    <View style={styles.main}>
-      <View style={styles.home} >
-
-        <View style={styles.modalHelper} >
+    (<Main>
+      <Home>
+        <ModalHelper>
           <Ionicons
             name="help-circle"
             size={40}
             color="teal"
             onPress={onHelpPress}
           />
-        </View>
-
-        <View style={styles.location}>
-          <View style={styles.container}>
-            <MapView ref={mapRef} style={styles.map} showsUserLocation={true} initialRegion={mapPosition} >
-
+        </ModalHelper>
+        <Location>
+          <Container>
+            <Map ref={mapRef} showsUserLocation={true} initialRegion={mapPosition}>
               {filtered.map(({ coords: [latitude, longitude] }, index) => (
                 <Marker
                   coordinate={{
@@ -54,70 +104,12 @@ const MapScreen = ({ navigation: nav }) => {
                   key={index}
                 />
               ))}
-
-            </MapView>
-          </View>
-        </View>
-
-      </View>
-    </View>
+            </Map>
+          </Container>
+        </Location>
+      </Home>
+    </Main>)
   );
 }
 
 export default MapScreen;
-
-const styles = StyleSheet.create({
-  main: {
-    flex: 1,
-    backgroundColor: "teal",
-  },
-  home: {
-    flex: 1,
-    margin: 10,
-    backgroundColor: "white",
-    borderRadius: 15,
-  },
-  helperContainer: {
-    flex: 0.1,
-    flexDirection: "row",
-    borderRadius: 15,
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  icon1: {
-    flex: 0.8,
-    backgroundColor: 'teal',
-    borderRadius: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  icon2: {
-    flex: 0.3,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  location: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    // backgroundColor: 'red',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  map: {
-    height: '90%',
-    width: '90%',
-    borderWidth: 2,
-    borderColor: 'teal',
-    borderRadius: 15,
-  },
-  modalHelper: {
-    position: 'absolute',
-    zIndex: 9,
-    elevation: 9,
-    borderRadius: 360,
-    top: "7%",
-    left: "9%"
-  },
-});
