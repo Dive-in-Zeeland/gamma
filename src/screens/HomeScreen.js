@@ -1,21 +1,80 @@
 import React from 'react';
+import styled from "styled-components";
 import { StyleSheet, Text, View } from 'react-native';
 
 
 
+const QrContainer = styled(View)`
+  flex: 1;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+  border-width: 3px;
+  border-color: teal;
+  border-radius: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 20px;
+`;
+
+
+
+const QrSection = styled(View)`
+  flex: 0.8;
+`;
+
+
+
+const Icon1 = styled(View)`
+  flex: 1;
+  background-color: teal;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: center;
+`;
+
+
+
+const HelperContainer = styled(View)`
+  flex: 0.1;
+  flex-direction: row;
+  border-radius: 15px;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+`;
+
+
+
+const Container = styled(View)`
+  flex: 1;
+  margin: 10px;
+  background-color: white;
+  border-radius: 15px;
+`;
+
+
+
+const Main = styled(View)`
+  flex: 1;
+  background-color: teal;
+`;
+
+
+
 const HomeScreen = () => (
-  <View style={styles.main}>
-    <View style={styles.container}>
-        <View style={styles.helperContainer}>
-          <View style={styles.icon1}>
+  <Main>
+    <Container>
+        <HelperContainer>
+          <Icon1>
             <Text style={{ fontSize: 30, color: "white", margin: 10 }}>
               Dive in Zeeland
             </Text>
-          </View>
-        </View>
+          </Icon1>
+        </HelperContainer>
       
-      <View style={styles.qrSection}>
-        <View style={styles.qrContainer}>
+      <QrSection>
+        <QrContainer>
           <Text style={{ margin: 10 }}>
             This is out token collection game called DIZ-GAME. It is an interactive game for children to get to know better the underwater world of Zeeland.
           </Text>
@@ -28,59 +87,10 @@ const HomeScreen = () => (
           <Text style={{ margin: 20 }}>
             For best user experience right now, please you IOS devices. They are better optimized.
           </Text>
-        </View>
-      </View>
-    </View>
-  </View>
+        </QrContainer>
+      </QrSection>
+    </Container>
+  </Main>
 );
 
 export default HomeScreen;
-
-const styles = StyleSheet.create({
-  main: {
-    flex: 1,
-    backgroundColor: "teal",
-  },
-  container: {
-    flex: 1,
-    margin: 10,
-    backgroundColor: "white",
-    borderRadius: 15,
-  },
-  helperContainer: {
-    flex: 0.1,
-    flexDirection: "row",
-    borderRadius: 15,
-    marginTop:30,
-    marginLeft:30,
-    marginRight:30,
-  },
-  icon1: {
-    flex: 1,
-    backgroundColor: "teal",
-    borderRadius: 15,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  exit: {
-    zIndex: 50,
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-end'
-  },
-  qrSection: {
-    flex: 0.8,
-  },
-  qrContainer: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 3,
-    borderColor: 'teal',
-    borderRadius: 15,
-    marginLeft: 30,
-    marginRight: 30,
-    marginTop: 20,
-  },
-});

@@ -1,12 +1,19 @@
 import React from 'react';
+import styled from "styled-components";
 import { View, Button, Text } from 'react-native'
-import styles from '../../../styles/toBeRefactored/ScanScreenStyles';
+
+
+const Container = styled(View)`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
 
 
 const PermissionView = ({
   askForCameraPermission
 }) => (
-  <View style={styles.container}>
+  <Container>
 
     <Text style={{ margin: 10 }}>
       No access to camera
@@ -17,7 +24,9 @@ const PermissionView = ({
       onPress={() => askForCameraPermission()}
     />
 
-  </View>
+  </Container>
 )
 
 export default PermissionView;
+
+import { StyleSheet } from 'react-native'

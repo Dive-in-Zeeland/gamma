@@ -1,6 +1,48 @@
 import React from 'react';
+import styled from "styled-components";
 import { View, Button, Text } from 'react-native';
-import styles from '../../../styles/toBeRefactored/ScanScreenStyles';
+
+
+const QuestionViewCancelText = styled(Text)`
+  color: white;
+`;
+
+
+const QuestionViewCancel = styled(View)`
+  flex: 0.2;
+  background-color: red;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  border-radius: 15px;
+`;
+
+
+const QuestionViewAnswerOptions = styled(View)`
+  flex: 1;
+  background-color: teal;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  border-radius: 15px;
+`;
+
+
+const QuestionViewTitleText = styled(Text)`
+  margin: 10px;
+  color: gray;
+`;
+
+
+const QuestionViewTitle = styled(View)`
+  flex: 0.5;
+  border-color: teal;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  border-radius: 15px;
+  border-width: 2px;
+`;
 
 
 const QuestionView = ({
@@ -9,12 +51,12 @@ const QuestionView = ({
   cancelQuestion,
 }) => (
   <View>
-    <View style={styles.questionViewTitle}>
-      <Text style={styles.questionViewTitleText}>
+    <QuestionViewTitle>
+      <QuestionViewTitleText>
         {scannedToken.question}
-      </Text>
-    </View>
-    <View style={styles.questionViewAnswerOptions}>
+      </QuestionViewTitleText>
+    </QuestionViewTitle>
+    <QuestionViewAnswerOptions>
       {scannedToken.answers.map((answer, index) => (
         <Button
           color="#ffffff"
@@ -25,13 +67,15 @@ const QuestionView = ({
           key={index}
         />
       ))}
-    </View>
-    <View style={styles.questionViewCancel}>
-      <Text style={styles.questionViewCancelText} onPress={() => cancelQuestion()}>
+    </QuestionViewAnswerOptions>
+    <QuestionViewCancel>
+      <QuestionViewCancelText onPress={() => cancelQuestion()}>
         Cancel
-      </Text>
-    </View>
+      </QuestionViewCancelText>
+    </QuestionViewCancel>
   </View>
 )
 
 export default QuestionView;
+
+import { StyleSheet } from 'react-native'

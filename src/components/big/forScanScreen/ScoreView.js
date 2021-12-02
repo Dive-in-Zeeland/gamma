@@ -1,6 +1,6 @@
 import React from 'react';
+import styled from "styled-components";
 import { View, Button, Text } from 'react-native'
-import styles from '../../../styles/toBeRefactored/ScanScreenStyles';
 
 
 
@@ -19,3 +19,5 @@ const ScoreView = ({
 )
 
 export default ScoreView;
+
+import { StyleSheet } from 'react-native'
