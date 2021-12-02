@@ -37,9 +37,6 @@ const styles = StyleSheet.create({
     color: "white"
   },
   // Question View End
-
-
-
   main: {
     flex: 1,
     backgroundColor: "teal",
@@ -49,12 +46,6 @@ const styles = StyleSheet.create({
     margin: 10,
     backgroundColor: "white",
     borderRadius: 15,
-  },
-  helperContainer: {
-    flex: 0.1,
-    flexDirection: "row",
-    marginLeft: 20,
-    marginRight: 20,
   },
   exit: {
     flex: 1,
@@ -129,6 +120,26 @@ const styles = StyleSheet.create({
     right: "29%",
     fontSize: 20,
     fontWeight: "bold",
+  },
+  helperContainer: {
+    flex: 0.1,
+    flexDirection: "row",
+    borderRadius: 15,
+    marginTop:30,
+    marginLeft:30,
+    marginRight:30,
+  },
+  ButtonContainer: {
+    flex: 0.1,
+    flexDirection: "row",
+    borderRadius: 15,
+  },
+  icon1: {
+    flex: 1,
+    backgroundColor: "teal",
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 

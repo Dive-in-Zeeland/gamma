@@ -38,7 +38,8 @@
     "react-native-screens": "~2.15.2",
     "react-native-web": "~0.13.12",
     "styled-components": "^5.3.3",
-    "valtio": "^1.2.6"
+    "valtio": "^1.2.6",
+    "react-native-webview": "11.0.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

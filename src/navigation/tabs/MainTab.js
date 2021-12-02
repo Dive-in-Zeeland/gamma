@@ -7,6 +7,7 @@ import MapStack from "../stacks/MapStack";
 import HomeScreen from "../../screens/HomeScreen";
 import ScanStack from "../stacks/ScanStack";
 import SettingsScreen from "../../screens/SettingsScreen";
+import GameScreen from "../../screens/GameScreen"
 
 
 
@@ -16,6 +17,7 @@ const MainTab = () => {
 
   function configureIcons(route, color) {
     const icons = {
+      'GameScreen': 'play-circle',
       'TokenScreen': 'grid',
       'MapStack': 'map',
       'HomeScreen': 'ios-home',
@@ -49,35 +51,34 @@ const MainTab = () => {
 
   const screens = [
     {
+      name: "GameScreen",
+      options: { tabBarLabel: '' },
+      component: GameScreen,
+    },
+    {
       name: "TokenScreen",
       options: { tabBarLabel: '' },
       component: TokenScreen,
     },
-
+    
+    {
+      name: "HomeScreen",
+      options: { tabBarLabel: '' },
+      component: HomeScreen,
+    },
+    
     {
       name: "MapStack",
       options: { tabBarLabel: '' },
       component: MapStack,
     },
 
-    {
-      name: "HomeScreen",
-      options: { tabBarLabel: '' },
-      component: HomeScreen,
-    },
 
     {
       name: "ScanStack",
       options: { tabBarLabel: '' },
       component: ScanStack,
     },
-
-    {
-      name: "SettingsScreen",
-      options: { tabBarLabel: '' },
-      component: SettingsScreen,
-    },
-
   ]
 
   return (

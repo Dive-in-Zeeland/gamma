@@ -48,7 +48,7 @@ const QuestionViewTitle = styled(View)`
 const QuestionView = ({
   scannedToken,
   handleAnswerOptionClick,
-  reset,
+  cancelQuestion,
 }) => (
   <View>
     <QuestionViewTitle>
@@ -69,7 +69,7 @@ const QuestionView = ({
       ))}
     </QuestionViewAnswerOptions>
     <QuestionViewCancel>
-      <QuestionViewCancelText onPress={() => reset()}>
+      <QuestionViewCancelText onPress={() => cancelQuestion()}>
         Cancel
       </QuestionViewCancelText>
     </QuestionViewCancel>
