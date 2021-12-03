@@ -2,12 +2,11 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import TokenScreen from "../../screens/TokenScreen";
+import TokenScreen from '../../features/tokens/screens/TokenScreen';
+import HomeScreen from '../../features/home/screens/HomeScreen';
+import GameScreen from '../../features/game/screens/GameScreen';
 import MapStack from "../stacks/MapStack";
-import HomeScreen from "../../screens/HomeScreen";
 import ScanStack from "../stacks/ScanStack";
-import SettingsScreen from "../../screens/SettingsScreen";
-import GameScreen from "../../screens/GameScreen"
 
 
 
@@ -35,7 +34,7 @@ const MainTab = () => {
 
   const navOpts = {
     initialRouteName: "HomeScreen",
-    screenOptions: ({route}) => ({
+    screenOptions: ({ route }) => ({
       tabBarIcon: ({ color }) => configureIcons(route, color)
     }),
     tabBarOptions: {
@@ -60,13 +59,13 @@ const MainTab = () => {
       options: { tabBarLabel: '' },
       component: TokenScreen,
     },
-    
+
     {
       name: "HomeScreen",
       options: { tabBarLabel: '' },
       component: HomeScreen,
     },
-    
+
     {
       name: "MapStack",
       options: { tabBarLabel: '' },
@@ -84,7 +83,7 @@ const MainTab = () => {
   return (
     <Tab.Navigator {...navOpts}>
       {screens.map((screenOpts, i) => (
-        <Tab.Screen {...screenOpts} key={i}/>
+        <Tab.Screen {...screenOpts} key={i} />
       ))}
     </Tab.Navigator>
   );

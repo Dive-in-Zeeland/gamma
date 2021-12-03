@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
-import MapHelpScreen from "../../screens/MapHelpScreen";
+import MapHelpScreen from '../../features/map/screens/MapHelpScreen';
 import MapSubStack from './MapSubStack';
 
 
@@ -41,7 +41,7 @@ const MapStack = () => {
   return (
     <Stack.Navigator {...navOpts}>
       {screens.map((screenOpts, i) => (
-        <Stack.Screen {...screenOpts} key={i}/>
+        <Stack.Screen {...screenOpts} key={i} />
       ))}
     </Stack.Navigator>
   );

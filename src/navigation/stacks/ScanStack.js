@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
 
-import ScanHelpScreen from "../../screens/ScanHelpScreen";
+import ScanHelpScreen from '../../features/scan/screens/ScanHelpScreen';
 import ScanSubStack from './ScanSubStack';
 
 
@@ -42,7 +42,7 @@ const ScanStack = () => {
   return (
     <Stack.Navigator {...navOpts}>
       {screens.map((screenOpts, i) => (
-        <Stack.Screen {...screenOpts} key={i}/>
+        <Stack.Screen {...screenOpts} key={i} />
       ))}
     </Stack.Navigator>
   );
