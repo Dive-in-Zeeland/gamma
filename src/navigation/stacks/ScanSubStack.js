@@ -14,6 +14,6 @@ const ScanSubStack = () => (
       component={ScanScreen}
     />
   </Stack.Navigator>
-)
+);
 
 export default ScanSubStack;

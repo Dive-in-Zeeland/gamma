@@ -44,7 +44,7 @@ const ScanStack = () => {
     </Stack.Navigator>
   );
 
-}
+};
 
 
 export default ScanStack;

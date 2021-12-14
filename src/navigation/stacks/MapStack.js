@@ -44,7 +44,7 @@ const MapStack = () => {
     </Stack.Navigator>
   );
 
-}
+};
 
 
 export default MapStack;

@@ -11,6 +11,6 @@ const Navigator = () => (
       <MainTab />
     </NavigationContainer>
   </SafeAreaView>
-)
+);
 
 export default Navigator;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Pressable, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import { useAtom } from 'jotai';
 
 import tokensAtom from "src/store/tokens";

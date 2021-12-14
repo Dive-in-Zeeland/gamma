@@ -5,7 +5,7 @@ const mapPosition = {
   longitude: 3.609632,
   latitudeDelta: 0.009,
   longitudeDelta: 0.009,
-}
+};
 
 const mapPositionAtom = atom(mapPosition);
 

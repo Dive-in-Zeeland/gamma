@@ -39,7 +39,7 @@ const objectExpressionToObject = objectExpression =>
           objectExpressionToObject(prop.value) :
           prop.value.value
     }), {}
-  )
+  );
 
 // Get runtime JS object of native StyleSheet styles
 const getStyles = source => compose(
@@ -57,7 +57,7 @@ const camelToKebab = camel =>
 const fixCssValue = (prop, value) => {
   if (prop !== 'flex' && typeof value === 'number') return value + 'px';
   return value;
-}
+};
 
 // Convert one style of StyleSheet to css string
 const getCss = nativeStyle => Object.entries(nativeStyle).reduce(
@@ -89,7 +89,7 @@ const styledDeclaration = (name, css, type) => j.variableDeclaration('const',
 // Make sure names dont collide in elements like <Text style={ styles.text }>
 const removeNameCollision = elementType => styleName => {
   return styleName === elementType ? styleName + 'Styled' : styleName;
-}
+};
 
 // Create a styled-component and put it to new source code
 const insertStyledComponent = (source, name, nativeStyle, type) => {
@@ -99,9 +99,9 @@ const insertStyledComponent = (source, name, nativeStyle, type) => {
     .get()
     .insertBefore(
       styledDeclaration(name, getCss(nativeStyle), type)
-    )
-  return root.toSource()
-}
+    );
+  return root.toSource();
+};
 
 // Get all elements to refactor (elements that have style = styles.something)
 const getElementsWithStyle = source => j(source)
@@ -124,7 +124,7 @@ const getNameForStyledComponent = nodePath => compose(
   removeNameCollision(
     getJsxTagName(nodePath)
   )
-)(nodePath)
+)(nodePath);
 
 // Check if styled-component with that name is already created on a source
 const doesStyledComponentExist = (source, name) => j(source)
@@ -163,7 +163,7 @@ const populateWithStyledComponents = source => {
     });
 
   return newSource;
-}
+};
 
 // Get attribute out of JSX element
 const getAttribute = attrName => nodePath => nodePath
@@ -184,7 +184,7 @@ const getJsxTagName = nodePath => nodePath
   .node
   .openingElement
   .name
-  .name
+  .name;
 
 // Renames a JSX tag (there are two: opening and closing, it renames one)
 const renameTag = name => tag => ({
@@ -197,7 +197,7 @@ const renameElement = name => elem => ({
   ...elem,
   openingElement: renameTag(name)(elem.openingElement),
   ...(elem.closingElement && { closingElement: renameTag(name)(elem.closingElement) }),
-})
+});
 
 // Remove attribute from a JSX tag
 const removeAttrFromTag = attrName => tag => ({
@@ -205,13 +205,13 @@ const removeAttrFromTag = attrName => tag => ({
   attributes: tag.attributes.filter(
     attr => attr.name.name !== attrName
   )
-})
+});
 
 // Remove attribute from a JSX opening tag of a JSX element
 const removeAttrFromElem = attrName => elem => ({
   ...elem,
   openingElement: removeAttrFromTag(attrName)(elem.openingElement)
-})
+});
 
 // Rename all JSX elements to the value of their style attribute, and remove the style attribute
 const refactorJsx = source =>
@@ -257,9 +257,9 @@ const importStyledComponent = source => {
         ],
         j.literal('styled-components')
       )
-    )
+    );
   return root.toSource();
-}
+};
 
 // Run all the transforms
 const transformer = ({ source }, { jscodeshift }) => {
@@ -271,6 +271,6 @@ const transformer = ({ source }, { jscodeshift }) => {
     removeStyleSheetImport, // Not implemented
     importStyledComponent,
   )(source);
-}
+};
 
 export default transformer;

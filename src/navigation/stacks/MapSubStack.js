@@ -12,6 +12,6 @@ const MapSubStack = () => (
       component={MapScreen}
     />
   </Stack.Navigator>
-)
+);
 
 export default MapSubStack;
