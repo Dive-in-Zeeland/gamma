@@ -1,16 +1,13 @@
 import React from 'react';
-import { Text } from 'react-native';
 import Ionicons from "@expo/vector-icons/Ionicons";
-import styled from 'styled-components';
+
 import Body from 'src/components/Body';
 import BorderCard from 'src/components/BorderCard';
+import { TextM20 } from 'src/components/Text';
+import styled from 'styled-components';
 
 const BorderCardStyled = styled(BorderCard)`
   flex: 0.5;
-`;
-
-const TextM20 = styled(Text)`
-  margin: 20px;
 `;
 
 const MapHelpScreen = ({ navigation: nav }) => (
@@ -22,7 +19,7 @@ const MapHelpScreen = ({ navigation: nav }) => (
         color="teal"
         onPress={nav.goBack}
       />
-      <TextM20>QR HELPER</TextM20>
+      <TextM20>MAP HELPER</TextM20>
     </BorderCardStyled>
   </Body>
 );

@@ -2,11 +2,12 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import TokenScreen from '../../features/tokens/screens/TokenScreen';
-import HomeScreen from '../../features/home/screens/HomeScreen';
-import GameScreen from '../../features/game/screens/GameScreen';
-import MapStack from "../stacks/MapStack";
-import ScanStack from "../stacks/ScanStack";
+import TokenScreen from "src/features/tokens/TokenScreen";
+import HomeScreen from "src/features/home/HomeScreen";
+import GameScreen from "src/features/game/GameScreen";
+
+import MapStack from "src/navigation/stacks/MapStack";
+import ScanStack from "src/navigation/stacks/ScanStack";
 
 
 
@@ -22,13 +23,13 @@ const MainTab = () => {
       'HomeScreen': 'ios-home',
       'ScanStack': 'aperture',
       'SettingsScreen': 'settings',
-    }
+    };
     const opts = {
       name: icons[route.name] ?? '',
       size: 30,
       color: color,
       style: { marginTop: 10 }
-    }
+    };
     return <Ionicons {...opts} />;
   }
 
@@ -78,7 +79,7 @@ const MainTab = () => {
       options: { tabBarLabel: '' },
       component: ScanStack,
     },
-  ]
+  ];
 
   return (
     <Tab.Navigator {...navOpts}>
@@ -88,6 +89,6 @@ const MainTab = () => {
     </Tab.Navigator>
   );
 
-}
+};
 
 export default MainTab;

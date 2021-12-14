@@ -1,11 +1,8 @@
-import React from "react";
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
+import React from "react";
 
-
-import ScanHelpScreen from '../../features/scan/screens/ScanHelpScreen';
-import ScanSubStack from './ScanSubStack';
-
-
+import ScanHelpScreen from 'src/features/scan/screens/ScanHelpScreen';
+import ScanSubStack from 'src/navigation/stacks/ScanSubStack';
 
 const Stack = createStackNavigator();
 

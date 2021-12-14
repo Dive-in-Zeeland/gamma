@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useAtom } from 'jotai'
-import tokensAtom from '../../../store/tokens';
+import { useAtom } from 'jotai';
 import { BarCodeScanner } from "expo-barcode-scanner";
-import PermissionView from "../components/PermissionView";
-// import ScanningView from "../../../components/big/forScanScreen/ScanningView";
-import ScanningView from "../components/ScanningView";
-import AfterScanView from "../components/AfterScanView";
-import ContentView from "../components/ContentView"
+
+import tokensAtom from "src/store/tokens";
+import PermissionView from "src/features/scan/comps/PermissionView";
+import ScanningView from "src/features/scan/comps/ScanningView";
+import AfterScanView from "src/features/scan/comps/AfterScanView";
+import ContentView from "src/features/scan/comps/ContentView";
 
 const ScanScreen = ({ navigation: nav }) => {
 
@@ -42,13 +42,12 @@ const ScanScreen = ({ navigation: nav }) => {
   }
 
   function cancelQuestion() {
-    setAnswerQuestion(false)
+    setAnswerQuestion(false);
   }
 
   function handleBarCodeScanned({ data: scannedText }) {
     setIsScanValid(trySetToken(scannedText));
     setIsScanned(true);
-    console.log(scannedText);
   }
 
   function handleAnswerOptionClick(isCorrect) {
@@ -78,7 +77,7 @@ const ScanScreen = ({ navigation: nav }) => {
     nav,
     answerQuestionNow,
     cancelQuestion
-  }
+  };
 
   useEffect(() => {
     askForCameraPermission();
@@ -97,6 +96,6 @@ const ScanScreen = ({ navigation: nav }) => {
       return <ContentView {...theProps} />;
     }
   }
-}
+};
 
 export default ScanScreen;

@@ -1,10 +1,8 @@
-import React from "react";
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
+import React from "react";
 
-import MapHelpScreen from '../../features/map/screens/MapHelpScreen';
-import MapSubStack from './MapSubStack';
-
-
+import MapHelpScreen from 'src/features/map/MapHelpScreen';
+import MapSubStack from 'src/navigation/stacks/MapSubStack';
 
 const Stack = createStackNavigator();
 
