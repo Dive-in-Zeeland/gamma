@@ -80,7 +80,7 @@ const ScanScreen = ({ navigation: nav }) => {
   };
 
   useEffect(() => {
-    askForCameraPermission();
+    void askForCameraPermission();
   }, []);
 
   if (!isCameraAllowed) {

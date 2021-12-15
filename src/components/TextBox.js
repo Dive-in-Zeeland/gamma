@@ -1,8 +1,9 @@
 import React from 'react';
+import { Text } from 'react-native';
 import styled from 'styled-components/native';
 
 const Pressable = styled.Pressable`
-  margin: 15px 0;
+  margin-bottom: 10px;
 `;
 
 // prev: Icon1
@@ -11,10 +12,10 @@ const Box = styled.View`
   border-radius: 15px;
   align-items: center;
   justify-content: center;
+  height: 60px;
 `;
 
-const Text = styled.Text`
-  padding: 20px;
+const DaText = styled.Text`
   font-size: 30px;
   color: white;
 `;
@@ -22,7 +23,7 @@ const Text = styled.Text`
 const TextBox = ({ children, onPress }) => (
   <Pressable onPress={onPress}>
     <Box>
-      <Text>{children}</Text>
+      <DaText>{children}</DaText>
     </Box>
   </Pressable>
 );
