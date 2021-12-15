@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Text, View } from 'react-native';
-import styled from 'styled-components';
-
+import styled from 'styled-components/native';
 
 const MyCancel = styled(Text)`
   flex: 0.2;
@@ -13,7 +12,6 @@ const MyCancel = styled(Text)`
   color: white;
 `;
 
-
 const MyAnswerOptions = styled(View)`
   flex: 1;
   background-color: teal;
@@ -22,8 +20,6 @@ const MyAnswerOptions = styled(View)`
   margin: 10px;
   border-radius: 15px;
 `;
-
-
 
 const MyTitle = styled(Text)`
   flex: 0.5;
@@ -36,33 +32,22 @@ const MyTitle = styled(Text)`
   color: gray;
 `;
 
-
-const QuestionView = ({
-  scannedToken,
-  handleAnswerOptionClick,
-  cancelQuestion,
-}) => (
+const QuestionView = ({ scannedToken, handleAnswerOptionClick, cancelQuestion }) => (
   <View>
-
     <MyTitle>{scannedToken.question}</MyTitle>
 
     <MyAnswerOptions>
-
       {scannedToken.answers.map((answer, index) => (
         <Button
           color="#ffffff"
-          onPress={() =>
-            handleAnswerOptionClick(answer.isCorrect)
-          }
+          onPress={() => handleAnswerOptionClick(answer.isCorrect)}
           title={answer.text}
           key={index}
         />
       ))}
-
     </MyAnswerOptions>
 
     <MyCancel onPress={cancelQuestion}>Cancel</MyCancel>
-
   </View>
 );
 

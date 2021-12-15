@@ -1,5 +1,5 @@
-import { Text } from "react-native";
-import styled from "styled-components";
+import { Text } from 'react-native';
+import styled from 'styled-components/native';
 
 export const TextM10 = styled(Text)`
   margin: 10px;

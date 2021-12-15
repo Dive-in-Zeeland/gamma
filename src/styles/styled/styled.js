@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import styled from "styled-components";
+import styled from 'styled-components/native';
 
 // Prev: Home
 export const ContentCard = styled(View)`

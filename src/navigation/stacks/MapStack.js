@@ -1,39 +1,38 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
-import React from "react";
+import React from 'react';
 
-import MapHelpScreen from 'src/features/map/MapHelpScreen';
-import MapSubStack from 'src/navigation/stacks/MapSubStack';
+import MapHelpScreen from 'features/map/MapHelpScreen';
+import MapSubStack from 'navigation/stacks/MapSubStack';
 
 const Stack = createStackNavigator();
 
 const MapStack = () => {
-
   const navOpts = {
-    headerMode: "none",
-    mode: "modal",
+    headerMode: 'none',
+    mode: 'modal',
     screenOptions: {
       ...TransitionPresets.SlideFromRightIOS,
       headerStyle: {
-        backgroundColor: "tomato",
+        backgroundColor: 'tomato',
       },
-    }
+    },
   };
 
   const screens = [
     {
-      name: "MapSubStack",
+      name: 'MapSubStack',
       component: MapSubStack,
     },
     {
-      name: "MapHelpScreen",
+      name: 'MapHelpScreen',
       component: MapHelpScreen,
       options: {
         headerShown: false,
         headerStyle: {
-          backgroundColor: "skyblue",
+          backgroundColor: 'skyblue',
         },
-      }
-    }
+      },
+    },
   ];
 
   return (
@@ -43,11 +42,6 @@ const MapStack = () => {
       ))}
     </Stack.Navigator>
   );
-
 };
 
-
 export default MapStack;
-
-
-

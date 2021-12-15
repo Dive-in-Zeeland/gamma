@@ -1,0 +1,16 @@
+// Why this file?
+// see Željko Šević answer: https://stackoverflow.com/questions/58510287/parseroptions-project-has-been-set-for-typescript-eslint-parser
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    ".eslintrc.js",
+    "./src/**/*",
+    "./babel.config.js",
+    "./jest.config.js",
+    "./__tests__/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*",
+  ]
+}

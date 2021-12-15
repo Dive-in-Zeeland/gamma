@@ -1,11 +1,10 @@
 import React from 'react';
 import { Button, View, Text } from 'react-native';
-import styled from 'styled-components';
-import HelperButton from 'src/components/HelperButton';
+import styled from 'styled-components/native';
+import HelperButton from 'components/HelperButton';
 import { BarCodeScanner } from 'expo-barcode-scanner';
-import Body from 'src/components/Body';
-import Center from 'src/components/Center';
-
+import Body from 'components/Body';
+import Center from 'components/Center';
 
 const MyQrTarget = styled(View)`
   position: absolute;
@@ -48,38 +47,27 @@ const MyScanButton = styled(View)`
   top: 80%;
 `;
 
-const ScanningView = ({
-  isScanned,
-  handleBarCodeScanned,
-  reset,
-  nav,
-}) => (
-
+const ScanningView = ({ isScanned, handleBarCodeScanned, reset, nav }) => (
   <Body>
-
     <MyQrTarget />
     <MyQrText>QR Code Target</MyQrText>
-    <HelperButton onPress={() => nav.navigate("ScanHelpScreen")} />
+    <HelperButton onPress={() => nav.navigate('ScanHelpScreen')} />
 
     <Center>
-
       <MyBarcode onBarCodeScanned={isScanned ? undefined : handleBarCodeScanned} />
 
       {isScanned && (
         <MyScanButton>
           <Button
-            style={{ width: "20%" }}
-            title={"Scan again"}
+            style={{ width: '20%' }}
+            title={'Scan again'}
             onPress={() => reset()}
             color="black"
           />
         </MyScanButton>
       )}
-
     </Center>
-
   </Body>
-
 );
 
 export default ScanningView;

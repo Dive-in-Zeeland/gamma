@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
-import styled from "styled-components";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import styled from 'styled-components/native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const Container = styled(View)`
   position: absolute;
@@ -14,12 +14,7 @@ const Container = styled(View)`
 
 const HelperButton = ({ onPress }) => (
   <Container>
-    <Ionicons
-      name="help-circle"
-      size={40}
-      color="teal"
-      onPress={onPress}
-    />
+    <Ionicons name="help-circle" size={40} color="teal" onPress={onPress} />
   </Container>
 );
 

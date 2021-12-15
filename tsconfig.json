@@ -1,0 +1,19 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+
+    // For module imports (absolute) to work in the vs code (not in the app)
+    "baseUrl": "./src",
+    "plugins": [
+      {
+        // You also need a vscode-styled-components plugin
+        "name": "typescript-styled-plugin",
+        "lint": {
+          // List rare CSS properties
+          "validProperties": ["elevation"]
+        }
+      }
+    ]
+  },
+}

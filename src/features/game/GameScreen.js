@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { WebView } from "react-native-webview";
+import React from 'react';
+import styled from 'styled-components/native';
+import { WebView } from 'react-native-webview';
 
-import Body from "src/components/Body";
+import Body from 'components/Body';
 
 export const WebViewStyled = styled(WebView)`
   flex: 1;
@@ -16,7 +16,7 @@ export const WebViewStyled = styled(WebView)`
 
 const GameScreen = () => (
   <Body>
-    <WebViewStyled source={{ uri: "https://puginarug.com/" }} />
+    <WebViewStyled source={{ uri: 'https://puginarug.com/' }} />
   </Body>
 );
 

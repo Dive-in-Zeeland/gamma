@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { View } from "react-native";
+import styled from 'styled-components/native';
+import { View } from 'react-native';
 
 const Center = styled(View)`
   flex: 1;

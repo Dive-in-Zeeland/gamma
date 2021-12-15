@@ -1,13 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { View } from "react-native";
+import React from 'react';
+import styled from 'styled-components/native';
+import { View } from 'react-native';
 
-import Body from "src/components/Body";
-import TextBox from "src/components/TextBox";
-import TextBoxContainer from "src/components/TextBoxContainer";
-import { TextM10 } from "src/components/Text";
-
-
+import Body from 'components/Body';
+import TextBox from 'components/TextBox';
+import TextBoxContainer from 'components/TextBoxContainer';
+import { TextM10 } from 'components/Text';
 
 const MyTextBoxContainer = styled(TextBoxContainer)`
   flex-direction: row;

@@ -1,9 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
-import QuestionView from 'src/features/scan/comps/QuestionView';
-import ScoreView from 'src/features/scan/comps/ScoreView';
-import Body from 'src/components/Body';
+import QuestionView from 'features/scan/comps/QuestionView';
+import ScoreView from 'features/scan/comps/ScoreView';
+import Body from 'components/Body';
 import { View } from 'react-native';
 
 const MyView = styled(View)`
@@ -23,12 +23,7 @@ const AfterScanView = (props) => (
   <Body>
     <MyView>
       <MyQuestionContainer>
-        {props.isAnswered
-          ?
-          <ScoreView {...props} />
-          :
-          <QuestionView {...props} />
-        }
+        {props.isAnswered ? <ScoreView {...props} /> : <QuestionView {...props} />}
       </MyQuestionContainer>
     </MyView>
   </Body>

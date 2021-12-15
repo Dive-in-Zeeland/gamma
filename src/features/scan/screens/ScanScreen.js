@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useAtom } from 'jotai';
-import { BarCodeScanner } from "expo-barcode-scanner";
+import { BarCodeScanner } from 'expo-barcode-scanner';
 
-import tokensAtom from "src/store/tokens";
-import PermissionView from "src/features/scan/comps/PermissionView";
-import ScanningView from "src/features/scan/comps/ScanningView";
-import AfterScanView from "src/features/scan/comps/AfterScanView";
-import ContentView from "src/features/scan/comps/ContentView";
+import tokensAtom from 'store/tokens';
+import PermissionView from 'features/scan/comps/PermissionView';
+import ScanningView from 'features/scan/comps/ScanningView';
+import AfterScanView from 'features/scan/comps/AfterScanView';
+import ContentView from 'features/scan/comps/ContentView';
 
 const ScanScreen = ({ navigation: nav }) => {
-
   const [isCameraAllowed, setIsCameraAllowed] = useState(null);
   const [isScanned, setIsScanned] = useState(false);
   const [isScanValid, setIsScanValid] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
-  const [postAnswerMsg, setPostAnswerMsg] = useState("Not correct!");
+  const [postAnswerMsg, setPostAnswerMsg] = useState('Not correct!');
   const [tokens, setTokens] = useAtom(tokensAtom);
   const [scannedName, setScannedName] = useState('');
   const [answerQuestion, setAnswerQuestion] = useState(false);
 
   async function askForCameraPermission() {
     const { status } = await BarCodeScanner.requestPermissionsAsync();
-    setIsCameraAllowed(status === "granted");
+    setIsCameraAllowed(status === 'granted');
   }
 
   function trySetToken(name) {
@@ -52,15 +51,16 @@ const ScanScreen = ({ navigation: nav }) => {
 
   function handleAnswerOptionClick(isCorrect) {
     if (isCorrect) {
-      setPostAnswerMsg("Your answer is correct!");
-      setTokens(prev => ({
-        ...prev, [scannedName]: {
+      setPostAnswerMsg('Your answer is correct!');
+      setTokens((prev) => ({
+        ...prev,
+        [scannedName]: {
           ...tokens[scannedName],
           isCollected: true,
-        }
+        },
       }));
     } else {
-      setPostAnswerMsg("Your answer is incorrect!");
+      setPostAnswerMsg('Your answer is incorrect!');
     }
     setIsAnswered(true);
   }
@@ -76,7 +76,7 @@ const ScanScreen = ({ navigation: nav }) => {
     handleBarCodeScanned,
     nav,
     answerQuestionNow,
-    cancelQuestion
+    cancelQuestion,
   };
 
   useEffect(() => {
@@ -85,11 +85,9 @@ const ScanScreen = ({ navigation: nav }) => {
 
   if (!isCameraAllowed) {
     return <PermissionView {...theProps} />;
-  }
-  else if (!isScanValid) {
+  } else if (!isScanValid) {
     return <ScanningView {...theProps} />;
-  }
-  else {
+  } else {
     if (answerQuestion) {
       return <AfterScanView {...theProps} />;
     } else {

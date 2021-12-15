@@ -1,81 +1,77 @@
-import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from "@expo/vector-icons/Ionicons";
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-import TokenScreen from "src/features/tokens/TokenScreen";
-import HomeScreen from "src/features/home/HomeScreen";
-import GameScreen from "src/features/game/GameScreen";
+import TokenScreen from 'features/tokens/TokenScreen';
+import HomeScreen from 'features/home/HomeScreen';
+import GameScreen from 'features/game/GameScreen';
 
-import MapStack from "src/navigation/stacks/MapStack";
-import ScanStack from "src/navigation/stacks/ScanStack";
-
-
+import MapStack from 'navigation/stacks/MapStack';
+import ScanStack from 'navigation/stacks/ScanStack';
 
 const Tab = createBottomTabNavigator();
 
 const MainTab = () => {
-
   function configureIcons(route, color) {
     const icons = {
-      'GameScreen': 'play-circle',
-      'TokenScreen': 'grid',
-      'MapStack': 'map',
-      'HomeScreen': 'ios-home',
-      'ScanStack': 'aperture',
-      'SettingsScreen': 'settings',
+      GameScreen: 'play-circle',
+      TokenScreen: 'grid',
+      MapStack: 'map',
+      HomeScreen: 'ios-home',
+      ScanStack: 'aperture',
+      SettingsScreen: 'settings',
     };
     const opts = {
       name: icons[route.name] ?? '',
       size: 30,
       color: color,
-      style: { marginTop: 10 }
+      style: { marginTop: 10 },
     };
     return <Ionicons {...opts} />;
   }
 
   const navOpts = {
-    initialRouteName: "HomeScreen",
+    initialRouteName: 'HomeScreen',
     screenOptions: ({ route }) => ({
-      tabBarIcon: ({ color }) => configureIcons(route, color)
+      tabBarIcon: ({ color }) => configureIcons(route, color),
     }),
     tabBarOptions: {
       activeTintColor: 'teal',
       inactiveTintColor: 'grey',
       style: {
-        flex: 0.10,
+        flex: 0.1,
         margin: 10,
         borderRadius: 15,
-      }
-    }
+      },
+    },
   };
 
   const screens = [
     {
-      name: "GameScreen",
+      name: 'GameScreen',
       options: { tabBarLabel: '' },
       component: GameScreen,
     },
     {
-      name: "TokenScreen",
+      name: 'TokenScreen',
       options: { tabBarLabel: '' },
       component: TokenScreen,
     },
 
     {
-      name: "HomeScreen",
+      name: 'HomeScreen',
       options: { tabBarLabel: '' },
       component: HomeScreen,
     },
 
     {
-      name: "MapStack",
+      name: 'MapStack',
       options: { tabBarLabel: '' },
       component: MapStack,
     },
 
-
     {
-      name: "ScanStack",
+      name: 'ScanStack',
       options: { tabBarLabel: '' },
       component: ScanStack,
     },
@@ -88,7 +84,6 @@ const MainTab = () => {
       ))}
     </Tab.Navigator>
   );
-
 };
 
 export default MainTab;

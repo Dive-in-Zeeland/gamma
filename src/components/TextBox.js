@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from "styled-components";
+import styled from 'styled-components/native';
 
 const Pressable = styled.Pressable`
   margin: 15px 0;
@@ -19,18 +19,12 @@ const Text = styled.Text`
   color: white;
 `;
 
-
-
 const TextBox = ({ children, onPress }) => (
-
   <Pressable onPress={onPress}>
     <Box>
-      <Text>
-        {children}
-      </Text>
+      <Text>{children}</Text>
     </Box>
   </Pressable>
-
 );
 
 export default TextBox;

@@ -1,39 +1,38 @@
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
-import React from "react";
+import React from 'react';
 
-import ScanHelpScreen from 'src/features/scan/screens/ScanHelpScreen';
-import ScanSubStack from 'src/navigation/stacks/ScanSubStack';
+import ScanHelpScreen from 'features/scan/screens/ScanHelpScreen';
+import ScanSubStack from 'navigation/stacks/ScanSubStack';
 
 const Stack = createStackNavigator();
 
 const ScanStack = () => {
-
   const navOpts = {
-    headerMode: "none",
-    mode: "modal",
+    headerMode: 'none',
+    mode: 'modal',
     screenOptions: {
       ...TransitionPresets.SlideFromRightIOS,
       headerStyle: {
-        backgroundColor: "tomato",
+        backgroundColor: 'tomato',
       },
-    }
+    },
   };
 
   const screens = [
     {
-      name: "ScanSubStack",
+      name: 'ScanSubStack',
       component: ScanSubStack,
     },
     {
-      name: "ScanHelpScreen",
+      name: 'ScanHelpScreen',
       component: ScanHelpScreen,
       options: {
         headerShown: false,
         headerStyle: {
-          backgroundColor: "skyblue",
+          backgroundColor: 'skyblue',
         },
-      }
-    }
+      },
+    },
   ];
 
   return (
@@ -43,9 +42,6 @@ const ScanStack = () => {
       ))}
     </Stack.Navigator>
   );
-
 };
 
-
 export default ScanStack;
-

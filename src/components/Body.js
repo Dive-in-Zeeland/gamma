@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
-import styled from "styled-components";
+import styled from 'styled-components/native';
 
 // Prev: Home or Container
-export const WhiteCard = styled(View)`
+export const WhiteCard = styled.View`
   flex: 1;
   margin: 10px;
   background-color: white;
@@ -18,9 +18,7 @@ export const TealBox = styled(View)`
 
 const Body = ({ children }) => (
   <TealBox>
-    <WhiteCard>
-      {children}
-    </WhiteCard>
+    <WhiteCard>{children}</WhiteCard>
   </TealBox>
 );
 
