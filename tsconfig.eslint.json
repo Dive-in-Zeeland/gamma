@@ -3,14 +3,8 @@
 {
   "extends": "./tsconfig.json",
   "include": [
-    ".eslintrc.js",
+    "./*",
     "./src/**/*",
-    "./babel.config.js",
-    "./jest.config.js",
     "./__tests__/**/*"
   ],
-  "exclude": [
-    "node_modules",
-    "**/node_modules/*",
-  ]
 }
