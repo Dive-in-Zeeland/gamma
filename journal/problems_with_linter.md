@@ -30,3 +30,6 @@ For them to work in the vs code, we needed to set up `tsconfig.json` with `baseU
 
 ## Does tsconfig need to exclude node_modules
 > Question still remains (todo?)
+
+## For valid module import checking the file needs to be `.tsx`
+> Maybe there a fix?
