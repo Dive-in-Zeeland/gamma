@@ -1,23 +1,37 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react-native",
+    "lib": ["es2017"],
+    "moduleResolution": "node",
+    "noEmit": true,
     "strict": true,
-
-    // For module imports (absolute) to work in the vs code (not in the app)
-    "baseUrl": "./src",
+    "target": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"],
+      "tests": ["tests/*"],
+      "@components/*": ["src/components/*"],
+      "@features": ["./src/features"],
+      "@navigation": ["./src/navigation"],
+    },
     "plugins": [
       {
-        // You also need a vscode-styled-components plugin
         "name": "typescript-styled-plugin",
         "lint": {
-          // List rare CSS properties
           "validProperties": ["elevation"]
         }
       }
-    ]
+    ],
   },
   "exclude": [
     "node_modules",
-    "**/node_modules/*"
-  ]
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ],
 }
+

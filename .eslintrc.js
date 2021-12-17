@@ -1,9 +1,14 @@
+const off = 'off',
+  warn = 'warn',
+  error = 'error';
+
 module.exports = {
   env: {
     es2021: true,
     node: true,
     jest: true,
   },
+
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -12,29 +17,41 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
   ],
+
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: ['tsconfig.eslint.json'],
-    tsconfigRootDir: __dirname,
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 13,
-    sourceType: 'module',
-  },
+
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      parserOptions: {
+        project: ['./tsconfig.json'],
+        tsconfigRootDir: __dirname,
+      },
+    }
+  ],
+
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
+
   rules: {
-    indent: [2, 2, { SwitchCase: 1 }],
+    indent: [error, 2, { SwitchCase: 1 }],
     'linebreak-style': [2, 'unix'],
-    quotes: [2, 'single', { avoidEscape: true }],
-    semi: [2, 'always'],
-    'no-empty-function': 0,
-    '@typescript-eslint/no-empty-function': 0,
-    'react/display-name': 0,
-    'react/prop-types': 0,
-    'prettier/prettier': 2,
+    quotes: [error, 'single', { avoidEscape: true }],
+    semi: [error, 'always'],
+    'no-empty-function': off,
+    '@typescript-eslint/no-empty-function': off,
+    'react/display-name': off,
+    'react/prop-types': off,
+    'prettier/prettier': [
+      error,
+      {
+        bracketSameLine: true,
+        singleQuote: true,
+        trailingComma: 'all',
+        printWidth: 80,
+      },
+    ],
     'no-restricted-imports': [
-      2,
+      error,
       {
         paths: [
           {
@@ -45,13 +62,14 @@ module.exports = {
         patterns: ['!styled-components/native'],
       },
     ],
-    '@typescript-eslint/no-unsafe-assignment': 1,
-    '@typescript-eslint/no-unsafe-member-access': 1,
-    '@typescript-eslint/no-unsafe-call': 1,
-    '@typescript-eslint/no-unsafe-return': 1,
-    '@typescript-eslint/no-unsafe-argument': 1,
+    '@typescript-eslint/no-unsafe-assignment': warn,
+    '@typescript-eslint/no-unsafe-member-access': warn,
+    '@typescript-eslint/no-unsafe-call': warn,
+    '@typescript-eslint/no-unsafe-return': warn,
+    '@typescript-eslint/no-unsafe-argument': warn,
+    '@typescript-eslint/no-explicit-any': off,
   },
-  ignorePatterns: ['src/devtools', 'babel.config.js', '__tests__', 'node_modules'],
+  
   settings: {
     react: {
       version: 'detect',

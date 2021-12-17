@@ -27,6 +27,10 @@ For them to work in the vs code, we needed to set up `tsconfig.json` with `baseU
 
 ## Eslint needed a separate tsconfig
 > see Željko Šević answer: https://stackoverflow.com/questions/58510287/parseroptions-project-has-been-set-for-typescript-eslint-parser
+> Changed to Rafael's solution
+
+## Need `tsconfigRootDir`
+> But cant remember why
 
 ## Does tsconfig need to exclude node_modules
 > Question still remains (todo?)

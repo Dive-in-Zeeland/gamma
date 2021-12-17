@@ -46,7 +46,8 @@ const tokens = {
   },
   STREET: {
     place: 'STREET',
-    content: 'The main street of the Middelburg, which leads to the main Square of the City.',
+    content:
+      'The main street of the Middelburg, which leads to the main Square of the City.',
     question: 'Where does the road leed to?',
     answers: [
       { text: 'Main Square', isCorrect: true },

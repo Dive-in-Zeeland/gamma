@@ -8,7 +8,13 @@ import ScanningView from 'features/scan/comps/ScanningView';
 import AfterScanView from 'features/scan/comps/AfterScanView';
 import ContentView from 'features/scan/comps/ContentView';
 
-const ScanScreen = ({ navigation: nav }) => {
+import { Routes } from 'constants/navigation';
+import { ScanNavigatorProp } from 'navigation/ScanNavigator';
+import { useNavigation } from '@react-navigation/core';
+
+const ScanScreen = () => {
+  const navigation = useNavigation<ScanNavigatorProp<Routes.Scan>>();
+
   const [isCameraAllowed, setIsCameraAllowed] = useState(null);
   const [isScanned, setIsScanned] = useState(false);
   const [isScanValid, setIsScanValid] = useState(false);
@@ -74,7 +80,7 @@ const ScanScreen = ({ navigation: nav }) => {
     askForCameraPermission,
     isScanned,
     handleBarCodeScanned,
-    nav,
+    navigation,
     answerQuestionNow,
     cancelQuestion,
   };

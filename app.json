@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "DIZ",
-    "slug": "DIZ",
+    "name": "gamma",
+    "slug": "gamma",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "",
@@ -24,11 +24,15 @@
         "foregroundImage": "",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.snowbalzz.DIZ"
+      "package": "com.DIZ.gamma"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "entryPoint": "./src/index.js"
+    "entryPoint": "./src/index.js",
+    "androidNavigationBar": {
+     "barStyle": "light-content",
+     "backgroundColor": "#008080"
+   }
   }
 }

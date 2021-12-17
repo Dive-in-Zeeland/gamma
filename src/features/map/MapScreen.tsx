@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { Ref, useEffect, useRef } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { getBoundsOfDistance } from 'geolib';
 import { useAtom } from 'jotai';
@@ -10,6 +10,10 @@ import HelperButton from 'components/HelperButton';
 import Center from 'components/Center';
 import Body from 'components/Body';
 
+import { Routes } from 'constants/navigation';
+import { MapNavigatorProp } from 'navigation/MapNavigator';
+import { useNavigation } from '@react-navigation/core';
+
 const MyMap = styled(MapView)`
   height: 90%;
   width: 90%;
@@ -18,19 +22,20 @@ const MyMap = styled(MapView)`
   border-radius: 15px;
 `;
 
-const MapScreen = ({ navigation: nav }) => {
+const MapScreen = () => {
+  const navigation = useNavigation<MapNavigatorProp<Routes.Map>>();
   const [tokens] = useAtom(tokensAtom);
   const [mapPosition] = useAtom(mapPositionAtom);
-  const mapRef = useRef(null);
+  const mapRef = useRef<InstanceType<typeof MapView>>(null);
 
   const filtered = Object.values(tokens).filter((token) => !token.isCollected);
 
   function onHelpPress() {
-    nav.navigate('MapHelpScreen');
+    navigation.navigate(Routes.MapHelp);
   }
 
   useEffect(() => {
-    if (!mapRef) return;
+    if (mapRef.current === null) return;
     const coords = getBoundsOfDistance(
       { latitude: mapPosition.latitude, longitude: mapPosition.longitude },
       130,
@@ -42,7 +47,10 @@ const MapScreen = ({ navigation: nav }) => {
     <Body>
       <HelperButton onPress={onHelpPress} />
       <Center>
-        <MyMap ref={mapRef} showsUserLocation={true} initialRegion={mapPosition}>
+        <MyMap
+          ref={mapRef}
+          showsUserLocation={true}
+          initialRegion={mapPosition}>
           {filtered.map(({ coords: [latitude, longitude] }, index) => (
             <Marker
               coordinate={{

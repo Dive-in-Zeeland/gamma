@@ -32,7 +32,11 @@ const MyTitle = styled(Text)`
   color: gray;
 `;
 
-const QuestionView = ({ scannedToken, handleAnswerOptionClick, cancelQuestion }) => (
+const QuestionView = ({
+  scannedToken,
+  handleAnswerOptionClick,
+  cancelQuestion,
+}) => (
   <View>
     <MyTitle>{scannedToken.question}</MyTitle>
 

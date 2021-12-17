@@ -23,7 +23,9 @@ const TokenScreen = ({ navigation: nav }) => {
 
   return (
     <Body>
-      <ScrollView showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}>
         <TextBoxContainer>
           {/* TODO: TextBox style to depend on if token is collected */}
           {Object.entries(tokens).map(([tokenName, token], i) => (

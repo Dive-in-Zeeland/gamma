@@ -3,21 +3,16 @@ module.exports = function (api) {
 
   const plugins = [
     [
-      // For module imports (absolute) to work in the app
       'module-resolver',
       {
         root: ['./src'],
-        extensions: [
-          '.ios.ts',
-          '.android.ts',
-          '.ts',
-          '.ios.tsx',
-          '.android.tsx',
-          '.tsx',
-          '.jsx',
-          '.js',
-          '.json',
-        ],
+        extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
+        alias: {
+          tests: ['./tests/'],
+          "@components": "./src/components",
+          "@features": "./src/features",
+          "@navigation": "./src/navigation",
+        }
       },
     ],
   ];

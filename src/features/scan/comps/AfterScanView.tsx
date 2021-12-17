@@ -23,7 +23,11 @@ const AfterScanView = (props) => (
   <Body>
     <MyView>
       <MyQuestionContainer>
-        {props.isAnswered ? <ScoreView {...props} /> : <QuestionView {...props} />}
+        {props.isAnswered ? (
+          <ScoreView {...props} />
+        ) : (
+          <QuestionView {...props} />
+        )}
       </MyQuestionContainer>
     </MyView>
   </Body>

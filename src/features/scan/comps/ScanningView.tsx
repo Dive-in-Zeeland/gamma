@@ -5,6 +5,7 @@ import HelperButton from 'components/HelperButton';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import Body from 'components/Body';
 import Center from 'components/Center';
+import { Routes } from 'constants/navigation';
 
 const MyQrTarget = styled(View)`
   position: absolute;
@@ -47,14 +48,21 @@ const MyScanButton = styled(View)`
   top: 80%;
 `;
 
-const ScanningView = ({ isScanned, handleBarCodeScanned, reset, nav }) => (
+const ScanningView = ({
+  isScanned,
+  handleBarCodeScanned,
+  reset,
+  navigation,
+}) => (
   <Body>
     <MyQrTarget />
     <MyQrText>QR Code Target</MyQrText>
-    <HelperButton onPress={() => nav.navigate('ScanHelpScreen')} />
+    <HelperButton onPress={() => navigation.navigate(Routes.ScanHelp)} />
 
     <Center>
-      <MyBarcode onBarCodeScanned={isScanned ? undefined : handleBarCodeScanned} />
+      <MyBarcode
+        onBarCodeScanned={isScanned ? undefined : handleBarCodeScanned}
+      />
 
       {isScanned && (
         <MyScanButton>
