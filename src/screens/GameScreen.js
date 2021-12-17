@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { WebView } from "react-native-webview";
+import MainFarm from "../game/gameApp"
 
 const Container = styled(WebView)`
   flex: 1;
@@ -25,13 +33,48 @@ const Main = styled(View)`
   background-color: teal;
 `;
 
+const collection = [
+  "feeder",
+  "fisherMan",
+  "fishFarm",
+  "incubator",
+  "fishFactory",
+];
+
+//TODO Create ranks for the fish collection (Start UP, Comapny, Industry, Empire ).
+//TODO Coster Tycon example on representing the amount of fish or farms you have.
+//TODO Export the file in different components.
+
+
 const GameScreen = ({ navigation: nav }) => {
-    return (
-      (<Main>
-        <Home>
-          <Container source={{ uri: "https://puginarug.com/" }} />
-        </Home>
-      </Main>)
-    );
+
+  
+  return (
+    <Main>
+      <Home>
+          <MainFarm/>
+      </Home>
+    </Main>
+  );
 };
 export default GameScreen;
+
+const styles = StyleSheet.create({
+  white: {
+    color: "black",
+    fontSize: 20,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "pink",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  margin: {
+    margin: 10,
+    borderWidth: 2,
+    borderRadius: 15,
+    borderColor: "teal",
+    padding: 10,
+  },
+});
