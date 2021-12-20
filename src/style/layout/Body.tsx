@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentBox } from 'components/ContentBox';
+import { ContentBox } from 'style/boxes/ContentBox';
 
 const Body: React.FC<{}> = ({ children }) => (
   <ContentBox>{children}</ContentBox>
