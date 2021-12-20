@@ -5,8 +5,11 @@ import Body from 'style/layout/Body';
 import BorderedBox from 'style/boxes/BorderedBox';
 import Button from 'style/interactable/Button';
 import AbsoluteCenter from 'style/layout/AbsoluteCenter';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { BarCodeScanningResult, Camera } from 'expo-camera';
+import { useIsFocused } from '@react-navigation/core';
+import Center from 'style/layout/Center';
+import { TextM10 } from 'style/typo/Text';
 
 const MyScanTarget = styled.View`
   border-radius: 15px;
@@ -43,6 +46,7 @@ const ScanningView: React.FC<ScanningViewProps> = ({
   isScanned,
 }) => {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
     void (async () => {
@@ -55,29 +59,33 @@ const ScanningView: React.FC<ScanningViewProps> = ({
     return <View />;
   }
 
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
-
   return (
     <Body>
-      <BorderedBox>
-        <HelperButton onPress={onHelperPress} />
-        <AbsoluteCenter>
-          <MyScanTarget />
-          <MyScanText>SCAN QR CODE</MyScanText>
-        </AbsoluteCenter>
-        <Camera
-          onBarCodeScanned={isScanned ? undefined : onBarCodeScanned}
-          ratio="16:9"
-          style={StyleSheet.absoluteFillObject}
-        />
-        {isScanned && (
-          <MyButtonContainer>
-            <Button onPress={onScanAgainPressed}>Scan Again</Button>
-          </MyButtonContainer>
-        )}
-      </BorderedBox>
+      {hasPermission ? (
+        <BorderedBox>
+          <HelperButton onPress={onHelperPress} />
+          <AbsoluteCenter>
+            <MyScanTarget />
+            <MyScanText>SCAN QR CODE</MyScanText>
+          </AbsoluteCenter>
+          {isFocused && (
+            <Camera
+              onBarCodeScanned={isScanned ? undefined : onBarCodeScanned}
+              ratio="16:9"
+              style={StyleSheet.absoluteFillObject}
+            />
+          )}
+          {isScanned && (
+            <MyButtonContainer>
+              <Button onPress={onScanAgainPressed}>Scan Again</Button>
+            </MyButtonContainer>
+          )}
+        </BorderedBox>
+      ) : (
+        <Center>
+          <TextM10>No access to camera</TextM10>
+        </Center>
+      )}
     </Body>
   );
 };

@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { useAtom } from 'jotai';
 
 import tokensAtom from 'store/tokens';
-import PermissionView, {
-  PermissionViewProps,
-} from 'features/scan/comps/PermissionView';
 import ScanningView, {
   ScanningViewProps,
 } from 'features/scan/comps/ScanningView';
@@ -20,7 +17,6 @@ import { useNavigation } from '@react-navigation/core';
 const ScanScreen = () => {
   const navigation = useNavigation<ScanNavigatorProp<Routes.Scan>>();
 
-  const [isCameraAllowed, setIsCameraAllowed] = useState(false);
   const [isScanned, setIsScanned] = useState(false);
   const [isScanValid, setIsScanValid] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
@@ -41,14 +37,6 @@ const ScanScreen = () => {
     setIsAnswered(false);
     setAnswerQuestion(false);
   }
-
-  //////////
-
-  const onCameraAllowed: PermissionViewProps['onAllowed'] = () => {
-    setIsCameraAllowed(true);
-  };
-
-  if (!isCameraAllowed) return <PermissionView onAllowed={onCameraAllowed} />;
 
   /////////
 
