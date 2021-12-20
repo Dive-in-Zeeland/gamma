@@ -4,8 +4,7 @@ import {
   TransitionPresets,
   StackNavigationProp,
 } from '@react-navigation/stack';
-import MapScreen from 'features/map/MapScreen';
-import MapHelpScreen from 'features/map/MapHelpScreen';
+import { MapScreen, MapHelpScreen } from 'navigation/screens';
 import { Routes } from 'constants/navigation';
 import { ScreensType } from 'types/navigation';
 

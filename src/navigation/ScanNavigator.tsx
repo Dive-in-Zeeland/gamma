@@ -4,8 +4,7 @@ import {
   TransitionPresets,
   StackNavigationProp,
 } from '@react-navigation/stack';
-import ScanScreen from 'features/scan/screens/ScanScreen';
-import ScanHelpScreen from 'features/scan/screens/ScanHelpScreen';
+import { ScanScreen, ScanHelpScreen } from 'navigation/screens';
 import { Routes } from 'constants/navigation';
 import { ScreensType } from 'types/navigation';
 

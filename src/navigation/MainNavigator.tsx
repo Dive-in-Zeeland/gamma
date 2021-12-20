@@ -5,14 +5,15 @@ import {
 } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
-
-import TokenScreen from 'features/tokens/TokenScreen';
-import HomeScreen from 'features/home/HomeScreen';
-import GameScreen from 'features/game/GameScreen';
-import MapNavigator from 'navigation/MapNavigator';
-import ScanNavigator from 'navigation/ScanNavigator';
 import { Routes } from 'constants/navigation';
 import { IconsType, ScreensType } from 'types/navigation';
+import {
+  TokenScreen,
+  GameScreen,
+  HomeScreen,
+  MapNavigator,
+  ScanNavigator,
+} from 'navigation/screens';
 
 export type MainNavigatorParamsList = {
   [Routes.Game]: undefined;
