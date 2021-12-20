@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { View } from 'react-native';
 
-import Body from 'components/Body';
-import TextBox from 'components/TextBox';
-import TextBoxContainer from 'components/TextBoxContainer';
-import { TextM10 } from 'components/Text';
+import Body from 'style/layout/Body';
+import TextBox from 'style/boxes/TextBox';
+import TextBoxContainer from 'style/layout/TextBoxContainer';
+import { TextM10 } from 'style/typo/Text';
 import { TokenType } from 'store/tokens';
 
 const MyTextBoxContainer = styled(TextBoxContainer)`

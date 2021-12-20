@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { WebView } from 'react-native-webview';
 
-import Body from 'components/Body';
+import Body from 'style/layout/Body';
 
 export const WebViewStyled = styled(WebView)`
   flex: 1;

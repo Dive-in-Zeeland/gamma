@@ -1,6 +1,6 @@
 import React from 'react';
-import Navigation from 'navigation/Navigation';
-import { SafeArea } from 'components/layout/SafeArea';
+import Navigation from 'nav/Navigation';
+import { SafeArea } from 'style/layout/SafeArea';
 
 export default function App() {
   return (

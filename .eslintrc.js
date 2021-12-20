@@ -70,6 +70,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': off,
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": [error],
+    "@typescript-eslint/ban-types": off,
   },
   
   settings: {

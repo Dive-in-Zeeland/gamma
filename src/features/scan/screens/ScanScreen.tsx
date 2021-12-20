@@ -14,7 +14,7 @@ import AfterScanView, {
 import ContentView, { ContentViewProps } from 'features/scan/comps/ContentView';
 
 import { Routes } from 'constants/navigation';
-import { ScanNavigatorProp } from 'navigation/ScanNavigator';
+import { ScanNavigatorProp } from 'nav/ScanNavigator';
 import { useNavigation } from '@react-navigation/core';
 
 const ScanScreen = () => {

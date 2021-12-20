@@ -4,10 +4,10 @@ import { useAtom } from 'jotai';
 
 import tokensAtom, { TokenType } from 'store/tokens';
 import mapPositionAtom from 'store/mapPosition';
-import TextBoxContainer from 'components/TextBoxContainer';
-import TextBox from 'components/TextBox';
-import Body from 'components/Body';
-import { MainNavigatorProp } from 'navigation/MainNavigator';
+import TextBoxContainer from 'style/layout/TextBoxContainer';
+import TextBox from 'style/boxes/TextBox';
+import Body from 'style/layout/Body';
+import { MainNavigatorProp } from 'nav/MainNavigator';
 import { useNavigation } from '@react-navigation/core';
 import { Routes } from 'constants/navigation';
 

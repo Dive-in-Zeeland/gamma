@@ -6,12 +6,12 @@ import styled from 'styled-components/native';
 
 import tokensAtom from 'store/tokens';
 import mapPositionAtom from 'store/mapPosition';
-import HelperButton from 'components/HelperButton';
-import Center from 'components/Center';
-import Body from 'components/Body';
+import HelperButton from 'style/interactable/HelperButton';
+import Center from 'style/layout/Center';
+import Body from 'style/layout/Body';
 
 import { Routes } from 'constants/navigation';
-import { MapNavigatorProp } from 'navigation/MapNavigator';
+import { MapNavigatorProp } from 'nav/MapNavigator';
 import { useNavigation } from '@react-navigation/core';
 
 const MyMap = styled(MapView)`

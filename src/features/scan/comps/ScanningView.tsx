@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button, View, Text } from 'react-native';
 import styled from 'styled-components/native';
-import HelperButton from 'components/HelperButton';
+import HelperButton from 'style/interactable/HelperButton';
 import { BarCodeScannedCallback, BarCodeScanner } from 'expo-barcode-scanner';
-import Body from 'components/Body';
-import Center from 'components/Center';
+import Body from 'style/layout/Body';
+import Center from 'style/layout/Center';
 
 const MyQrTarget = styled(View)`
   position: absolute;

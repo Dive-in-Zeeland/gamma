@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { Button } from 'react-native';
-import Center from 'components/Center';
-import { TextM10 } from 'components/Text';
+import Center from 'style/layout/Center';
+import { TextM10 } from 'style/typo/Text';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 export interface PermissionViewProps {

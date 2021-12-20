@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Body from 'components/Body';
-import TextBox from 'components/TextBox';
-import BorderCard from 'components/BorderCard';
-import TextBoxContainer from 'components/TextBoxContainer';
-import { TextM10, TextM20 } from 'components/Text';
+import Body from 'style/layout/Body';
+import TextBox from 'style/boxes/TextBox';
+import BorderCard from 'style/boxes/BorderCard';
+import TextBoxContainer from 'style/layout/TextBoxContainer';
+import { TextM10, TextM20 } from 'style/typo/Text';
 
 const HomeScreen = () => (
   <Body>

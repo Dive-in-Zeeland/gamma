@@ -2,10 +2,10 @@ import React from 'react';
 import { Text } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import styled from 'styled-components/native';
-import Body from 'components/Body';
-import BorderCard from 'components/BorderCard';
+import Body from 'style/layout/Body';
+import BorderCard from 'style/boxes/BorderCard';
 import { Routes } from 'constants/navigation';
-import { ScanNavigatorProp } from 'navigation/ScanNavigator';
+import { ScanNavigatorProp } from 'nav/ScanNavigator';
 import { useNavigation } from '@react-navigation/core';
 
 const BorderCardStyled = styled(BorderCard)`

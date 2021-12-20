@@ -5,7 +5,7 @@ import QuestionView, {
   QuestionViewProps,
 } from 'features/scan/comps/QuestionView';
 import ScoreView, { ScoreViewProps } from 'features/scan/comps/ScoreView';
-import Body from 'components/Body';
+import Body from 'style/layout/Body';
 import { View } from 'react-native';
 
 const MyView = styled(View)`

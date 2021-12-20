@@ -4,26 +4,26 @@ import {
   TransitionPresets,
   StackNavigationProp,
 } from '@react-navigation/stack';
-import { ScanScreen, ScanHelpScreen } from 'navigation/screens';
+import { MapScreen, MapHelpScreen } from 'nav/screens';
 import { Routes } from 'constants/navigation';
 import { ScreensType } from 'types/navigation';
 
-export type ScanNavigatorParamsList = {
-  [Routes.Scan]: undefined;
-  [Routes.ScanHelp]: undefined;
+export type MapNavigatorParamsList = {
+  [Routes.Map]: undefined;
+  [Routes.MapHelp]: undefined;
 };
 
-export type ScanNavigatorProp<RouteName extends keyof ScanNavigatorParamsList> =
-  StackNavigationProp<ScanNavigatorParamsList, RouteName>;
+export type MapNavigatorProp<RouteName extends keyof MapNavigatorParamsList> =
+  StackNavigationProp<MapNavigatorParamsList, RouteName>;
 
-const SCREENS: ScreensType<ScanNavigatorParamsList> = [
-  { name: Routes.Scan, component: ScanScreen },
-  { name: Routes.ScanHelp, component: ScanHelpScreen },
+const SCREENS: ScreensType<MapNavigatorParamsList> = [
+  { name: Routes.Map, component: MapScreen },
+  { name: Routes.MapHelp, component: MapHelpScreen },
 ];
 
-const MapStack = createStackNavigator<ScanNavigatorParamsList>();
+const MapStack = createStackNavigator<MapNavigatorParamsList>();
 
-export default function ScanNavigator() {
+export default function MapNavigator() {
   return (
     <MapStack.Navigator
       headerMode="none"

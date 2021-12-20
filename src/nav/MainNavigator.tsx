@@ -13,7 +13,7 @@ import {
   HomeScreen,
   MapNavigator,
   ScanNavigator,
-} from 'navigation/screens';
+} from 'nav/screens';
 
 export type MainNavigatorParamsList = {
   [Routes.Game]: undefined;
