@@ -1,0 +1,32 @@
+# Query: pink
+# ContextLines: 1
+
+6 results - 4 files
+
+src/game/gameApp.js:
+   29        <View style={styles.counterFace}>
+   30:         <Text style={styles.pink}>{Math.floor(counter)} 🐠</Text>
+   31        </View>
+
+  137    },
+  138:   pink: {
+  139      color: "#abaec0",
+
+src/game/Components/Card.js:
+  65                >
+  66:                 <Text style={{ fontFamily:"Futura", color: 'pink', fontSize:30, fontWeight:'bold'}}>
+  67                  Buy
+
+src/game/Components/UpModal.js:
+   99      position: "absolute",
+  100:     backgroundColor: "#a0e3e3",
+  101      height: "10%",
+
+  117      position: "absolute",
+  118:     backgroundColor: "#a0e3e3",
+  119      height: "10%",
+
+src/screens/GameScreen.js:
+  68      flex: 1,
+  69:     backgroundColor: "#a0e3e3",
+  70      alignItems: "center",

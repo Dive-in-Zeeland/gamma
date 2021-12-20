@@ -41,7 +41,9 @@
     "react-native-web": "0.17.1",
     "react-native-webview": "11.13.0",
     "styled-components": "^5.3.3",
-    "valtio": "^1.2.6"
+    "valtio": "^1.2.6",
+    "react-native-modal": "^13.0.0",
+    "react-native-really-awesome-button": "^1.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
