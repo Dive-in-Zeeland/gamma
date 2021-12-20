@@ -1,21 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useAtom } from 'jotai';
-import { BarCodeScanner } from 'expo-barcode-scanner';
 
 import tokensAtom from 'store/tokens';
-import PermissionView from 'features/scan/comps/PermissionView';
-import ScanningView from 'features/scan/comps/ScanningView';
-import AfterScanView from 'features/scan/comps/AfterScanView';
-import ContentView from 'features/scan/comps/ContentView';
+import PermissionView, {
+  PermissionViewProps,
+} from 'features/scan/comps/PermissionView';
+import ScanningView, {
+  ScanningViewProps,
+} from 'features/scan/comps/ScanningView';
+import AfterScanView, {
+  AfterScanViewProps,
+} from 'features/scan/comps/AfterScanView';
+import ContentView, { ContentViewProps } from 'features/scan/comps/ContentView';
 
 import { Routes } from 'constants/navigation';
 import { ScanNavigatorProp } from 'navigation/ScanNavigator';
 import { useNavigation } from '@react-navigation/core';
+import { BarCodeScannedCallback } from 'expo-barcode-scanner';
+
+import { QuestionViewProps } from 'features/scan/comps/QuestionView';
 
 const ScanScreen = () => {
   const navigation = useNavigation<ScanNavigatorProp<Routes.Scan>>();
 
-  const [isCameraAllowed, setIsCameraAllowed] = useState(null);
+  const [isCameraAllowed, setIsCameraAllowed] = useState(false);
   const [isScanned, setIsScanned] = useState(false);
   const [isScanValid, setIsScanValid] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
@@ -24,12 +32,7 @@ const ScanScreen = () => {
   const [scannedName, setScannedName] = useState('');
   const [answerQuestion, setAnswerQuestion] = useState(false);
 
-  async function askForCameraPermission() {
-    const { status } = await BarCodeScanner.requestPermissionsAsync();
-    setIsCameraAllowed(status === 'granted');
-  }
-
-  function trySetToken(name) {
+  function trySetToken(name: string) {
     if (!(name in tokens)) return false;
     setScannedName(name);
     return true;
@@ -42,20 +45,46 @@ const ScanScreen = () => {
     setAnswerQuestion(false);
   }
 
-  function answerQuestionNow() {
-    setAnswerQuestion(true);
-  }
+  //////////
 
-  function cancelQuestion() {
-    setAnswerQuestion(false);
-  }
+  const onCameraAllowed: PermissionViewProps['onAllowed'] = () => {
+    setIsCameraAllowed(true);
+  };
 
-  function handleBarCodeScanned({ data: scannedText }) {
+  if (!isCameraAllowed) return <PermissionView onAllowed={onCameraAllowed} />;
+
+  /////////
+
+  const onHelperPress: ScanningViewProps['onHelperPress'] = () => {
+    navigation.navigate(Routes.ScanHelp);
+  };
+
+  const onBarCodeScanned: ScanningViewProps['onBarCodeScanned'] = ({
+    data: scannedText,
+  }) => {
     setIsScanValid(trySetToken(scannedText));
     setIsScanned(true);
-  }
+  };
 
-  function handleAnswerOptionClick(isCorrect) {
+  const onScanAgainPressed: ScanningViewProps['onScanAgainPressed'] = () => {
+    reset();
+  };
+
+  if (!isScanValid)
+    return (
+      <ScanningView
+        onHelperPress={onHelperPress}
+        onBarCodeScanned={onBarCodeScanned}
+        onScanAgainPressed={onScanAgainPressed}
+        isScanned={isScanned}
+      />
+    );
+
+  //////////
+
+  const onAnswerOptionClick: AfterScanViewProps['onAnswerOptionClick'] = (
+    isCorrect,
+  ) => {
     if (isCorrect) {
       setPostAnswerMsg('Your answer is correct!');
       setTokens((prev) => ({
@@ -69,37 +98,44 @@ const ScanScreen = () => {
       setPostAnswerMsg('Your answer is incorrect!');
     }
     setIsAnswered(true);
-  }
-
-  const theProps = {
-    isAnswered,
-    postAnswerMsg,
-    reset,
-    scannedToken: tokens[scannedName],
-    handleAnswerOptionClick,
-    askForCameraPermission,
-    isScanned,
-    handleBarCodeScanned,
-    navigation,
-    answerQuestionNow,
-    cancelQuestion,
   };
 
-  useEffect(() => {
-    void askForCameraPermission();
-  }, []);
+  const onCancelQuestionPress: AfterScanViewProps['onCancelQuestionPress'] =
+    () => {
+      setAnswerQuestion(false);
+    };
 
-  if (!isCameraAllowed) {
-    return <PermissionView {...theProps} />;
-  } else if (!isScanValid) {
-    return <ScanningView {...theProps} />;
-  } else {
-    if (answerQuestion) {
-      return <AfterScanView {...theProps} />;
-    } else {
-      return <ContentView {...theProps} />;
-    }
-  }
+  const onBackToCameraPressed: AfterScanViewProps['onBackToCameraPressed'] =
+    () => {
+      reset();
+    };
+
+  if (answerQuestion)
+    return (
+      <AfterScanView
+        isAnswered={isAnswered}
+        postAnswerMsg={postAnswerMsg}
+        onBackToCameraPressed={onBackToCameraPressed}
+        scannedToken={tokens[scannedName]}
+        onAnswerOptionClick={onAnswerOptionClick}
+        onCancelQuestionPress={onCancelQuestionPress}
+      />
+    );
+
+  //////////
+
+  const onAnswerQuestionPress: ContentViewProps['onAnswerQuestionPress'] =
+    () => {
+      setAnswerQuestion(true);
+    };
+
+  return (
+    <ContentView
+      onAnswerQuestionPress={onAnswerQuestionPress}
+      reset={reset}
+      token={tokens[scannedName]}
+    />
+  );
 };
 
 export default ScanScreen;

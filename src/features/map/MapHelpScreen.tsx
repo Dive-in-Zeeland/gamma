@@ -1,5 +1,4 @@
 import React from 'react';
-import { StackScreenProps } from '@react-navigation/stack';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import Body from 'components/Body';

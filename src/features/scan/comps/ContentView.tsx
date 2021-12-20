@@ -6,6 +6,7 @@ import Body from 'components/Body';
 import TextBox from 'components/TextBox';
 import TextBoxContainer from 'components/TextBoxContainer';
 import { TextM10 } from 'components/Text';
+import { TokenType } from 'store/tokens';
 
 const MyTextBoxContainer = styled(TextBoxContainer)`
   flex-direction: row;
@@ -24,23 +25,33 @@ const MyContentContainer = styled(View)`
   justify-content: center;
 `;
 
-const ContenView = ({ answerQuestionNow, reset, scannedToken }) => (
+export interface ContentViewProps {
+  onAnswerQuestionPress: () => void;
+  reset: () => void;
+  token: TokenType;
+}
+
+const ContentView: React.FC<ContentViewProps> = ({
+  onAnswerQuestionPress,
+  reset,
+  token,
+}) => (
   <Body>
     <TextBoxContainer>
-      <TextBox>{scannedToken.place}</TextBox>
+      <TextBox>{token.place}</TextBox>
     </TextBoxContainer>
 
     <MyView>
       <MyContentContainer>
-        <TextM10>{scannedToken.content}</TextM10>
+        <TextM10>{token.content}</TextM10>
       </MyContentContainer>
 
       <MyTextBoxContainer>
-        <TextBox onPress={reset}>Quit</TextBox>
-        <TextBox onPress={answerQuestionNow}>Question</TextBox>
+        <TextBox onPress={() => reset()}>Quit</TextBox>
+        <TextBox onPress={() => onAnswerQuestionPress()}>Question</TextBox>
       </MyTextBoxContainer>
     </MyView>
   </Body>
 );
 
-export default ContenView;
+export default ContentView;

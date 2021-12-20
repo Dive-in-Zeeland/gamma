@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Text, View } from 'react-native';
+import { TokenType } from 'store/tokens';
 import styled from 'styled-components/native';
 
 const MyCancel = styled(Text)`
@@ -32,10 +33,16 @@ const MyTitle = styled(Text)`
   color: gray;
 `;
 
-const QuestionView = ({
+export interface QuestionViewProps {
+  scannedToken: TokenType;
+  onAnswerOptionClick: (answer: TokenType['answers'][number]) => void;
+  onCancelQuestionPress: () => void;
+}
+
+const QuestionView: React.FC<QuestionViewProps> = ({
   scannedToken,
-  handleAnswerOptionClick,
-  cancelQuestion,
+  onAnswerOptionClick,
+  onCancelQuestionPress,
 }) => (
   <View>
     <MyTitle>{scannedToken.question}</MyTitle>
@@ -44,14 +51,14 @@ const QuestionView = ({
       {scannedToken.answers.map((answer, index) => (
         <Button
           color="#ffffff"
-          onPress={() => handleAnswerOptionClick(answer.isCorrect)}
+          onPress={() => onAnswerOptionClick(answer)}
           title={answer.text}
           key={index}
         />
       ))}
     </MyAnswerOptions>
 
-    <MyCancel onPress={cancelQuestion}>Cancel</MyCancel>
+    <MyCancel onPress={onCancelQuestionPress}>Cancel</MyCancel>
   </View>
 );
 

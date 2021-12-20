@@ -1,8 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import QuestionView from 'features/scan/comps/QuestionView';
-import ScoreView from 'features/scan/comps/ScoreView';
+import QuestionView, {
+  QuestionViewProps,
+} from 'features/scan/comps/QuestionView';
+import ScoreView, { ScoreViewProps } from 'features/scan/comps/ScoreView';
 import Body from 'components/Body';
 import { View } from 'react-native';
 
@@ -19,14 +21,32 @@ const MyQuestionContainer = styled(View)`
   justify-content: center;
 `;
 
-const AfterScanView = (props) => (
+export interface AfterScanViewProps extends QuestionViewProps, ScoreViewProps {
+  isAnswered: boolean;
+}
+
+const AfterScanView: React.FC<AfterScanViewProps> = ({
+  isAnswered,
+  postAnswerMsg,
+  onBackToCameraPressed,
+  scannedToken,
+  onAnswerOptionClick,
+  onCancelQuestionPress,
+}) => (
   <Body>
     <MyView>
       <MyQuestionContainer>
-        {props.isAnswered ? (
-          <ScoreView {...props} />
+        {isAnswered ? (
+          <ScoreView
+            postAnswerMsg={postAnswerMsg}
+            onBackToCameraPressed={onBackToCameraPressed}
+          />
         ) : (
-          <QuestionView {...props} />
+          <QuestionView
+            scannedToken={scannedToken}
+            onAnswerOptionClick={onAnswerOptionClick}
+            onCancelQuestionPress={onCancelQuestionPress}
+          />
         )}
       </MyQuestionContainer>
     </MyView>

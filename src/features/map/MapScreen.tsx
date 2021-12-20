@@ -1,4 +1,4 @@
-import React, { Ref, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { getBoundsOfDistance } from 'geolib';
 import { useAtom } from 'jotai';

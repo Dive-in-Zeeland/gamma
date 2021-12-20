@@ -2,10 +2,9 @@ import React from 'react';
 import { Button, View, Text } from 'react-native';
 import styled from 'styled-components/native';
 import HelperButton from 'components/HelperButton';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import { BarCodeScannedCallback, BarCodeScanner } from 'expo-barcode-scanner';
 import Body from 'components/Body';
 import Center from 'components/Center';
-import { Routes } from 'constants/navigation';
 
 const MyQrTarget = styled(View)`
   position: absolute;
@@ -48,28 +47,32 @@ const MyScanButton = styled(View)`
   top: 80%;
 `;
 
-const ScanningView = ({
+export interface ScanningViewProps {
+  onHelperPress: () => void;
+  onBarCodeScanned: BarCodeScannedCallback;
+  onScanAgainPressed: () => void;
+  isScanned: boolean;
+}
+
+const ScanningView: React.FC<ScanningViewProps> = ({
+  onHelperPress,
+  onBarCodeScanned,
+  onScanAgainPressed,
   isScanned,
-  handleBarCodeScanned,
-  reset,
-  navigation,
 }) => (
   <Body>
     <MyQrTarget />
     <MyQrText>QR Code Target</MyQrText>
-    <HelperButton onPress={() => navigation.navigate(Routes.ScanHelp)} />
+    <HelperButton onPress={onHelperPress} />
 
     <Center>
-      <MyBarcode
-        onBarCodeScanned={isScanned ? undefined : handleBarCodeScanned}
-      />
+      <MyBarcode onBarCodeScanned={isScanned ? undefined : onBarCodeScanned} />
 
       {isScanned && (
         <MyScanButton>
           <Button
-            style={{ width: '20%' }}
             title={'Scan again'}
-            onPress={() => reset()}
+            onPress={onScanAgainPressed}
             color="black"
           />
         </MyScanButton>

@@ -1,7 +1,16 @@
 import { atom } from 'jotai';
 
+export interface TokenType {
+  place: string;
+  content: string;
+  question: string;
+  answers: Array<{ text: string; isCorrect: boolean }>;
+  isCollected: boolean;
+  coords: [number, number];
+}
+
 //Array of object of the Token questions
-const tokens = {
+const tokens: { [k: string]: TokenType } = {
   APV: {
     place: 'APV',
     content:

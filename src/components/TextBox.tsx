@@ -20,7 +20,11 @@ const DaText = styled.Text`
   color: white;
 `;
 
-const TextBox = ({ children, onPress = undefined }) => (
+export interface TextBoxProps {
+  onPress?: () => void;
+}
+
+const TextBox: React.FC<TextBoxProps> = ({ children, onPress = undefined }) => (
   <Pressable onPress={onPress}>
     <Box>
       <DaText>{children}</DaText>
