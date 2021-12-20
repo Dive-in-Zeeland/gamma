@@ -68,6 +68,8 @@ module.exports = {
     '@typescript-eslint/no-unsafe-return': warn,
     '@typescript-eslint/no-unsafe-argument': warn,
     '@typescript-eslint/no-explicit-any': off,
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [error],
   },
   
   settings: {

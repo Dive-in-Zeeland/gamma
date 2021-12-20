@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useAtom } from 'jotai';
 
 import tokensAtom from 'store/tokens';
@@ -16,9 +16,6 @@ import ContentView, { ContentViewProps } from 'features/scan/comps/ContentView';
 import { Routes } from 'constants/navigation';
 import { ScanNavigatorProp } from 'navigation/ScanNavigator';
 import { useNavigation } from '@react-navigation/core';
-import { BarCodeScannedCallback } from 'expo-barcode-scanner';
-
-import { QuestionViewProps } from 'features/scan/comps/QuestionView';
 
 const ScanScreen = () => {
   const navigation = useNavigation<ScanNavigatorProp<Routes.Scan>>();

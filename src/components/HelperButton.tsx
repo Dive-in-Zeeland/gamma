@@ -12,7 +12,11 @@ const Container = styled(View)`
   left: 9%;
 `;
 
-const HelperButton = ({ onPress }) => (
+export interface HelperButtonProps {
+  onPress: () => void;
+}
+
+const HelperButton: React.FC<HelperButtonProps> = ({ onPress }) => (
   <Container>
     <Ionicons name="help-circle" size={40} color="teal" onPress={onPress} />
   </Container>
