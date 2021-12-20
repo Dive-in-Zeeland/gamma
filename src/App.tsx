@@ -5,10 +5,8 @@ import { ThemeProvider } from 'styled-components/native';
 import AppTheme from 'constants/theme';
 
 export default function App() {
-  const [theme] = useState(AppTheme);
-
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={AppTheme}>
       <SafeArea>
         <Navigation />
       </SafeArea>

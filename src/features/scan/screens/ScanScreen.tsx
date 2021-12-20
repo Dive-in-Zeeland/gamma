@@ -61,6 +61,7 @@ const ScanScreen = () => {
   }) => {
     setIsScanValid(trySetToken(scannedText));
     setIsScanned(true);
+    console.log('qr scanned', scannedText);
   };
 
   const onScanAgainPressed: ScanningViewProps['onScanAgainPressed'] = () => {

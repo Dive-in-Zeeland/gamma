@@ -2,9 +2,10 @@ import React from 'react';
 
 import Body from 'style/layout/Body';
 import TextBox from 'style/boxes/TextBox';
-import BorderCard from 'style/boxes/BorderCard';
+import BorderedBox from 'style/boxes/BorderedBox';
 import TextBoxContainer from 'style/layout/TextBoxContainer';
 import { TextM10, TextM20 } from 'style/typo/Text';
+import Separator from 'style/layout/Separator';
 
 const HomeScreen = () => (
   <Body>
@@ -12,7 +13,9 @@ const HomeScreen = () => (
       <TextBox>Dive in Zeeland</TextBox>
     </TextBoxContainer>
 
-    <BorderCard>
+    <Separator />
+
+    <BorderedBox>
       <TextM10>
         This is out token collection game called DIZ-GAME. It is an interactive
         game for children to get to know better the underwater world of Zeeland.
@@ -32,7 +35,7 @@ const HomeScreen = () => (
         For best user experience right now, please you IOS devices. They are
         better optimized.
       </TextM20>
-    </BorderCard>
+    </BorderedBox>
   </Body>
 );
 

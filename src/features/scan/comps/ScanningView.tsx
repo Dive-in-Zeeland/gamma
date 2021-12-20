@@ -1,55 +1,37 @@
-import React from 'react';
-import { Button } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import HelperButton from 'style/interactable/HelperButton';
-import { BarCodeScannedCallback, BarCodeScanner } from 'expo-barcode-scanner';
 import Body from 'style/layout/Body';
-import Center from 'style/layout/Center';
+import BorderedBox from 'style/boxes/BorderedBox';
+import Button from 'style/interactable/Button';
+import AbsoluteCenter from 'style/layout/AbsoluteCenter';
+import { StyleSheet, Text, View } from 'react-native';
+import { BarCodeScanningResult, Camera } from 'expo-camera';
 
-const MyQrTarget = styled.View`
-  position: absolute;
-  z-index: 999;
-  elevation: 999;
+const MyScanTarget = styled.View`
   border-radius: 15px;
   border-color: white;
   border-width: 4px;
-  top: 25%;
-  right: 20%;
   width: 60%;
   height: 40%;
 `;
 
-const MyQrText = styled.Text`
-  position: absolute;
-  z-index: 999;
-  elevation: 999;
+const MyScanText = styled.Text`
   color: white;
-  top: 66%;
-  right: 29%;
   font-size: 20px;
   font-weight: bold;
 `;
 
-const MyBarcode = styled(BarCodeScanner)`
-  width: 90%;
-  height: 90%;
-  overflow: hidden;
-  border-radius: 15px;
-  border-color: teal;
-  border-width: 4px;
-`;
-
-const MyScanButton = styled.View`
-  position: absolute;
-  background-color: teal;
-  z-index: 9;
-  border-radius: 10px;
-  top: 80%;
+const MyButtonContainer = styled(AbsoluteCenter)`
+  top: auto;
+  bottom: 30px;
 `;
 
 export interface ScanningViewProps {
   onHelperPress: () => void;
-  onBarCodeScanned: BarCodeScannedCallback;
+  onBarCodeScanned:
+    | ((scanningResult: BarCodeScanningResult) => void)
+    | undefined;
   onScanAgainPressed: () => void;
   isScanned: boolean;
 }
@@ -59,26 +41,45 @@ const ScanningView: React.FC<ScanningViewProps> = ({
   onBarCodeScanned,
   onScanAgainPressed,
   isScanned,
-}) => (
-  <Body>
-    <MyQrTarget />
-    <MyQrText>QR Code Target</MyQrText>
-    <HelperButton onPress={onHelperPress} />
+}) => {
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
 
-    <Center>
-      <MyBarcode onBarCodeScanned={isScanned ? undefined : onBarCodeScanned} />
+  useEffect(() => {
+    void (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
+  }, []);
 
-      {isScanned && (
-        <MyScanButton>
-          <Button
-            title={'Scan again'}
-            onPress={onScanAgainPressed}
-            color="black"
-          />
-        </MyScanButton>
-      )}
-    </Center>
-  </Body>
-);
+  if (hasPermission === null) {
+    return <View />;
+  }
+
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
+
+  return (
+    <Body>
+      <BorderedBox>
+        <HelperButton onPress={onHelperPress} />
+        <AbsoluteCenter>
+          <MyScanTarget />
+          <MyScanText>SCAN QR CODE</MyScanText>
+        </AbsoluteCenter>
+        <Camera
+          onBarCodeScanned={isScanned ? undefined : onBarCodeScanned}
+          ratio="16:9"
+          style={StyleSheet.absoluteFillObject}
+        />
+        {isScanned && (
+          <MyButtonContainer>
+            <Button onPress={onScanAgainPressed}>Scan Again</Button>
+          </MyButtonContainer>
+        )}
+      </BorderedBox>
+    </Body>
+  );
+};
 
 export default ScanningView;

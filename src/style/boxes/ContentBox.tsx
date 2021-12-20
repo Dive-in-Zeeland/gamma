@@ -5,4 +5,5 @@ export const ContentBox = styled.View`
   margin: ${(p) => p.theme.spacing.screenSpace};
   background-color: white;
   border-radius: 15px;
+  padding: ${(p) => p.theme.spacing.contentPadding};
 `;
