@@ -7,13 +7,9 @@ import { Ionicons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 import { Routes } from 'constants/navigation';
 import { IconsType, ScreensType } from 'types/navigation';
-import {
-  TokenScreen,
-  GameScreen,
-  HomeScreen,
-  MapNavigator,
-  ScanNavigator,
-} from 'nav/screens';
+import { TokenScreen, GameScreen, HomeScreen } from 'nav/screens';
+import MapNavigator from './MapNavigator';
+import ScanNavigator from './ScanNavigator';
 
 export type MainNavigatorParamsList = {
   [Routes.Game]: undefined;
@@ -66,7 +62,8 @@ export default function MainNavigator() {
         inactiveTintColor: 'grey',
         style: {
           flex: 0.1,
-          margin: 10,
+          marginBottom: 20,
+          margin: 15,
           borderRadius: 15,
         },
       }}>
