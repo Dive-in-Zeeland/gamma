@@ -1,12 +1,12 @@
 import React from 'react';
-import { Button, View, Text } from 'react-native';
+import { Button } from 'react-native';
 import styled from 'styled-components/native';
 import HelperButton from 'style/interactable/HelperButton';
 import { BarCodeScannedCallback, BarCodeScanner } from 'expo-barcode-scanner';
 import Body from 'style/layout/Body';
 import Center from 'style/layout/Center';
 
-const MyQrTarget = styled(View)`
+const MyQrTarget = styled.View`
   position: absolute;
   z-index: 999;
   elevation: 999;
@@ -19,7 +19,7 @@ const MyQrTarget = styled(View)`
   height: 40%;
 `;
 
-const MyQrText = styled(Text)`
+const MyQrText = styled.Text`
   position: absolute;
   z-index: 999;
   elevation: 999;
@@ -39,7 +39,7 @@ const MyBarcode = styled(BarCodeScanner)`
   border-width: 4px;
 `;
 
-const MyScanButton = styled(View)`
+const MyScanButton = styled.View`
   position: absolute;
   background-color: teal;
   z-index: 9;

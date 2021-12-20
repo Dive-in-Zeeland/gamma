@@ -1,7 +1,6 @@
-import { View } from 'react-native';
 import styled from 'styled-components/native';
 
-const BorderCard = styled(View)`
+const BorderCard = styled.View`
   flex: 1;
   background-color: #fff;
   align-items: center;

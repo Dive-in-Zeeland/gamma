@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import styled from 'styled-components/native';
 import Body from 'style/layout/Body';
@@ -12,7 +11,7 @@ const BorderCardStyled = styled(BorderCard)`
   flex: 0.5;
 `;
 
-const TextM20 = styled(Text)`
+const TextM20 = styled.Text`
   margin: 20px;
 `;
 

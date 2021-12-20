@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { Button } from 'react-native';
 import { TokenType } from 'store/tokens';
 import styled from 'styled-components/native';
 
-const MyCancel = styled(Text)`
+const MyCancel = styled.Text`
   flex: 0.2;
   background-color: red;
   align-items: center;
@@ -13,7 +13,7 @@ const MyCancel = styled(Text)`
   color: white;
 `;
 
-const MyAnswerOptions = styled(View)`
+const MyAnswerOptions = styled.View`
   flex: 1;
   background-color: teal;
   align-items: center;
@@ -22,7 +22,7 @@ const MyAnswerOptions = styled(View)`
   border-radius: 15px;
 `;
 
-const MyTitle = styled(Text)`
+const MyTitle = styled.Text`
   flex: 0.5;
   border-color: teal;
   align-items: center;
@@ -44,7 +44,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({
   onAnswerOptionClick,
   onCancelQuestionPress,
 }) => (
-  <View>
+  <>
     <MyTitle>{scannedToken.question}</MyTitle>
 
     <MyAnswerOptions>
@@ -59,7 +59,7 @@ const QuestionView: React.FC<QuestionViewProps> = ({
     </MyAnswerOptions>
 
     <MyCancel onPress={onCancelQuestionPress}>Cancel</MyCancel>
-  </View>
+  </>
 );
 
 export default QuestionView;

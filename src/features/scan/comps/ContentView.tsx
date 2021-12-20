@@ -13,11 +13,11 @@ const MyTextBoxContainer = styled(TextBoxContainer)`
   margin: 0 5px 30px;
 `;
 
-const MyView = styled(View)`
+const MyView = styled.View`
   flex: 0.9;
 `;
 
-const MyContentContainer = styled(View)`
+const MyContentContainer = styled.View`
   flex: 1;
   background-color: #fff;
   border-color: teal;

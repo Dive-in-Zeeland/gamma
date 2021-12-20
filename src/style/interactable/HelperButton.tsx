@@ -1,9 +1,8 @@
 import React from 'react';
-import { View } from 'react-native';
 import styled from 'styled-components/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-const Container = styled(View)`
+const Container = styled.View`
   position: absolute;
   z-index: 9;
   elevation: 9;

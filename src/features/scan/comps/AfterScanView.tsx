@@ -6,13 +6,12 @@ import QuestionView, {
 } from 'features/scan/comps/QuestionView';
 import ScoreView, { ScoreViewProps } from 'features/scan/comps/ScoreView';
 import Body from 'style/layout/Body';
-import { View } from 'react-native';
 
-const MyView = styled(View)`
+const MyView = styled.View`
   flex: 0.9;
 `;
 
-const MyQuestionContainer = styled(View)`
+const MyQuestionContainer = styled.View`
   flex: 1;
   background-color: #fff;
   margin: 20px;
