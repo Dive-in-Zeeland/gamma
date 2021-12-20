@@ -4,7 +4,7 @@ import {
   BottomTabNavigationProp,
 } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import styled from 'styled-components/native';
+import styled, { useTheme } from 'styled-components/native';
 import { Routes } from 'constants/navigation';
 import { IconsType, ScreensType } from 'types/navigation';
 import { TokenScreen, GameScreen, HomeScreen } from 'nav/screens';
@@ -45,6 +45,8 @@ const MyIonicons = styled(Ionicons)`
 const Tab = createBottomTabNavigator<MainNavigatorParamsList>();
 
 export default function MainNavigator() {
+  const theme = useTheme();
+  const screenSpacing = parseInt(theme.spacing.screenSpace, 10);
   return (
     <Tab.Navigator
       initialRouteName={Routes.Home}
@@ -62,8 +64,8 @@ export default function MainNavigator() {
         inactiveTintColor: 'grey',
         style: {
           flex: 0.1,
-          marginBottom: 20,
-          margin: 15,
+          marginBottom: screenSpacing + 5,
+          margin: screenSpacing,
           borderRadius: 15,
         },
       }}>

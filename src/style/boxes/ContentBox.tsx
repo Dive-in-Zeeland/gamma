@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const ContentBox = styled.View`
   flex: 1;
-  margin: 15px;
+  margin: ${(p) => p.theme.spacing.screenSpace};
   background-color: white;
   border-radius: 15px;
 `;
