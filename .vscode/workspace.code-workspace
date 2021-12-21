@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../src"
+		}
+	],
+	"settings": {
+		"typescript.tsdk": "gamma/node_modules/typescript/lib"
+	}
+}
