@@ -1,16 +1,10 @@
-import React, { useState} from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import { useAtom } from "jotai";
-import { counterAtom, 
-  fishPerSecAtom,} 
-from "./Store/props";
-import UpgradeModal from "./Components/UpModal";
-import UpgradeButton from "./Components/UpgradeButton";
-import ClickerBrains from "./Components/ClickerBrains";
+import React, { useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { useAtom } from 'jotai';
+import { counterAtom, fishPerSecAtom } from 'features/game/Store/props';
+import UpgradeModal from 'features/game/Components/UpModal';
+import UpgradeButton from 'features/game/Components/UpgradeButton';
+import ClickerBrains from 'features/game/Components/ClickerBrains';
 
 export default function MainFarm() {
   //Main Counter
@@ -22,7 +16,6 @@ export default function MainFarm() {
   };
 
   const [isModalVisible, setModalVisible] = useState(false);
-
 
   return (
     <View style={styles.container}>
@@ -41,30 +34,26 @@ export default function MainFarm() {
       <View style={styles.perSecondSide}>
         <Text
           style={{
-            color: "#abaec0",
-            fontWeight: "bold",
+            color: '#abaec0',
+            fontWeight: 'bold',
             fontSize: 25,
-            fontFamily: "Futura",
-          }}
-        >
+          }}>
           {Math.round((fishPerSec + Number.EPSILON) * 100) / 100} f/s
         </Text>
       </View>
       <View style={styles.perSecondShadow}>
         <Text
           style={{
-            color: "gray",
-            fontWeight: "bold",
+            color: 'gray',
+            fontWeight: 'bold',
             fontSize: 25,
-            fontFamily: "Futura",
             opacity: 0.4,
-          }}
-        >
+          }}>
           {Math.round((fishPerSec + Number.EPSILON) * 100) / 100} f/s
         </Text>
       </View>
 
-      <ClickerBrains/>
+      <ClickerBrains />
 
       <UpgradeButton toggleModal={toggleModal} />
 
@@ -75,86 +64,84 @@ export default function MainFarm() {
 
 const styles = StyleSheet.create({
   counterFace: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 9999,
     top: 30,
-    backgroundColor: "white",
-    width: "60%",
-    height: "10%",
+    backgroundColor: 'white',
+    width: '60%',
+    height: '10%',
     borderRadius: 4,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   counterSide: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 999,
     top: 35,
-    backgroundColor: "#bcc1db",
-    width: "60%",
-    height: "10%",
+    backgroundColor: '#bcc1db',
+    width: '60%',
+    height: '10%',
     borderRadius: 4,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   counterShadow: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 99,
     top: 39,
-    backgroundColor: "gray",
-    width: "59%",
-    height: "10%",
+    backgroundColor: 'gray',
+    width: '59%',
+    height: '10%',
     borderRadius: 4,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     opacity: 0.3,
   },
   perSecondFace: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 99999,
     top: 95,
-    width: "60%",
-    height: "10%",
-    justifyContent: "center",
-    alignItems: "center",
+    width: '60%',
+    height: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   perSecondSide: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 9999,
     top: 98,
-    width: "60%",
-    height: "10%",
-    justifyContent: "center",
-    alignItems: "center",
+    width: '60%',
+    height: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   perSecondShadow: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 999,
     top: 100,
-    width: "60%",
-    height: "10%",
-    justifyContent: "center",
-    alignItems: "center",
+    width: '60%',
+    height: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   pink: {
-    color: "#abaec0",
+    color: '#abaec0',
     fontSize: 25,
-    fontWeight: "bold",
-    fontFamily: "Futura",
+    fontWeight: 'bold',
   },
   white: {
-    color: "white",
-    fontWeight: "bold",
+    color: 'white',
+    fontWeight: 'bold',
     fontSize: 25,
-    fontFamily: "Futura",
   },
   container: {
     flex: 1,
-    backgroundColor: "#a0e3e3",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius:15,
-    borderWidth:3,
-    borderColor:"white",
-    shadowColor:"red",
+    backgroundColor: '#a0e3e3',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 15,
+    borderWidth: 3,
+    borderColor: 'white',
+    shadowColor: 'red',
   },
 });

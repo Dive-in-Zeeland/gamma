@@ -1,6 +1,6 @@
-import React,  { useState, useEffect }  from "react";
-import { TouchableOpacity, Image } from "react-native";
-import { useAtom } from "jotai";
+import React, { useState, useEffect } from 'react';
+import { TouchableOpacity, Image } from 'react-native';
+import { useAtom } from 'jotai';
 import {
   FeederAmount,
   FisherManAmount,
@@ -11,7 +11,7 @@ import {
   counterAtom,
   press,
   fishPerSecAtom,
-} from "../Store/props";
+} from 'features/game/Store/props';
 
 export default function ClickerBrain() {
   //Counter
@@ -53,7 +53,7 @@ export default function ClickerBrain() {
   }, [fishPerSec]);
 
   //Used to select correct image
-  let upgrades = [
+  const upgrades = [
     {
       image: state.feeder,
       count: FeederCount,
@@ -98,12 +98,11 @@ export default function ClickerBrain() {
 
   return (
     <TouchableOpacity
-      style={{ color: "green" }}
+      style={{ color: 'green' }}
       disabled={false}
       onPress={() => {
         setCounter((old) => old + clicks);
-      }}
-    >
+      }}>
       <Image style={{ height: 250, width: 350 }} source={image} />
     </TouchableOpacity>
   );

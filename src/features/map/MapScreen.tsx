@@ -18,9 +18,6 @@ import BorderedBox from 'style/boxes/BorderedBox';
 const MyMap = styled(MapView)`
   height: 100%;
   width: 100%;
-  border-width: 2px;
-  border-color: teal;
-  border-radius: 15px;
 `;
 
 const MapScreen = () => {
