@@ -1,5 +1,7 @@
 import { atom } from 'jotai';
 
+export const started = atom(false);
+
 //Glibal couter
 export const counterAtom = atom(0);
 

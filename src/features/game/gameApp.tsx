@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useAtom } from 'jotai';
-import { counterAtom, fishPerSecAtom } from 'features/game/Store/props';
+import { counterAtom, fishPerSecAtom, started } from 'features/game/Store/props';
 import UpgradeModal from 'features/game/Components/UpModal';
 import UpgradeButton from 'features/game/Components/UpgradeButton';
+import StartButton from 'features/game/Components/StartButton';
+import IntroTittle from 'features/game/Components/IntroTittle';
 import ClickerBrains from 'features/game/Components/ClickerBrains';
 
 export default function MainFarm() {
+
+  //Started
+  const [start, setStart] = useAtom(started);
+
   //Main Counter
   const [counter, setCounter] = useAtom(counterAtom);
   const [fishPerSec, setFishPerSec] = useAtom(fishPerSecAtom);
@@ -15,9 +21,23 @@ export default function MainFarm() {
     setModalVisible(!isModalVisible);
   };
 
+  const startGame = () =>{
+    setStart(true)
+  }
+
   const [isModalVisible, setModalVisible] = useState(false);
 
-  return (
+  if (!start) {
+    return (
+      <View style={styles.container}>
+
+        <IntroTittle/>
+
+        <StartButton press={startGame} />
+
+      </View>
+    );
+  } else return (
     <View style={styles.container}>
       <View style={styles.counterFace}>
         <Text style={styles.pink}>{Math.floor(counter)} 🐠</Text>
