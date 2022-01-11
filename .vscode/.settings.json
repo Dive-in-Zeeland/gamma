@@ -4,5 +4,5 @@
   },
   "javascript.validate.enable": false,
   "js/ts.implicitProjectConfig.checkJs": true,
-  "emmet.triggerExpansionOnTab": true,
+  "emmet.triggerExpansionOnTab": true
 }
