@@ -1,13 +1,7 @@
 {
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "eject": "expo eject",
-    "tun": "expo start --tunnel",
-    "lint": "eslint --ext .tsx,.ts,.js,.jsx src",
-    "format": "prettier --write src"
+    "tunnel": "expo start --tunnel"
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.11",
