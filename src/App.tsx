@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navigation from 'nav/Navigation';
 import { SafeArea } from 'style/layout/SafeArea';
 import { ThemeProvider } from 'styled-components/native';
