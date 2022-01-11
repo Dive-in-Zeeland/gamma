@@ -98,7 +98,7 @@ export default function ClickerBrain() {
 
   return (
     <TouchableOpacity
-      style={{ color: 'green' }}
+      style={{}}
       disabled={false}
       onPress={() => {
         setCounter(old => old + clicks);

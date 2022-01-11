@@ -3,7 +3,7 @@
   "compilerOptions": {
 
     // Absolute module imports (for vscode intellisense)
-    "baseUrl": "src",
+    "baseUrl": "../src",
 
     "strict": true,
     "plugins": [
