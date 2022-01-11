@@ -35,7 +35,6 @@ const TextBox2: React.FC<TextBoxProps> = ({
 }) => (
   <Pressable>
     <View 
-    
       style={{
         backgroundColor: "teal",
         borderRadius: 15,
@@ -53,7 +52,7 @@ const TextBox2: React.FC<TextBoxProps> = ({
           position: "absolute",
           zIndex: 999,
           right: "3%",
-          top: "34%",
+          top: "30%",
         }}
         onPress={onPress}
       />
@@ -62,7 +61,7 @@ const TextBox2: React.FC<TextBoxProps> = ({
           position: "absolute",
           zIndex: 99999,
           left: "28%",
-          top: "28%",
+          top: "25%",
         }}
       >
         <Text
@@ -80,7 +79,7 @@ const TextBox2: React.FC<TextBoxProps> = ({
           position: "absolute",
           zIndex: 99999,
           left: "28%",
-          top: "60%",
+          top: "58%",
         }}
       >
         <Text
@@ -97,7 +96,7 @@ const TextBox2: React.FC<TextBoxProps> = ({
         position: "absolute",
           zIndex: 99999,
           left: "28%",
-          top: "55%",
+          top: "52%",
           height: '2%',
           width: '55%',
           backgroundColor: 'white',
