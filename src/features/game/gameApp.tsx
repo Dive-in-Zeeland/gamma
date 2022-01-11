@@ -7,7 +7,7 @@ import UpgradeButton from 'features/game/Components/UpgradeButton';
 import ClickerBrains from 'features/game/Components/ClickerBrains';
 
 export default function MainFarm() {
-  //Main Counter
+  // Main Counter
   const [counter, setCounter] = useAtom(counterAtom);
   const [fishPerSec, setFishPerSec] = useAtom(fishPerSecAtom);
 
@@ -37,7 +37,8 @@ export default function MainFarm() {
             color: '#abaec0',
             fontWeight: 'bold',
             fontSize: 25,
-          }}>
+          }}
+        >
           {Math.round((fishPerSec + Number.EPSILON) * 100) / 100} f/s
         </Text>
       </View>
@@ -48,7 +49,8 @@ export default function MainFarm() {
             fontWeight: 'bold',
             fontSize: 25,
             opacity: 0.4,
-          }}>
+          }}
+        >
           {Math.round((fishPerSec + Number.EPSILON) * 100) / 100} f/s
         </Text>
       </View>

@@ -18,7 +18,8 @@ export default function UpgradeButton(props) {
         textSize={30}
         width={300}
         height={70}
-        raiseLevel={5}>
+        raiseLevel={5}
+      >
         Upgrades
       </AwesomeButton>
     </View>

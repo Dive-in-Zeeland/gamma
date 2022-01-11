@@ -68,7 +68,8 @@ export default function MainNavigator() {
           margin: screenSpacing,
           borderRadius: 15,
         },
-      }}>
+      }}
+    >
       {SCREENS.map(({ name, component }, i) => (
         <Tab.Screen
           key={i}

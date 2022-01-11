@@ -41,9 +41,9 @@ const collection = [
   'fishFactory',
 ];
 
-//TODO Create ranks for the fish collection (Start UP, Comapny, Industry, Empire ).
-//TODO Coster Tycon example on representing the amount of fish or farms you have.
-//TODO Export the file in different components.
+// TODO Create ranks for the fish collection (Start UP, Comapny, Industry, Empire ).
+// TODO Coster Tycon example on representing the amount of fish or farms you have.
+// TODO Export the file in different components.
 
 const GameScreen = ({ navigation: nav }) => {
   return (

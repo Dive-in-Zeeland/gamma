@@ -49,7 +49,7 @@ rules: {
     "prettier",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["@typescript-eslint", "react", "prettier"],
+  "plugins": ["@typescript-eslint", "react", "prettier", "jest"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -58,6 +58,9 @@ rules: {
     "ecmaVersion": 2018,
     "sourceType": "module",
     "project": "./tsconfig.json"
+  },
+  "env": {
+    "jest/globals": true
   },
   "rules": {
     "import/no-unresolved": 0,
@@ -81,6 +84,11 @@ rules: {
     "react/prop-types": 0,
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    // Rules when lazy to adjust to default rules
+    "import/prefer-default-export": "off", // To fix we need to rewrite every export
+    "react/function-component-definition": "off", // Same as above
+    "import/no-extraneous-dependencies": "off", // Had problem with importing "@expo/vector-icons"
+    "global-require": "off" // For requiring images
   }
 }

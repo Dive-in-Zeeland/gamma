@@ -9,7 +9,7 @@ export interface TokenType {
   coords: [number, number];
 }
 
-//Array of object of the Token questions
+// Array of object of the Token questions
 const tokens: { [k: string]: TokenType } = {
   APV: {
     place: 'APV',

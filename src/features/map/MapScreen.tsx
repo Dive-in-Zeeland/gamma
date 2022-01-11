@@ -26,7 +26,7 @@ const MapScreen = () => {
   const [mapPosition] = useAtom(mapPositionAtom);
   const mapRef = useRef<InstanceType<typeof MapView>>(null);
 
-  const filtered = Object.values(tokens).filter((token) => !token.isCollected);
+  const filtered = Object.values(tokens).filter(token => !token.isCollected);
 
   function onHelpPress() {
     navigation.navigate(Routes.MapHelp);
@@ -46,15 +46,12 @@ const MapScreen = () => {
       <HelperButton onPress={onHelpPress} />
       <Center>
         <BorderedBox>
-          <MyMap
-            ref={mapRef}
-            showsUserLocation={true}
-            initialRegion={mapPosition}>
+          <MyMap ref={mapRef} showsUserLocation initialRegion={mapPosition}>
             {filtered.map(({ coords: [latitude, longitude] }, index) => (
               <Marker
                 coordinate={{
-                  latitude: latitude,
-                  longitude: longitude,
+                  latitude,
+                  longitude,
                 }}
                 key={index}
               />

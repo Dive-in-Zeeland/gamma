@@ -1,12 +1,15 @@
-module.exports = function(api) {
+module.exports = function (api) {
   api.cache(true);
 
   const plugins = [
     // Absolute module imports (to work when app is built)
-    ['module-resolver', {
-      root: ['src'],
-      extensions: ['.ts', '.tsx', '.json']
-    }]
+    [
+      'module-resolver',
+      {
+        root: ['src'],
+        extensions: ['.ts', '.tsx', '.json'],
+      },
+    ],
   ];
 
   return {

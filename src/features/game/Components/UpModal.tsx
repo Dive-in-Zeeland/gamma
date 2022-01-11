@@ -26,14 +26,16 @@ export default function UpgradeModal(props) {
     <Modal
       isVisible={props.isModalVisible}
       swipeDirection={['down']}
-      style={styles.modalContainer}>
+      style={styles.modalContainer}
+    >
       <View style={styles.UpgradeLabel}>
         <Text
           style={{
             color: 'white',
             fontSize: 20,
             fontWeight: 'bold',
-          }}>
+          }}
+        >
           Upgrade your Empire
         </Text>
       </View>
@@ -56,7 +58,8 @@ export default function UpgradeModal(props) {
         <TouchableOpacity
           style={{}}
           disabled={false}
-          onPress={props.toggleModal}>
+          onPress={props.toggleModal}
+        >
           <Text style={styles.QuitButtonText}>Close</Text>
         </TouchableOpacity>
       </View>

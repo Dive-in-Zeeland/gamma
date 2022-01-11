@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 const Container = styled.TouchableOpacity`
   padding: 8px 12px;
   border-radius: 5px;
-  background-color: ${(props) => props.theme.colors.mainColor};
+  background-color: ${props => props.theme.colors.mainColor};
 `;
 
 const Text = styled.Text`

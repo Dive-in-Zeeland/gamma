@@ -1,3 +1,3 @@
-export function addNumbers2(x, y){
+export function addNumbers2(x, y) {
   return x + y;
 }

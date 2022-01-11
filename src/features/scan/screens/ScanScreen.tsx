@@ -38,7 +38,7 @@ const ScanScreen = () => {
     setAnswerQuestion(false);
   }
 
-  /////////
+  /// //////
 
   const onHelperPress: ScanningViewProps['onHelperPress'] = () => {
     navigation.navigate(Routes.ScanHelp);
@@ -66,25 +66,24 @@ const ScanScreen = () => {
       />
     );
 
-  //////////
+  /// ///////
 
-  const onAnswerOptionClick: AfterScanViewProps['onAnswerOptionClick'] = (
-    isCorrect,
-  ) => {
-    if (isCorrect) {
-      setPostAnswerMsg('Your answer is correct!');
-      setTokens((prev) => ({
-        ...prev,
-        [scannedName]: {
-          ...tokens[scannedName],
-          isCollected: true,
-        },
-      }));
-    } else {
-      setPostAnswerMsg('Your answer is incorrect!');
-    }
-    setIsAnswered(true);
-  };
+  const onAnswerOptionClick: AfterScanViewProps['onAnswerOptionClick'] =
+    isCorrect => {
+      if (isCorrect) {
+        setPostAnswerMsg('Your answer is correct!');
+        setTokens(prev => ({
+          ...prev,
+          [scannedName]: {
+            ...tokens[scannedName],
+            isCollected: true,
+          },
+        }));
+      } else {
+        setPostAnswerMsg('Your answer is incorrect!');
+      }
+      setIsAnswered(true);
+    };
 
   const onCancelQuestionPress: AfterScanViewProps['onCancelQuestionPress'] =
     () => {
@@ -108,7 +107,7 @@ const ScanScreen = () => {
       />
     );
 
-  //////////
+  /// ///////
 
   const onAnswerQuestionPress: ContentViewProps['onAnswerQuestionPress'] =
     () => {
