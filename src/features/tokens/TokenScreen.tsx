@@ -6,6 +6,7 @@ import tokensAtom, { TokenType } from 'store/tokens';
 import mapPositionAtom from 'store/mapPosition';
 import TextBoxContainer from 'style/layout/TextBoxContainer';
 import TextBox from 'style/boxes/TextBox';
+import TokenBox from 'style/boxes/TokenBox';
 import Body from 'style/layout/Body';
 import { MainNavigatorProp } from 'nav/MainNavigator';
 import { useNavigation } from '@react-navigation/core';
@@ -29,13 +30,13 @@ const TokenScreen = () => {
     <Body>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        showsHorizontalScrollIndicator={false}>
+        showsHorizontalScrollIndicator={false}
+        style={{flex:1}}>
         <TextBoxContainer>
           {/* TODO: TextBox style to depend on if token is collected */}
           {Object.entries(tokens).map(([tokenName, token], i) => (
-            <TextBox onPress={() => goToToken(token)} key={i}>
-              {tokenName}
-            </TextBox>
+            <TokenBox onPress={() => goToToken(token)} key={i} tokenName={tokenName} place={token.place} cord1={token.coords[0]} cord2={token.coords[1]} >
+            </TokenBox>
           ))}
         </TextBoxContainer>
       </ScrollView>
