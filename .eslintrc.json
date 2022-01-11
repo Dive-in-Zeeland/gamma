@@ -1,38 +1,5 @@
-const off = 'off',
-  warn = 'warn',
-  error = 'error';
-
-module.exports = {
-  env: {
-    es2021: true,
-    node: true,
-    jest: true,
-  },
-
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
-  ],
-
-  parser: '@typescript-eslint/parser',
-
-  overrides: [
-    {
-      files: ['*.ts', '*.tsx'],
-      parserOptions: {
-        project: ['./tsconfig.json'],
-        tsconfigRootDir: __dirname,
-      },
-    }
-  ],
-
-  plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
-
-  rules: {
+/*
+rules: {
     indent: [error, 2, { SwitchCase: 1 }],
     'linebreak-style': [2, 'unix'],
     quotes: [error, 'single', { avoidEscape: true }],
@@ -72,13 +39,48 @@ module.exports = {
     "@typescript-eslint/no-unused-vars": [error],
     "@typescript-eslint/ban-types": off,
   },
-  
-  settings: {
-    react: {
-      version: 'detect',
+*/
+
+{
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["@typescript-eslint", "react", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    'import/resolver': {
-      'babel-module': {},
-    },
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
-};
+  "rules": {
+    "import/no-unresolved": 0,
+    "react/jsx-filename-extension": [1, {
+      "extensions": [
+        ".ts",
+        ".tsx"
+      ]
+    }],
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "all",
+        "arrowParens": "avoid",
+        "endOfLine": "auto"
+      }
+    ],
+    "no-use-before-define": "off",
+    "import/extensions": ["error", "never"],
+    "react/prop-types": 0,
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "react/react-in-jsx-scope": "off"
+  }
+}
