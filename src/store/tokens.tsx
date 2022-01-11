@@ -72,8 +72,8 @@ const tokens: { [k: string]: TokenType } = {
     coords: [51.497865, 3.609009],
     desc: 'This is descriptions that explains the token',
   },
-  HIMENTA: {
-    place: 'Middelburg hall',
+  TOWNHALL: {
+    place: 'Middelburg townhall',
     content:
       'The main street of the Middelburg, which leads to the main Square of the City.',
     question: 'Where does the road leed to?',
@@ -88,7 +88,7 @@ const tokens: { [k: string]: TokenType } = {
     desc: 'This is descriptions that explains the token',
   },
   STATION: {
-    place: 'Trainstation',
+    place: 'Train station',
     content:
       'The main street of the Middelburg, which leads to the main Square of the City.',
     question: 'Where does the road leed to?',
