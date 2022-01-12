@@ -11,6 +11,7 @@ export interface TokenBoxProps {
   cord1: number;
   cord2: number;
   place: string;
+  collected: Boolean;
 }
 
 const TokenBox: React.FC<TokenBoxProps> = ({
@@ -20,8 +21,36 @@ const TokenBox: React.FC<TokenBoxProps> = ({
   cord1,
   cord2,
   place,
-}) => (
-  <View style={styles.TokenContainer}>
+  collected
+}) => {
+  if (collected) {
+    return (
+    <View style={styles.TokenCollected}>
+      <Ionicons
+      name="checkmark-circle"
+      size={30}
+      color="white"
+      style={{
+        position: "absolute",
+        zIndex: 999,
+        right: "3%",
+        top: "30%",
+      }}
+    />
+      <View style={styles.TokenNameCollected}>
+        <Text style={styles.TokenNameText}>{tokenName}</Text>
+      </View>
+      
+      <View style={styles.DividerCollected} />
+      
+      <View style={styles.TokenStatus}>
+        <Text style={styles.TokenPlaceText}>Token Collected</Text>
+      </View>
+    </View>
+    );
+
+  } else return (
+    <View style={styles.TokenContainer}>
     <Ionicons
       name="send"
       size={30}
@@ -40,6 +69,7 @@ const TokenBox: React.FC<TokenBoxProps> = ({
     <View style={styles.TokenPlace}>
       <Text style={styles.TokenPlaceText}>Location: {place}</Text>
     </View>
+    
     <View style={styles.TokenContainerDivider} />
     <View style={styles.TokenMapContainer} pointerEvents="none">
       <MapView
@@ -54,10 +84,19 @@ const TokenBox: React.FC<TokenBoxProps> = ({
         <Marker coordinate={{ latitude: cord1, longitude: cord2 }} />
       </MapView>
     </View>
-  </View>
-);
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
+  TokenCollected: {
+    backgroundColor: '#00a7a7',
+    borderRadius: 15,
+    borderWidth: 3,
+    borderColor: "#00a7a7",
+    height: 80,
+    margin: 8,
+  },
   TokenContainer: {
     backgroundColor: "teal",
     borderRadius: 15,
@@ -72,6 +111,12 @@ const styles = StyleSheet.create({
     left: "28%",
     top: "25%",
   },
+  TokenNameCollected: {
+    position: "absolute",
+    zIndex: 99999,
+    left: "5%",
+    top: "25%",
+  },
   TokenNameText: {
     fontSize: 15,
     color: "white",
@@ -81,6 +126,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     zIndex: 99999,
     left: "28%",
+    top: "58%",
+  },
+  TokenStatus: {
+    position: "absolute",
+    zIndex: 99999,
+    left: "5%",
     top: "58%",
   },
   TokenPlaceText: {
@@ -94,6 +145,15 @@ const styles = StyleSheet.create({
     top: "52%",
     height: "2%",
     width: "55%",
+    backgroundColor: "white",
+  },
+  DividerCollected: {
+    position: "absolute",
+    zIndex: 99999,
+    left: "5%",
+    top: "52%",
+    height: "2%",
+    width: "78%",
     backgroundColor: "white",
   },
   TokenMapContainer: {

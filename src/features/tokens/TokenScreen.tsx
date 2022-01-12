@@ -31,11 +31,11 @@ const TokenScreen = () => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        style={{flex:1}}>
+        style={{position:'absolute', zIndex:999, left:4, top:15, width:'110%', height:'100%'}}>
         <TextBoxContainer>
           {/* TODO: TextBox style to depend on if token is collected */}
           {Object.entries(tokens).map(([tokenName, token], i) => (
-            <TokenBox onPress={() => goToToken(token)} key={i} tokenName={tokenName} place={token.place} cord1={token.coords[0]} cord2={token.coords[1]} >
+            <TokenBox onPress={() => goToToken(token)} key={i} tokenName={tokenName} collected={token.isCollected} place={token.place} cord1={token.coords[0]} cord2={token.coords[1]} >
             </TokenBox>
           ))}
         </TextBoxContainer>
