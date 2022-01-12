@@ -26,11 +26,10 @@ const MapStack = createStackNavigator<MapNavigatorParamsList>();
 export default function MapNavigator() {
   return (
     <MapStack.Navigator
-      headerMode="none"
-      mode="modal"
       screenOptions={{
         ...TransitionPresets.SlideFromRightIOS,
-        headerStyle: { backgroundColor: 'tomato' },
+        headerShown: false,
+        presentation: 'modal',
       }}
     >
       {SCREENS.map(({ name, component }, i) => (

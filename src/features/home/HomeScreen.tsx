@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Body from 'style/layout/Body';
+import BasicScreen from 'style/layout/BasicScreen';
 import TextBox from 'style/boxes/TextBox';
 import BorderedBox from 'style/boxes/BorderedBox';
 import TextBoxContainer from 'style/layout/TextBoxContainer';
@@ -8,7 +8,7 @@ import { TextM10, TextM20 } from 'style/typo/Text';
 import Separator from 'style/layout/Separator';
 
 const HomeScreen = () => (
-  <Body>
+  <BasicScreen>
     <TextBoxContainer>
       <TextBox>Dive in Zeeland</TextBox>
     </TextBoxContainer>
@@ -36,7 +36,7 @@ const HomeScreen = () => (
         better optimized.
       </TextM20>
     </BorderedBox>
-  </Body>
+  </BasicScreen>
 );
 
 export default HomeScreen;

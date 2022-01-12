@@ -7,7 +7,7 @@ import mapPositionAtom from 'store/mapPosition';
 import TextBoxContainer from 'style/layout/TextBoxContainer';
 import TextBox from 'style/boxes/TextBox';
 import TokenBox from 'style/boxes/TokenBox';
-import Body from 'style/layout/Body';
+import BasicScreen from 'style/layout/BasicScreen';
 import { MainNavigatorProp } from 'nav/MainNavigator';
 import { useNavigation } from '@react-navigation/core';
 import { Routes } from 'constants/navigation';
@@ -27,7 +27,7 @@ const TokenScreen = () => {
   }
 
   return (
-    <Body>
+    <BasicScreen>
       <ScrollView
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
@@ -47,7 +47,7 @@ const TokenScreen = () => {
           ))}
         </TextBoxContainer>
       </ScrollView>
-    </Body>
+    </BasicScreen>
   );
 };
 

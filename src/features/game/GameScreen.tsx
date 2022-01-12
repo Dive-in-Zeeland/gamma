@@ -12,7 +12,7 @@ const Home = styled(View)`
 
 const Main = styled(View)`
   flex: 1;
-  background-color: teal;
+  background-color: ${props => props.theme.colors.main};
 `;
 
 const GameScreen = () => {

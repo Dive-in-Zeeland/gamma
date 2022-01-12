@@ -15,7 +15,7 @@ const MyCancel = styled.Text`
 
 const MyAnswerOptions = styled.View`
   flex: 1;
-  background-color: teal;
+  background-color: ${props => props.theme.colors.main};
   align-items: center;
   justify-content: center;
   margin: 10px;
@@ -24,7 +24,7 @@ const MyAnswerOptions = styled.View`
 
 const MyTitle = styled.Text`
   flex: 0.5;
-  border-color: teal;
+  border-color: ${props => props.theme.colors.main};
   align-items: center;
   justify-content: center;
   margin: 20px;

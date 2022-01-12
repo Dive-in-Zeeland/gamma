@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import HelperButton from 'style/interactable/HelperButton';
-import Body from 'style/layout/Body';
+import BasicScreen from 'style/layout/BasicScreen';
 import BorderedBox from 'style/boxes/BorderedBox';
 import Button from 'style/interactable/Button';
 import AbsoluteCenter from 'style/layout/AbsoluteCenter';
@@ -60,7 +60,7 @@ const ScanningView: React.FC<ScanningViewProps> = ({
   }
 
   return (
-    <Body>
+    <BasicScreen>
       {hasPermission ? (
         <BorderedBox>
           <HelperButton onPress={onHelperPress} />
@@ -86,7 +86,7 @@ const ScanningView: React.FC<ScanningViewProps> = ({
           <TextM10>No access to camera</TextM10>
         </Center>
       )}
-    </Body>
+    </BasicScreen>
   );
 };
 

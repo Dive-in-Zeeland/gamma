@@ -8,7 +8,7 @@ import tokensAtom from 'store/tokens';
 import mapPositionAtom from 'store/mapPosition';
 import HelperButton from 'style/interactable/HelperButton';
 import Center from 'style/layout/Center';
-import Body from 'style/layout/Body';
+import BasicScreen from 'style/layout/BasicScreen';
 
 import { Routes } from 'constants/navigation';
 import { MapNavigatorProp } from 'nav/MapNavigator';
@@ -42,7 +42,7 @@ const MapScreen = () => {
   }, [mapPosition]);
 
   return (
-    <Body>
+    <BasicScreen>
       <HelperButton onPress={onHelpPress} />
       <Center>
         <BorderedBox>
@@ -59,7 +59,7 @@ const MapScreen = () => {
           </MyMap>
         </BorderedBox>
       </Center>
-    </Body>
+    </BasicScreen>
   );
 };
 

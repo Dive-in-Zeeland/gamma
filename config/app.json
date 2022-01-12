@@ -32,7 +32,7 @@
     "entryPoint": "./src/index.js",
     "androidNavigationBar": {
      "barStyle": "light-content",
-     "backgroundColor": "#008080"
+     "backgroundColor": "#4E6EBF"
    }
   }
 }

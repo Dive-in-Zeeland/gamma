@@ -8,8 +8,9 @@ import styled, { useTheme } from 'styled-components/native';
 import { Routes } from 'constants/navigation';
 import { IconsType, ScreensType } from 'types/navigation';
 import { TokenScreen, GameScreen, HomeScreen } from 'nav/screens';
+import Collector from 'features/collector';
+import theme from 'constants/theme';
 import MapNavigator from './MapNavigator';
-import ScanNavigator from './ScanNavigator';
 
 export type MainNavigatorParamsList = {
   [Routes.Game]: undefined;
@@ -35,7 +36,7 @@ const SCREENS: ScreensType<MainNavigatorParamsList> = [
   { name: Routes.Token, component: TokenScreen },
   { name: Routes.Home, component: HomeScreen },
   { name: Routes.Map, component: MapNavigator },
-  { name: Routes.Scan, component: ScanNavigator },
+  { name: Routes.Scan, component: Collector },
 ];
 
 const MyIonicons = styled(Ionicons)`
@@ -57,17 +58,20 @@ export default function MainNavigator() {
           tabBarIcon: ({ size, color }) => (
             <MyIonicons name={icon} size={size} color={color} />
           ),
+          tabBarActiveTintColor: theme.colors.darker,
+          tabBarInactiveTintColor: theme.colors.grayed,
+          tabBarStyle: [
+            {
+              margin: screenSpacing + 10,
+              marginBottom: screenSpacing,
+              marginTop: 0,
+              height: 60,
+              borderRadius: 6,
+            },
+            null,
+          ],
+          headerShown: false,
         };
-      }}
-      tabBarOptions={{
-        activeTintColor: 'teal',
-        inactiveTintColor: 'grey',
-        style: {
-          flex: 0.1,
-          marginBottom: screenSpacing + 5,
-          margin: screenSpacing,
-          borderRadius: 15,
-        },
       }}
     >
       {SCREENS.map(({ name, component }, i) => (
