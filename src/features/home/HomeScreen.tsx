@@ -6,6 +6,8 @@ import { useAtom } from "jotai";
 import tokensAtom, { TokenType } from "store/tokens";
 import Modal from "react-native-modal";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import TutorialModal from "./Components/TutorialModal";
+import FreeGiftModal from "./Components/FreeGiftModal";
 
 const HomeScreen = () => {
 
@@ -32,53 +34,9 @@ const HomeScreen = () => {
   return (
     <View style={{ flex: 1, backgroundColor: "teal" }}>
 
-      <Modal isVisible={isModalVisible}>
-        <View style={{ 
-          position:'absolute', 
-          height: '82%', 
-          width: '100%', 
-          top:'5%', 
-          backgroundColor:'white',
-          borderRadius:15
-          }}>
-          <Text>Tutorial!</Text>
-            <Ionicons
-            name="close-circle-outline"
-            size={60}
-            color="#00a7a7"
-            onPress={toggleModal}
-            style={{
-              position:'absolute',
-              top:'0.5%',
-              left:'82%',
-            }}
-            />
-        </View>
-      </Modal>
+      <TutorialModal isModalVisible={isModalVisible} toggleModal={toggleModal}/>
 
-      <Modal isVisible={isModalVisible2}>
-        <View style={{ 
-          position:'absolute', 
-          height: '82%', 
-          width: '100%', 
-          top:'5%', 
-          backgroundColor:'white',
-          borderRadius:15
-          }}>
-          <Text>Free gift!</Text>
-          <Ionicons
-            name="close-circle-outline"
-            size={60}
-            color="#00a7a7"
-            onPress={toggleModal2}
-            style={{
-              position:'absolute',
-              top:'0.5%',
-              left:'82%',
-            }}
-            />
-        </View>
-      </Modal>
+      <FreeGiftModal isModalVisible={isModalVisible2} toggleModal={toggleModal2}/>
 
       <View
         style={{

@@ -3,6 +3,7 @@ import MapView, { Marker } from 'react-native-maps';
 import { getBoundsOfDistance } from 'geolib';
 import { useAtom } from 'jotai';
 import styled from 'styled-components/native';
+import {View}from 'react-native';
 
 import tokensAtom from 'store/tokens';
 import mapPositionAtom from 'store/mapPosition';
@@ -42,7 +43,7 @@ const MapScreen = () => {
   }, [mapPosition]);
 
   return (
-    <Body>
+    <View style={{flex:1, backgroundColor:'teal'}}>
       <HelperButton onPress={onHelpPress} />
       <Center>
         <BorderedBox>
@@ -61,8 +62,8 @@ const MapScreen = () => {
             ))}
           </MyMap>
         </BorderedBox>
-      </Center>
-    </Body>
+      </Center>         
+    </View>
   );
 };
 
