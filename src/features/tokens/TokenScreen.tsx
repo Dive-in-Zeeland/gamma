@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useAtom } from 'jotai';
 
 import tokensAtom, { TokenType } from 'store/tokens';
@@ -31,7 +31,7 @@ const TokenScreen = () => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        style={{position:'absolute', zIndex:999, left:4, top:15, width:'110%', height:'100%'}}>
+        style={{position:'absolute', zIndex:999, left:4, top:10, width:'110%', height:'103%'}}>
         <TextBoxContainer>
           {/* TODO: TextBox style to depend on if token is collected */}
           {Object.entries(tokens).map(([tokenName, token], i) => (
