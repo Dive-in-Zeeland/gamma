@@ -182,7 +182,7 @@ const HomeScreen = () => {
             progress={tokensCollected / totalTokens}
             width={null}
             height={40}
-            color={"#a7ffff"}
+            color={"#44EF9D"}
             borderWidth={3}
           />
         </View>
