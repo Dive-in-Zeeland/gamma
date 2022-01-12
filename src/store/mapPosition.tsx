@@ -1,5 +1,6 @@
 import { atom } from 'jotai';
 
+
 const mapPosition = {
   latitude: 51.495142,
   longitude: 3.609632,
