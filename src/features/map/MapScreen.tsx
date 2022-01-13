@@ -16,7 +16,7 @@ import { MapNavigatorProp } from 'nav/MapNavigator';
 import { useNavigation } from '@react-navigation/core';
 import BorderedBox from 'style/boxes/BorderedBox';
 
-import MapModal from './components/mapModal';
+import MapModal from 'features/map/components/MapModal';
 
 const MyMap = styled(MapView)`
   height: 100%;

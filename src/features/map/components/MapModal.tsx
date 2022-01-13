@@ -13,11 +13,13 @@ const MapModal = (props) => {
     <Modal isVisible={props.isModalVisible}>
     <View style={{ 
       position:'absolute', 
-      height: '82%', 
-      width: '100%', 
-      top:'5%', 
+      height: '110%', 
+      width: '110%', 
+      top:0, 
+      left:'-5.5%',
       backgroundColor:'white',
-      borderRadius:15
+      borderRadius:15,
+
       }}>
       <Text style={{
         position:'absolute',
