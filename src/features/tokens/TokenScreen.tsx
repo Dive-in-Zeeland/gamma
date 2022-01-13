@@ -16,18 +16,21 @@ const TokenScreen = () => {
   const [tokens] = useAtom(tokensAtom);
   const [mapPosition, setMapPosition] = useAtom(mapPositionAtom);
   const navigation = useNavigation<MainNavigatorProp<Routes.Map>>();
+  
 
   function goToToken(token: TokenType) {
     setMapPosition({
       ...mapPosition,
       latitude: token.coords[0],
       longitude: token.coords[1],
+      latitudeDelta: 0.09,
+      longitudeDelta: 0.09,
     });
     navigation.navigate(Routes.Map);
   }
 
   return (
-    <Body>
+    <View style={{flex:1, backgroundColor:'teal',}}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
@@ -40,7 +43,7 @@ const TokenScreen = () => {
           ))}
         </TextBoxContainer>
       </ScrollView>
-    </Body>
+    </View>
   );
 };
 

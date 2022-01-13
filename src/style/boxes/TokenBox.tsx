@@ -90,22 +90,21 @@ const TokenBox: React.FC<TokenBoxProps> = ({
 
 const styles = StyleSheet.create({
   TokenCollected: {
+    backgroundColor: '#00cece',
+    borderRadius: 15,
+    borderWidth: 3,
+    borderColor: "white",
+    height: 95,
+    width:'85%',
+    margin: 8,
+  },
+  TokenContainer: {
     backgroundColor: '#00bbbb',
     borderRadius: 15,
     borderWidth: 3,
     borderColor: "#00bbbb",
-    height: 85,
-    width:'95%',
-    margin: 8,
-  },
-  TokenContainer: {
-    backgroundColor: "#00a7a7",
-    borderRadius: 15,
-    borderWidth: 3,
-    borderColor: "#00a7a7",
-    height: 85
-    ,
-    width:'95%',
+    height: 95,
+    width:'85%',
     margin: 8,
   },
   TokenName: {

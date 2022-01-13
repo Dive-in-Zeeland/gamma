@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Button, } from "react-native";
+import { View, Text, Button, ScrollView, } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as Progress from "react-native-progress";
 import { useAtom } from "jotai";
@@ -13,7 +13,7 @@ const TutorialModal = (props) => {
       <Modal isVisible={props.isModalVisible}>
         <View style={{ 
           position:'absolute', 
-          height: '110%', 
+          height: '105%', 
           width: '110%', 
           top:0, 
           left:'-5.5%',
