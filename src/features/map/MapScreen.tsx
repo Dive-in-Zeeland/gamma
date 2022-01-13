@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { getBoundsOfDistance } from 'geolib';
 import { useAtom } from 'jotai';
@@ -16,6 +16,8 @@ import { MapNavigatorProp } from 'nav/MapNavigator';
 import { useNavigation } from '@react-navigation/core';
 import BorderedBox from 'style/boxes/BorderedBox';
 
+import MapModal from './components/mapModal';
+
 const MyMap = styled(MapView)`
   height: 100%;
   width: 100%;
@@ -28,6 +30,12 @@ const MapScreen = () => {
   const mapRef = useRef<InstanceType<typeof MapView>>(null);
 
   const filtered = Object.values(tokens).filter((token) => !token.isCollected);
+
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
   function onHelpPress() {
     navigation.navigate(Routes.MapHelp);
@@ -44,7 +52,8 @@ const MapScreen = () => {
 
   return (
     <View style={{flex:1, backgroundColor:'teal'}}>
-      <HelperButton onPress={onHelpPress} />
+      <MapModal isModalVisible={isModalVisible} toggleModal={toggleModal}/>
+      <HelperButton onPress={toggleModal} />
       <Center>
         <BorderedBox>
           <MyMap
