@@ -9,7 +9,6 @@ import { Routes } from 'constants/navigation';
 import { IconsType, ScreensType } from 'types/navigation';
 import { TokenScreen, GameScreen, HomeScreen } from 'nav/screens';
 import Collector from 'features/collector';
-import theme from 'constants/theme';
 import MapNavigator from './MapNavigator';
 
 export type MainNavigatorParamsList = {
@@ -58,15 +57,16 @@ export default function MainNavigator() {
           tabBarIcon: ({ size, color }) => (
             <MyIonicons name={icon} size={size} color={color} />
           ),
-          tabBarActiveTintColor: theme.colors.darker,
-          tabBarInactiveTintColor: theme.colors.grayed,
+          tabBarActiveTintColor: theme.colors.tabActive,
+          tabBarInactiveTintColor: theme.colors.tabInactive,
           tabBarStyle: [
             {
               margin: screenSpacing + 10,
               marginBottom: screenSpacing,
               marginTop: 0,
-              height: 60,
-              borderRadius: 6,
+              height: 54,
+              borderRadius: 12,
+              elevation: 0,
             },
             null,
           ],

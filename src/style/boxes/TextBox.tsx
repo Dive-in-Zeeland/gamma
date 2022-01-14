@@ -8,7 +8,7 @@ const Pressable = styled.Pressable`
 // prev: Icon1
 const Box = styled.View`
   background-color: ${props => props.theme.colors.main};
-  border-radius: ${props => props.theme.spacing.br}
+  border-radius: ${props => props.theme.spacing.br};
   align-items: center;
   justify-content: center;
   height: 60px;
