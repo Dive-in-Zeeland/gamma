@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {View} from 'react-native';
-import { WebView } from 'react-native-webview';
+import { View } from 'react-native';
 import MainFarm from 'features/game/gameApp';
 
 const Home = styled(View)`
@@ -13,10 +12,10 @@ const Home = styled(View)`
 
 const Main = styled(View)`
   flex: 1;
-  background-color: teal;
+  background-color: ${props => props.theme.colors.main};
 `;
 
-const GameScreen = ({ navigation: nav }) => {
+const GameScreen = () => {
   return (
     <Main>
       <Home>

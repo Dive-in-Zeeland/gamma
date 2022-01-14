@@ -15,7 +15,8 @@ const ScoreView: React.FC<ScoreViewProps> = ({
     <Button
       color="#000000"
       onPress={onBackToCameraPressed}
-      title="Back to camera"></Button>
+      title="Back to camera"
+    />
   </>
 );
 

@@ -31,7 +31,8 @@ export default function ScanNavigator() {
       screenOptions={{
         ...TransitionPresets.SlideFromRightIOS,
         headerStyle: { backgroundColor: 'tomato' },
-      }}>
+      }}
+    >
       {SCREENS.map(({ name, component }, i) => (
         <MapStack.Screen key={i} name={name} component={component} />
       ))}

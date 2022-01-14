@@ -2,16 +2,16 @@ import { atom } from 'jotai';
 
 export const started = atom(false);
 
-//Glibal couter
+// Glibal couter
 export const counterAtom = atom(0);
 
-//Global FishPerSec
+// Global FishPerSec
 export const fishPerSecAtom = atom(0);
 
-//Global singel press
+// Global singel press
 export const press = atom(1);
 
-//Different Upgrades - GLOBAL
+// Different Upgrades - GLOBAL
 export const Feeder = atom({
   name: 'Auto Feeders',
   basePrice: 15,
@@ -38,21 +38,21 @@ export const FishFactory = atom({
   consta: 226,
 });
 
-//Upgrade amount - GLOBAL
+// Upgrade amount - GLOBAL
 export const FeederAmount = atom(0);
 export const FisherManAmount = atom(0);
 export const FishFarmAmount = atom(0);
 export const IncubatorAmount = atom(0);
 export const FishFactoryAmount = atom(0);
 
-//Upgrade price - Global
+// Upgrade price - Global
 export const FeederPrice = atom(15);
 export const FisherManPrice = atom(100);
 export const FishFarmPrice = atom(1000);
 export const IncubatorPrice = atom(12000);
 export const FishFactoryPrice = atom(160000);
 
-//Image Sets - GLOBAL
+// Image Sets - GLOBAL
 export const sets = atom({
   default: require('../../../../img/Fish_Default.png'),
   feeder: require('../../../../img/Fish_Feeder.png'),

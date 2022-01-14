@@ -1,0 +1,18 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "javascript.validate.enable": false,
+  "js/ts.implicitProjectConfig.checkJs": true,
+  "emmet.triggerExpansionOnTab": true,
+  "files.exclude": {
+    "tsconfig.json": true,
+    "jest.config.js": true,
+    "babel.config.js": true,
+    "app.config.js": true,
+    ".eslintrc.json": true,
+    ".github": true,
+    ".expo": true,
+    ".expo-shared": true
+  }
+}

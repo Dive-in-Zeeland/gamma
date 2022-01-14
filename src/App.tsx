@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navigation from 'nav/Navigation';
-import { SafeArea } from 'style/layout/SafeArea';
 import { ThemeProvider } from 'styled-components/native';
-import AppTheme from 'constants/theme';
+import theme from 'constants/theme';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'react-native';
 
 export default function App() {
   return (
-    <ThemeProvider theme={AppTheme}>
-      <SafeArea>
+    <ThemeProvider theme={theme}>
+      <StatusBar barStyle="light-content" backgroundColor={theme.colors.main} />
+      <SafeAreaView
+        style={{
+          flex: 1,
+          backgroundColor: theme.colors.main,
+        }}
+      >
         <Navigation />
-      </SafeArea>
+      </SafeAreaView>
     </ThemeProvider>
   );
 }

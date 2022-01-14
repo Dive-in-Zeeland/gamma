@@ -30,7 +30,8 @@ export default function Card(props) {
               color: 'black',
               fontWeight: 'bold',
               textTransform: 'capitalize',
-            }}>
+            }}
+          >
             {nameObject.name}
           </Text>
           <View>
@@ -38,14 +39,16 @@ export default function Card(props) {
               style={{
                 color: 'gray',
                 fontSize: 12,
-              }}>
+              }}
+            >
               {amount} {nameObject.name} at work
             </Text>
             <Text
               style={{
                 color: 'gray',
                 fontSize: 12,
-              }}>
+              }}
+            >
               {nameObject.name} price: {Math.floor(cost)}
             </Text>
           </View>
@@ -57,7 +60,8 @@ export default function Card(props) {
           disabled={false}
           onPress={() => {
             BuyUpgrade();
-          }}>
+          }}
+        >
           <Text style={{ color: '#a0e3e3', fontSize: 30, fontWeight: 'bold' }}>
             Buy
           </Text>

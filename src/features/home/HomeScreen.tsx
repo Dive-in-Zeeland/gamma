@@ -1,42 +1,231 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { View, Text, Button } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import * as Progress from 'react-native-progress';
+import { useAtom } from 'jotai';
+import tokensAtom, { TokenType } from 'store/tokens';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import LineGradient from 'features/home/Components/LineGradient';
+import TutorialModal from './Components/TutorialModal';
+import FreeGiftModal from './Components/FreeGiftModal';
 
-import Body from 'style/layout/Body';
-import TextBox from 'style/boxes/TextBox';
-import BorderedBox from 'style/boxes/BorderedBox';
-import TextBoxContainer from 'style/layout/TextBoxContainer';
-import { TextM10, TextM20 } from 'style/typo/Text';
-import Separator from 'style/layout/Separator';
+const HomeScreen = () => {
+  const [isModalVisible, setModalVisible] = useState(false);
 
-const HomeScreen = () => (
-  <Body>
-    <TextBoxContainer>
-      <TextBox>Dive in Zeeland</TextBox>
-    </TextBoxContainer>
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
 
-    <Separator />
+  const [isModalVisible2, setModalVisible2] = useState(false);
 
-    <BorderedBox>
-      <TextM10>
-        This is out token collection game called DIZ-GAME. It is an interactive
-        game for children to get to know better the underwater world of Zeeland.
-      </TextM10>
+  const toggleModal2 = () => {
+    setModalVisible2(!isModalVisible2);
+  };
 
-      <TextM10>
-        There are 5 different screens. Home, Token, Map, Camera and Settings.
-      </TextM10>
+  const [tokens] = useAtom(tokensAtom);
 
-      <TextM10>
-        In the future this screen will describe the initial game and its rules.
-        And also have a links to Gift code and Played game (But to play this
-        game you must collect all the tokens).
-      </TextM10>
+  const totalTokens = Object.keys(tokens).length;
+  const tokensCollected = Object.values(tokens).reduce((prev, token) => {
+    return token.isCollected ? prev + 1 : prev;
+  }, 0);
 
-      <TextM20>
-        For best user experience right now, please you IOS devices. They are
-        better optimized.
-      </TextM20>
-    </BorderedBox>
-  </Body>
-);
+  return (
+    <View style={{ flex: 1, backgroundColor: 'teal' }}>
+      <LineGradient />
+
+      <TutorialModal
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+      />
+
+      <FreeGiftModal
+        isModalVisible={isModalVisible2}
+        toggleModal={toggleModal2}
+      />
+
+      <Text
+        style={{
+          position: 'absolute',
+          zIndex: 99,
+          top: '35%',
+          left: '5%',
+          fontSize: 30,
+          fontWeight: 'bold',
+          color: 'white',
+        }}
+      >
+        Hello, Daniils!
+      </Text>
+
+      <Text
+        style={{
+          position: 'absolute',
+          zIndex: 99,
+          top: '42%',
+          left: '5%',
+          right: '30%',
+          fontSize: 15,
+          color: 'white',
+        }}
+      >
+        Enjoy a Token collection game created by our powerful designers.
+      </Text>
+
+      <View
+        style={{
+          position: 'absolute',
+          zIndex: 99,
+          left: '3%',
+          top: '50%',
+          backgroundColor: 'teal',
+          height: '30%',
+          width: '94%',
+          borderRadius: 15,
+        }}
+      />
+
+      <View
+        style={{
+          position: 'absolute',
+          zIndex: 99,
+          left: '3%',
+          top: '70%',
+          backgroundColor: 'teal',
+          height: '30%',
+          width: '94%',
+          borderRadius: 10,
+        }}
+      />
+
+      <View
+        style={{
+          position: 'absolute',
+          zIndex: 999,
+          left: '5%',
+          top: '52%',
+          backgroundColor: '#00cece',
+          height: '19%',
+          width: '90%',
+          borderRadius: 10,
+        }}
+      >
+        <View
+          style={{
+            position: 'absolute',
+            zIndex: 999,
+            left: '5%',
+            top: '15%',
+            width: '90%',
+          }}
+        >
+          <Progress.Bar
+            progress={tokensCollected / totalTokens}
+            width={null}
+            height={40}
+            color="#44EF9D"
+            borderWidth={3}
+          />
+        </View>
+        <Text
+          style={{
+            position: 'absolute',
+            zIndex: 999,
+            top: '65%',
+            left: '5%',
+            fontSize: 15,
+            fontWeight: 'bold',
+            color: 'teal',
+          }}
+          onPress={() => {
+            toggleModal();
+          }}
+        >
+          Token collection game progress!
+        </Text>
+      </View>
+
+      <View
+        style={{
+          position: 'absolute',
+          zIndex: 999,
+          left: '5%',
+          top: '74%',
+          backgroundColor: '#00a7a7',
+          height: '24%',
+          width: '42%',
+          borderRadius: 10,
+        }}
+      >
+        <Ionicons
+          name="gift"
+          size={60}
+          color="white"
+          style={{
+            position: 'absolute',
+            zIndex: 999,
+            left: '33%',
+            top: '15%',
+          }}
+          onPress={() => {
+            toggleModal2();
+          }}
+        />
+        <Text
+          style={{
+            position: 'absolute',
+            left: '20%',
+            top: '60%',
+            fontSize: 25,
+            fontWeight: 'bold',
+            color: 'white',
+          }}
+        >
+          Free Gift
+        </Text>
+      </View>
+
+      <View
+        style={{
+          position: 'absolute',
+          zIndex: 999,
+          left: '53%',
+          top: '74%',
+          backgroundColor: 'white',
+          height: '24%',
+          width: '42%',
+          borderRadius: 10,
+        }}
+      >
+        <Ionicons
+          name="school"
+          size={60}
+          color="#00a7a7"
+          style={{
+            position: 'absolute',
+            zIndex: 999,
+            left: '33%',
+            top: '15%',
+          }}
+          onPress={() => {
+            toggleModal();
+          }}
+        />
+        <Text
+          style={{
+            position: 'absolute',
+            left: '23%',
+            top: '60%',
+            fontSize: 25,
+            fontWeight: 'bold',
+            color: '#00a7a7',
+          }}
+        >
+          Tutorial
+        </Text>
+        <View />
+      </View>
+    </View>
+  );
+};
 
 export default HomeScreen;

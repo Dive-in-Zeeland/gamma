@@ -5,7 +5,7 @@ import QuestionView, {
   QuestionViewProps,
 } from 'features/scan/comps/QuestionView';
 import ScoreView, { ScoreViewProps } from 'features/scan/comps/ScoreView';
-import Body from 'style/layout/Body';
+import BasicScreen from 'style/layout/BasicScreen';
 
 const MyView = styled.View`
   flex: 0.9;
@@ -32,7 +32,7 @@ const AfterScanView: React.FC<AfterScanViewProps> = ({
   onAnswerOptionClick,
   onCancelQuestionPress,
 }) => (
-  <Body>
+  <BasicScreen>
     <MyView>
       <MyQuestionContainer>
         {isAnswered ? (
@@ -49,7 +49,7 @@ const AfterScanView: React.FC<AfterScanViewProps> = ({
         )}
       </MyQuestionContainer>
     </MyView>
-  </Body>
+  </BasicScreen>
 );
 
 export default AfterScanView;

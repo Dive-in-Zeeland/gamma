@@ -3,14 +3,14 @@ import { ContentBox } from 'style/boxes/ContentBox';
 import styled from 'styled-components/native';
 
 const Teal = styled.View`
-  background-color: teal;
+  background-color: ${props => props.theme.colors.main};
   flex: 1;
 `;
 
-const Body: React.FC<{}> = ({ children }) => (
+const BasicScreen: React.FC<{}> = ({ children }) => (
   <Teal>
     <ContentBox>{children}</ContentBox>
   </Teal>
 );
 
-export default Body;
+export default BasicScreen;

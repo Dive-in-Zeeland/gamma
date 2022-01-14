@@ -1,19 +1,25 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { getBoundsOfDistance } from 'geolib';
 import { useAtom } from 'jotai';
 import styled from 'styled-components/native';
+import { View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+
+import Geolocation from '@react-native-community/geolocation';
 
 import tokensAtom from 'store/tokens';
 import mapPositionAtom from 'store/mapPosition';
 import HelperButton from 'style/interactable/HelperButton';
 import Center from 'style/layout/Center';
-import Body from 'style/layout/Body';
+import BasicScreen from 'style/layout/BasicScreen';
 
 import { Routes } from 'constants/navigation';
 import { MapNavigatorProp } from 'nav/MapNavigator';
 import { useNavigation } from '@react-navigation/core';
 import BorderedBox from 'style/boxes/BorderedBox';
+
+import MapModal from 'features/map/components/MapModal';
 
 const MyMap = styled(MapView)`
   height: 100%;
@@ -23,13 +29,39 @@ const MyMap = styled(MapView)`
 const MapScreen = () => {
   const navigation = useNavigation<MapNavigatorProp<Routes.Map>>();
   const [tokens] = useAtom(tokensAtom);
-  const [mapPosition] = useAtom(mapPositionAtom);
+  const [mapPosition, setMapPosition] = useAtom(mapPositionAtom);
   const mapRef = useRef<InstanceType<typeof MapView>>(null);
 
-  const filtered = Object.values(tokens).filter((token) => !token.isCollected);
+  const filtered = Object.values(tokens).filter(token => !token.isCollected);
 
-  function onHelpPress() {
-    navigation.navigate(Routes.MapHelp);
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  function centerMap() {
+    function getAvg(grades) {
+      const total = grades.reduce((acc, c) => acc + c, 0);
+      return total / grades.length;
+    }
+
+    const arrayLt = [];
+    const arrayLn = [];
+
+    Object.values(tokens).forEach(element => {
+      arrayLt.push(element.coords[0]);
+    });
+
+    Object.values(tokens).forEach(element => {
+      arrayLn.push(element.coords[1]);
+    });
+
+    setMapPosition({
+      ...mapPosition,
+      latitude: getAvg(arrayLt),
+      longitude: getAvg(arrayLn),
+    });
   }
 
   useEffect(() => {
@@ -42,19 +74,53 @@ const MapScreen = () => {
   }, [mapPosition]);
 
   return (
-    <Body>
-      <HelperButton onPress={onHelpPress} />
+    <View style={{ flex: 1, backgroundColor: 'teal' }}>
+      <MapModal isModalVisible={isModalVisible} toggleModal={toggleModal} />
+
+      <View
+        style={{
+          position: 'absolute',
+          zIndex: 9999,
+          backgroundColor: 'teal',
+          borderRadius: 12,
+          left: '76%',
+          top: '84%',
+          height: '11%',
+          width: '17%',
+        }}
+      >
+        <HelperButton onPress={toggleModal} />
+      </View>
+
+      <View
+        style={{
+          position: 'absolute',
+          zIndex: 9999,
+          backgroundColor: 'teal',
+          borderRadius: 12,
+          left: '57%',
+          top: '84%',
+          height: '11%',
+          width: '17%',
+        }}
+      >
+        <Ionicons
+          name="navigate-circle"
+          size={50}
+          color="white"
+          onPress={centerMap}
+          style={{ left: '9%', top: '-2%', transform: [{ rotate: '-45deg' }] }}
+        />
+      </View>
+
       <Center>
         <BorderedBox>
-          <MyMap
-            ref={mapRef}
-            showsUserLocation={true}
-            initialRegion={mapPosition}>
+          <MyMap ref={mapRef} showsUserLocation initialRegion={mapPosition}>
             {filtered.map(({ coords: [latitude, longitude] }, index) => (
               <Marker
                 coordinate={{
-                  latitude: latitude,
-                  longitude: longitude,
+                  latitude,
+                  longitude,
                 }}
                 key={index}
               />
@@ -62,7 +128,7 @@ const MapScreen = () => {
           </MyMap>
         </BorderedBox>
       </Center>
-    </Body>
+    </View>
   );
 };
 

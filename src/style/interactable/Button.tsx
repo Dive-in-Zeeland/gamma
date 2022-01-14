@@ -3,8 +3,8 @@ import styled from 'styled-components/native';
 
 const Container = styled.TouchableOpacity`
   padding: 8px 12px;
-  border-radius: 5px;
-  background-color: ${(props) => props.theme.colors.mainColor};
+  border-radius: ${props => props.theme.spacing.br};
+  background-color: ${props => props.theme.colors.main};
 `;
 
 const Text = styled.Text`

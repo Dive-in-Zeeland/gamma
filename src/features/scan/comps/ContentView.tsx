@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { View } from 'react-native';
 
-import Body from 'style/layout/Body';
+import BasicScreen from 'style/layout/BasicScreen';
 import TextBox from 'style/boxes/TextBox';
 import TextBoxContainer from 'style/layout/TextBoxContainer';
 import { TextM10 } from 'style/typo/Text';
@@ -20,7 +20,7 @@ const MyView = styled.View`
 const MyContentContainer = styled.View`
   flex: 1;
   background-color: #fff;
-  border-color: teal;
+  border-color: ${props => props.theme.colors.main};
   align-items: center;
   justify-content: center;
 `;
@@ -36,7 +36,7 @@ const ContentView: React.FC<ContentViewProps> = ({
   reset,
   token,
 }) => (
-  <Body>
+  <BasicScreen>
     <TextBoxContainer>
       <TextBox>{token.place}</TextBox>
     </TextBoxContainer>
@@ -51,7 +51,7 @@ const ContentView: React.FC<ContentViewProps> = ({
         <TextBox onPress={() => onAnswerQuestionPress()}>Question</TextBox>
       </MyTextBoxContainer>
     </MyView>
-  </Body>
+  </BasicScreen>
 );
 
 export default ContentView;

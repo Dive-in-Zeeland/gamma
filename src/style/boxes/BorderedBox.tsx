@@ -5,7 +5,7 @@ const BorderedBox = styled.View`
   width: 100%;
   overflow: hidden;
   border-radius: 15px;
-  border: solid 5px teal;
+  border: solid 5px #00bbbb;
 `;
 
 export default BorderedBox;

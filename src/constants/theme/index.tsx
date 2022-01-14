@@ -1,6 +1,6 @@
+import { DefaultTheme } from 'styled-components/native';
 import { colors } from './colors';
 import { spacing } from './spacing';
-import { DefaultTheme } from 'styled-components/native';
 
 // see: https://nyxo.app/tips-for-using-typescript-with-styled-components
 declare module 'styled-components' {

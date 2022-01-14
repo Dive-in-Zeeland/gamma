@@ -14,28 +14,28 @@ import {
 } from 'features/game/Store/props';
 
 export default function ClickerBrain() {
-  //Counter
+  // Counter
   const [counter, setCounter] = useAtom(counterAtom);
 
-  //Click
+  // Click
   const [clicks, setClicks] = useAtom(press);
 
-  //Fish Per Second
+  // Fish Per Second
   const [fishPerSec, setFishPerSec] = useAtom(fishPerSecAtom);
 
-  //Feeders
+  // Feeders
   const [FeederCount, setFeederCount] = useAtom(FeederAmount);
 
-  //FisherMan
+  // FisherMan
   const [FisherManCount, setFisherManCount] = useAtom(FisherManAmount);
 
-  //Auto FishFarm
+  // Auto FishFarm
   const [FishFarmCount, setFishFarmCount] = useAtom(FishFarmAmount);
 
-  //Auto Fish Incuabtor
+  // Auto Fish Incuabtor
   const [IncubatorCount, setIncubatorCount] = useAtom(IncubatorAmount);
 
-  //Fish Facory
+  // Fish Facory
   const [FishFactoryCount, setFishFactoryCount] = useAtom(FishFactoryAmount);
 
   const [state, setState] = useAtom(sets);
@@ -43,16 +43,16 @@ export default function ClickerBrain() {
 
   useEffect(() => {
     const countTimer = setInterval(() => {
-      setCounter((old) => old + fishPerSec / 20);
+      setCounter(old => old + fishPerSec / 20);
       checks();
     }, 50);
-    //Unmount
+    // Unmount
     return function cleanup() {
       clearInterval(countTimer);
     };
   }, [fishPerSec]);
 
-  //Used to select correct image
+  // Used to select correct image
   const upgrades = [
     {
       image: state.feeder,
@@ -82,7 +82,7 @@ export default function ClickerBrain() {
   ];
 
   function checks() {
-    upgrades.forEach((element) => {
+    upgrades.forEach(element => {
       imageChange(element);
     });
   }
@@ -101,8 +101,9 @@ export default function ClickerBrain() {
       style={{}}
       disabled={false}
       onPress={() => {
-        setCounter((old) => old + clicks);
-      }}>
+        setCounter(old => old + clicks);
+      }}
+    >
       <Image style={{ height: 250, width: 350 }} source={image} />
     </TouchableOpacity>
   );
