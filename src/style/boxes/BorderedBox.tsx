@@ -4,8 +4,8 @@ const BorderedBox = styled.View`
   flex: 1;
   width: 100%;
   overflow: hidden;
-  border-radius: ${props => props.theme.spacing.br};
-  border: solid 5px ${props => props.theme.colors.main};
+  border-radius: 15px;
+  border: solid 5px #00bbbb;
 `;
 
 export default BorderedBox;

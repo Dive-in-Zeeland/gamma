@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useAtom } from 'jotai';
 
 import tokensAtom, { TokenType } from 'store/tokens';
@@ -22,16 +22,25 @@ const TokenScreen = () => {
       ...mapPosition,
       latitude: token.coords[0],
       longitude: token.coords[1],
+      latitudeDelta: 0.09,
+      longitudeDelta: 0.09,
     });
     navigation.navigate(Routes.Map);
   }
 
   return (
-    <BasicScreen>
+    <View style={{ flex: 1, backgroundColor: 'teal' }}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
-        style={{ flex: 1 }}
+        style={{
+          position: 'absolute',
+          zIndex: 999,
+          left: 4,
+          top: 10,
+          width: '110%',
+          height: '103%',
+        }}
       >
         <TextBoxContainer>
           {/* TODO: TextBox style to depend on if token is collected */}
@@ -40,6 +49,7 @@ const TokenScreen = () => {
               onPress={() => goToToken(token)}
               key={i}
               tokenName={tokenName}
+              collected={token.isCollected}
               place={token.place}
               cord1={token.coords[0]}
               cord2={token.coords[1]}
@@ -47,7 +57,7 @@ const TokenScreen = () => {
           ))}
         </TextBoxContainer>
       </ScrollView>
-    </BasicScreen>
+    </View>
   );
 };
 
