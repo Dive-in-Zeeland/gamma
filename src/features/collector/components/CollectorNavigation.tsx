@@ -2,11 +2,12 @@ import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { TokenType } from 'store/tokens';
-import Scan from '../scan';
-import Question from '../question';
-import Result from '../result';
-import Theory from '../theory';
-import Invalid from '../invalid';
+import Scan from '../screens/Scan';
+import Question from '../screens/Question';
+import Theory from '../screens/Theory';
+import Invalid from '../screens/Invalid';
+import Wrong from '../screens/Wrong';
+import Correct from '../screens/Correct';
 
 export type CollectorNavigationParams = {
   Scan: undefined;
@@ -14,9 +15,15 @@ export type CollectorNavigationParams = {
     token: TokenType;
     collect: () => void;
   };
-  Question: undefined;
-  Result: undefined;
+  Question: {
+    token: TokenType;
+    collect: () => void;
+  };
   Invalid: undefined;
+  Wrong: undefined;
+  Correct: {
+    token: TokenType;
+  };
 };
 
 const Stack = createNativeStackNavigator<CollectorNavigationParams>();
@@ -27,14 +34,15 @@ function CollectorNavigation() {
       screenOptions={{
         headerShown: false,
         presentation: 'modal',
-        cardStyle: { backgroundColor: 'white' },
+        animation: 'none',
       }}
     >
       <Stack.Screen name="Scan" component={Scan} />
       <Stack.Screen name="Theory" component={Theory} />
       <Stack.Screen name="Question" component={Question} />
-      <Stack.Screen name="Result" component={Result} />
       <Stack.Screen name="Invalid" component={Invalid} />
+      <Stack.Screen name="Wrong" component={Wrong} />
+      <Stack.Screen name="Correct" component={Correct} />
     </Stack.Navigator>
   );
 }

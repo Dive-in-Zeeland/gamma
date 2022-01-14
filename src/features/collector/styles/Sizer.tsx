@@ -11,6 +11,7 @@ export interface ISizer {
   flex?: number | string;
   m?: string;
   p?: string;
+  center?: boolean;
 }
 
 const Sizer = styled.View<ISizer>`
@@ -19,6 +20,8 @@ const Sizer = styled.View<ISizer>`
   ${props => (props.flex ? `flex: ${props.flex}` : '')};
   ${props => (props.m ? `margin: ${props.m}` : '')};
   ${props => (props.p ? `padding: ${props.p}` : '')};
+  ${props =>
+    props.center ? 'align-items: center; justify-content: center;' : ''}
 `;
 
 export default Sizer;
