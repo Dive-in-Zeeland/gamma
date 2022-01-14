@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import * as Progress from 'react-native-progress';
 import { useAtom } from 'jotai';
-import tokensAtom, { TokenType } from 'store/tokens';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import tokensAtom from 'store/tokens';
 import LineGradient from 'features/home/Components/LineGradient';
 import TutorialModal from './Components/TutorialModal';
 import FreeGiftModal from './Components/FreeGiftModal';
