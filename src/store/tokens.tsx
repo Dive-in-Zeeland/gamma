@@ -7,7 +7,7 @@ export interface TokenType {
   answers: Array<{ text: string; isCorrect: boolean }>;
   isCollected: boolean;
   coords: [number, number];
-  desc:string;
+  desc: string;
 }
 
 // Array of object of the Token questions
