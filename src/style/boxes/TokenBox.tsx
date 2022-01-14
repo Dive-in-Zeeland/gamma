@@ -1,10 +1,7 @@
 import React from 'react';
-import styled from 'styled-components/native';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { template } from '@babel/core';
+import { View, Text, StyleSheet } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import theme from 'constants/theme';
 
 export interface TokenBoxProps {
   onPress?: () => void;
@@ -16,7 +13,6 @@ export interface TokenBoxProps {
 }
 
 const TokenBox: React.FC<TokenBoxProps> = ({
-  children,
   onPress = undefined,
   tokenName,
   cord1,
