@@ -1,7 +1,6 @@
 import React from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-import BasicScreen from 'style/layout/BasicScreen';
 import BorderCard from 'style/boxes/BorderCard';
 import { TextM20 } from 'style/typo/Text';
 import styled from 'styled-components/native';
