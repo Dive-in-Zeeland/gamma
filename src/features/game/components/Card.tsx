@@ -1,24 +1,40 @@
-import { useAtom } from 'jotai';
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { counterAtom, fishPerSecAtom } from 'features/game/Store/props';
+import { useSnapshot } from 'valtio';
+import upgradesValt, { UpgradeType } from '../store/upgrades';
+import counterValt from '../store/counter';
 
-export default function Card(props) {
-  const [total, setTotal] = useAtom(counterAtom);
-  const [fishPerSec, setFishPerSec] = useAtom(fishPerSecAtom);
+interface ICard {
+  upgradeValt: UpgradeType;
+  upgradeIndex: number;
+}
 
-  const [nameObject, setNameObject] = useAtom(props.obj);
-  const [amount, setAmount] = useAtom(props.count);
-  const [cost, setCost] = useAtom(props.price);
+const Card: React.FC<ICard> = ({ upgradeValt, upgradeIndex }) => {
+  const upgradeSnap = useSnapshot(upgradeValt);
+  const counterSnap = useSnapshot(counterValt);
 
-  function BuyUpgrade() {
-    if (total >= cost) {
-      setAmount(amount + 1);
-      setFishPerSec(nameObject.consta + fishPerSec);
-      setTotal(total - cost);
-      setCost(nameObject.basePrice * 1.15 ** amount);
+  function buy() {
+    if (counterSnap.value < upgradeSnap.getPrice()) return;
+
+    counterValt.substract(upgradeSnap.getPrice());
+    counterValt.addFps(upgradeSnap.fps);
+
+    if (
+      upgradeSnap.amount === 0 &&
+      counterSnap.upgradesActive < upgradesValt.length
+    ) {
+      counterValt.setImage(upgradeSnap.image);
+      counterValt.activateMore();
     }
+
+    upgradeValt.addOne();
   }
+
+  function isActive() {
+    return upgradeIndex < counterSnap.upgradesActive;
+  }
+
+  if (!isActive()) return null;
 
   return (
     <View style={styles.mainCardView}>
@@ -32,7 +48,7 @@ export default function Card(props) {
               textTransform: 'capitalize',
             }}
           >
-            {nameObject.name}
+            {upgradeSnap.name}
           </Text>
           <View>
             <Text
@@ -41,7 +57,7 @@ export default function Card(props) {
                 fontSize: 12,
               }}
             >
-              {amount} {nameObject.name} at work
+              {upgradeSnap.amount} {upgradeSnap.name} at work
             </Text>
             <Text
               style={{
@@ -49,19 +65,13 @@ export default function Card(props) {
                 fontSize: 12,
               }}
             >
-              {nameObject.name} price: {Math.floor(cost)}
+              {upgradeSnap.name} price: {Math.floor(upgradeSnap.getPrice())}
             </Text>
           </View>
         </View>
       </View>
       <View style={styles.BuyButton}>
-        <TouchableOpacity
-          style={{ color: 'green' }}
-          disabled={false}
-          onPress={() => {
-            BuyUpgrade();
-          }}
-        >
+        <TouchableOpacity onPress={buy}>
           <Text style={{ color: '#a0e3e3', fontSize: 30, fontWeight: 'bold' }}>
             Buy
           </Text>
@@ -69,7 +79,9 @@ export default function Card(props) {
       </View>
     </View>
   );
-}
+};
+
+export default Card;
 
 const styles = StyleSheet.create({
   BuyButton: {

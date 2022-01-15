@@ -1,56 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { useAtom } from 'jotai';
-import {
-  counterAtom,
-  fishPerSecAtom,
-  started,
-} from 'features/game/Store/props';
-import UpgradeModal from 'features/game/Components/UpModal';
-import UpgradeButton from 'features/game/Components/UpgradeButton';
-import StartButton from 'features/game/Components/StartButton';
-import IntroTittle from 'features/game/Components/IntroTittle';
-import ClickerBrains from 'features/game/Components/ClickerBrains';
+import UpgradeModal from 'features/game/components/UpgradeModal';
+import UpgradeButton from 'features/game/components/UpgradeButton';
 
-export default function MainFarm() {
-  // Started
-  const [start, setStart] = useAtom(started);
+import { useSnapshot } from 'valtio';
+import counterValt from './store/counter';
+import Aqua from './components/Aqua';
 
-  // Main Counter
-  const [counter, setCounter] = useAtom(counterAtom);
-  const [fishPerSec, setFishPerSec] = useAtom(fishPerSecAtom);
+export default function Game() {
+  const counterSnap = useSnapshot(counterValt);
+  const [upgradeModalVisible, setUpgradeModalVisible] = useState(false);
 
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      counterValt.tick(50);
+    }, 50);
 
-  const startGame = () => {
-    setStart(true);
-  };
+    return () => clearInterval(interval);
+  }, [counterSnap.fps]);
 
-  const [isModalVisible, setModalVisible] = useState(false);
-
-  if (!start) {
-    return (
-      <View style={styles.container}>
-        <IntroTittle />
-
-        <StartButton press={startGame} />
-      </View>
-    );
-  }
   return (
     <View style={styles.container}>
       <View style={styles.counterFace}>
-        <Text style={styles.pink}>{Math.floor(counter)} 🐠</Text>
+        <Text style={styles.pink}>{counterSnap.getIntegerValue()} 🐠</Text>
       </View>
       <View style={styles.counterSide} />
       <View style={styles.counterShadow} />
 
       <View style={styles.perSecondFace}>
-        <Text style={styles.white}>
-          {Math.round((fishPerSec + Number.EPSILON) * 100) / 100} f/s
-        </Text>
+        <Text style={styles.white}>{counterSnap.getRoundedFps()} f/s</Text>
       </View>
 
       <View style={styles.perSecondSide}>
@@ -61,7 +39,7 @@ export default function MainFarm() {
             fontSize: 25,
           }}
         >
-          {Math.round((fishPerSec + Number.EPSILON) * 100) / 100} f/s
+          {counterSnap.getRoundedFps()} f/s
         </Text>
       </View>
       <View style={styles.perSecondShadow}>
@@ -73,15 +51,18 @@ export default function MainFarm() {
             opacity: 0.4,
           }}
         >
-          {Math.round((fishPerSec + Number.EPSILON) * 100) / 100} f/s
+          {counterSnap.getRoundedFps()} f/s
         </Text>
       </View>
 
-      <ClickerBrains />
+      <Aqua />
 
-      <UpgradeButton toggleModal={toggleModal} />
+      <UpgradeButton toggleModal={() => setUpgradeModalVisible(true)} />
 
-      <UpgradeModal toggleModal={toggleModal} isModalVisible={isModalVisible} />
+      <UpgradeModal
+        close={() => setUpgradeModalVisible(false)}
+        isVisible={upgradeModalVisible}
+      />
     </View>
   );
 }
