@@ -13,6 +13,7 @@
     ".eslintrc.json": true,
     ".github": true,
     ".expo": true,
-    ".expo-shared": true
+    ".expo-shared": true,
+    "metro.config.js": true
   }
 }

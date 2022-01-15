@@ -2,6 +2,7 @@
   "extends": [
     "./default/.eslintrc.json"
   ],
+  "ignorePatterns": "config/**/*",
   "rules": {
     "import/prefer-default-export": "off", // To fix we need to rewrite every export
     "react/function-component-definition": "off", // Same as above
@@ -25,6 +26,7 @@
     "react/no-unstable-nested-components": [ // For tab icon in navigation
       "error",
       { "allowAsProps": true }
-    ]
+    ],
+    "no-param-reassign": "off" // We are not fully functional
   }
 }
