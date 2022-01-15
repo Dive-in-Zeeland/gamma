@@ -7,15 +7,20 @@ import { Ionicons } from '@expo/vector-icons';
 import styled, { useTheme } from 'styled-components/native';
 import { Routes } from 'constants/navigation';
 import { IconsType, ScreensType } from 'types/navigation';
-import { TokenScreen, GameScreen, HomeScreen, MapScreen } from 'nav/screens';
-import Collector from 'features/collector';
+import {
+  TokenScreen,
+  GameScreen,
+  HomeScreen,
+  MapScreen,
+  CollectorScreen,
+} from 'nav/screens';
 
 export type MainNavigatorParamsList = {
   [Routes.Game]: undefined;
   [Routes.Token]: undefined;
   [Routes.Home]: undefined;
   [Routes.Map]: undefined;
-  [Routes.Scan]: undefined;
+  [Routes.Collector]: undefined;
 };
 
 export type MainNavigatorProp<RouteName extends keyof MainNavigatorParamsList> =
@@ -26,7 +31,7 @@ const ICONS: IconsType<MainNavigatorParamsList> = {
   Token: 'grid',
   Home: 'ios-home',
   Map: 'map',
-  Scan: 'aperture',
+  Collector: 'aperture',
 };
 
 const SCREENS: ScreensType<MainNavigatorParamsList> = [
@@ -34,7 +39,7 @@ const SCREENS: ScreensType<MainNavigatorParamsList> = [
   { name: Routes.Token, component: TokenScreen },
   { name: Routes.Home, component: HomeScreen },
   { name: Routes.Map, component: MapScreen },
-  { name: Routes.Scan, component: Collector },
+  { name: Routes.Collector, component: CollectorScreen },
 ];
 
 const MyIonicons = styled(Ionicons)`

@@ -68,12 +68,11 @@ const styles = StyleSheet.create({
     margin: 8,
   },
   TokenContainer: {
-    backgroundColor: '#00bbbb',
+    backgroundColor: '#617BCE',
     borderRadius: 15,
     borderWidth: 3,
-    borderColor: '#00bbbb',
+    borderColor: '#8399EF',
     height: 95,
-    width: '85%',
     margin: 8,
   },
   TokenName: {
@@ -130,16 +129,15 @@ const styles = StyleSheet.create({
   TokenMapContainer: {
     position: 'absolute',
     zIndex: 9999,
-    left: -3,
-    top: -3,
     height: '100%',
     width: '25%',
+    overflow: 'hidden',
+    borderRadius: 12,
+    borderColor: '#617BCE',
+    borderWidth: 5,
   },
   TokenMapView: {
-    height: '95%',
-    width: '95%',
-    borderRadius: 12,
-    margin: 5,
+    flex: 1,
   },
 });
 

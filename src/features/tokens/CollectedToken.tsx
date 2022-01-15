@@ -36,12 +36,11 @@ const CollectedToken: React.FC<ICollectedToken> = ({ token }) => {
 
 const styles = StyleSheet.create({
   TokenCollected: {
-    backgroundColor: '#00cece',
+    backgroundColor: '#8399EF',
     borderRadius: 15,
     borderWidth: 3,
     borderColor: 'white',
     height: 95,
-    width: '85%',
     margin: 8,
   },
   TokenContainer: {
