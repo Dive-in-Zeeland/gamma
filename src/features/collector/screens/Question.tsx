@@ -11,12 +11,12 @@ import CenterText from '../styles/prefab/CenterText';
 type Props = NativeStackScreenProps<CollectorNavigationParams, 'Theory'>;
 
 const Theory: React.FC<Props> = ({ navigation, route }) => {
-  const { token, collect } = route.params;
+  const { tokenValt } = route.params;
 
   function selectAnswer(answer: TokenType['answers'][number]) {
     if (answer.isCorrect) {
-      collect();
-      navigation.push('Correct', { token });
+      tokenValt.collect();
+      navigation.push('Correct', { tokenValt });
     } else {
       navigation.push('Wrong');
     }
@@ -36,9 +36,10 @@ const Theory: React.FC<Props> = ({ navigation, route }) => {
           height="60%"
         />
       </Sizer>
-      <CenterText noflex>{token.question}</CenterText>
+      {/* Using valt here */}
+      <CenterText noflex>{tokenValt.question}</CenterText>
       <Sizer>
-        {token.answers.map((answer, i) => (
+        {tokenValt.answers.map((answer, i) => (
           <ColorButton
             onPress={() => selectAnswer(answer)}
             key={answer.text + i}

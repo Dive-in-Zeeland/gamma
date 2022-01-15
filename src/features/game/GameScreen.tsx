@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { StyleSheet, View } from 'react-native';
+import TitledScreen from 'features/collector/styles/TitledScreen';
 import StartButton from './components/StartButton';
 import IntroTittle from './components/IntroTittle';
 import Game from './Game';
@@ -20,22 +21,17 @@ const Main = styled(View)`
 const GameScreen = () => {
   const [started, setStarted] = useState(false);
 
-  if (!started) {
-    return (
-      <View style={styles.container}>
-        <IntroTittle />
-
-        <StartButton press={() => setStarted(true)} />
-      </View>
-    );
-  }
-
   return (
-    <Main>
-      <Home>
+    <TitledScreen title="Clicker game" nobox>
+      {started ? (
         <Game />
-      </Home>
-    </Main>
+      ) : (
+        <View style={styles.container}>
+          <IntroTittle />
+          <StartButton press={() => setStarted(true)} />
+        </View>
+      )}
+    </TitledScreen>
   );
 };
 export default GameScreen;

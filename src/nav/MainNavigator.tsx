@@ -7,16 +7,20 @@ import { Ionicons } from '@expo/vector-icons';
 import styled, { useTheme } from 'styled-components/native';
 import { Routes } from 'constants/navigation';
 import { IconsType, ScreensType } from 'types/navigation';
-import { TokenScreen, GameScreen, HomeScreen } from 'nav/screens';
-import Collector from 'features/collector';
-import MapNavigator from './MapNavigator';
+import {
+  TokenScreen,
+  GameScreen,
+  HomeScreen,
+  MapScreen,
+  CollectorScreen,
+} from 'nav/screens';
 
 export type MainNavigatorParamsList = {
   [Routes.Game]: undefined;
   [Routes.Token]: undefined;
   [Routes.Home]: undefined;
   [Routes.Map]: undefined;
-  [Routes.Scan]: undefined;
+  [Routes.Collector]: undefined;
 };
 
 export type MainNavigatorProp<RouteName extends keyof MainNavigatorParamsList> =
@@ -27,15 +31,15 @@ const ICONS: IconsType<MainNavigatorParamsList> = {
   Token: 'grid',
   Home: 'ios-home',
   Map: 'map',
-  Scan: 'aperture',
+  Collector: 'aperture',
 };
 
 const SCREENS: ScreensType<MainNavigatorParamsList> = [
   { name: Routes.Game, component: GameScreen },
   { name: Routes.Token, component: TokenScreen },
   { name: Routes.Home, component: HomeScreen },
-  { name: Routes.Map, component: MapNavigator },
-  { name: Routes.Scan, component: Collector },
+  { name: Routes.Map, component: MapScreen },
+  { name: Routes.Collector, component: CollectorScreen },
 ];
 
 const MyIonicons = styled(Ionicons)`
@@ -67,6 +71,8 @@ export default function MainNavigator() {
               height: 54,
               borderRadius: 12,
               elevation: 0,
+              backgroundColor: '#617BCE',
+              borderTopWidth: 0,
             },
             null,
           ],

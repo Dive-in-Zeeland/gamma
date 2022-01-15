@@ -12,17 +12,15 @@ import Correct from '../screens/Correct';
 export type CollectorNavigationParams = {
   Scan: undefined;
   Theory: {
-    token: TokenType;
-    collect: () => void;
+    tokenValt: TokenType;
   };
   Question: {
-    token: TokenType;
-    collect: () => void;
+    tokenValt: TokenType;
   };
   Invalid: undefined;
   Wrong: undefined;
   Correct: {
-    token: TokenType;
+    tokenValt: TokenType;
   };
 };
 

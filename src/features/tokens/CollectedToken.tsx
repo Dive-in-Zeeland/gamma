@@ -1,55 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { TokenType } from 'store/tokens';
 
-export interface TokenBoxProps {
-  onPress?: () => void;
-  tokenName: string;
-  cord1: number;
-  cord2: number;
-  place: string;
-  collected: boolean;
+export interface ICollectedToken {
+  token: TokenType;
 }
 
-const TokenBox: React.FC<TokenBoxProps> = ({
-  onPress = undefined,
-  tokenName,
-  cord1,
-  cord2,
-  place,
-  collected,
-}) => {
-  if (collected) {
-    return (
-      <View style={styles.TokenCollected}>
-        <Ionicons
-          name="checkmark-circle"
-          size={30}
-          color="white"
-          style={{
-            position: 'absolute',
-            zIndex: 999,
-            right: '3%',
-            top: '30%',
-          }}
-        />
-        <View style={styles.TokenNameCollected}>
-          <Text style={styles.TokenNameText}>{tokenName}</Text>
-        </View>
-
-        <View style={styles.DividerCollected} />
-
-        <View style={styles.TokenStatus}>
-          <Text style={styles.TokenPlaceText}>Token Collected</Text>
-        </View>
-      </View>
-    );
-  }
+const CollectedToken: React.FC<ICollectedToken> = ({ token }) => {
   return (
-    <View style={styles.TokenContainer}>
+    <View style={styles.TokenCollected}>
       <Ionicons
-        name="send"
+        name="checkmark-circle"
         size={30}
         color="white"
         style={{
@@ -58,28 +20,15 @@ const TokenBox: React.FC<TokenBoxProps> = ({
           right: '3%',
           top: '30%',
         }}
-        onPress={onPress}
       />
-      <View style={styles.TokenName}>
-        <Text style={styles.TokenNameText}>{tokenName}</Text>
-      </View>
-      <View style={styles.TokenPlace}>
-        <Text style={styles.TokenPlaceText}>Location: {place}</Text>
+      <View style={styles.TokenNameCollected}>
+        <Text style={styles.TokenNameText}>{token.place}</Text>
       </View>
 
-      <View style={styles.TokenContainerDivider} />
-      <View style={styles.TokenMapContainer} pointerEvents="none">
-        <MapView
-          style={styles.TokenMapView}
-          initialRegion={{
-            latitude: cord1,
-            longitude: cord2,
-            latitudeDelta: 0.002,
-            longitudeDelta: 0.002,
-          }}
-        >
-          <Marker coordinate={{ latitude: cord1, longitude: cord2 }} />
-        </MapView>
+      <View style={styles.DividerCollected} />
+
+      <View style={styles.TokenStatus}>
+        <Text style={styles.TokenPlaceText}>Token Collected</Text>
       </View>
     </View>
   );
@@ -87,12 +36,11 @@ const TokenBox: React.FC<TokenBoxProps> = ({
 
 const styles = StyleSheet.create({
   TokenCollected: {
-    backgroundColor: '#00cece',
+    backgroundColor: '#8399EF',
     borderRadius: 15,
     borderWidth: 3,
     borderColor: 'white',
     height: 95,
-    width: '85%',
     margin: 8,
   },
   TokenContainer: {
@@ -171,4 +119,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TokenBox;
+export default CollectedToken;

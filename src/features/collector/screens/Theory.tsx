@@ -8,17 +8,15 @@ import CenterText from '../styles/prefab/CenterText';
 type Props = NativeStackScreenProps<CollectorNavigationParams, 'Theory'>;
 
 const Theory: React.FC<Props> = ({ navigation, route }) => {
-  const { token, collect } = route.params;
+  const { tokenValt } = route.params;
   return (
     <TitledScreen
       title="Well done!"
       subtitle="Now get ready for a question"
       spaced
     >
-      <CenterText>{token.content}</CenterText>
-      <ColorButton
-        onPress={() => navigation.push('Question', { token, collect })}
-      >
+      <CenterText>{tokenValt.content}</CenterText>
+      <ColorButton onPress={() => navigation.push('Question', { tokenValt })}>
         I am ready
       </ColorButton>
     </TitledScreen>

@@ -1,5 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Pressable,
+} from 'react-native';
 import Modal from 'react-native-modal';
 import Card from 'features/game/components/Card';
 
@@ -16,6 +22,7 @@ const UpgradeModal: React.FC<IUpgradeModal> = ({ isVisible, close }) => {
       isVisible={isVisible}
       swipeDirection={['down']}
       style={styles.modalContainer}
+      onSwipeComplete={close}
     >
       <View style={styles.UpgradeLabel}>
         <Text
@@ -33,11 +40,9 @@ const UpgradeModal: React.FC<IUpgradeModal> = ({ isVisible, close }) => {
         <Card upgradeValt={valt} upgradeIndex={index} key={index} />
       ))}
 
-      <View style={styles.QuitButton}>
-        <TouchableOpacity onPress={close}>
-          <Text style={styles.QuitButtonText}>Close</Text>
-        </TouchableOpacity>
-      </View>
+      <Pressable onPress={close} style={styles.QuitButton}>
+        <Text style={styles.QuitButtonText}>Close</Text>
+      </Pressable>
     </Modal>
   );
 };

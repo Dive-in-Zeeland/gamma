@@ -11,7 +11,7 @@ import Sizer from '../styles/Sizer';
 type Props = NativeStackScreenProps<CollectorNavigationParams, 'Correct'>;
 
 const Correct: React.FC<Props> = ({ navigation, route }) => {
-  const { token } = route.params;
+  const { tokenValt } = route.params;
   const theme = useTheme();
   return (
     <TitledScreen title="Correct!" subtitle="Token collected!" spaced>
@@ -25,7 +25,7 @@ const Correct: React.FC<Props> = ({ navigation, route }) => {
           bcolor={theme.colors.darkText}
         >
           <ColorText upper bold size="20px">
-            {token.place}
+            {tokenValt.place}
           </ColorText>
         </ColorBox>
       </Sizer>

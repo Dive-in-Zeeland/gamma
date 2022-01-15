@@ -3,7 +3,5 @@ export enum Routes {
   Token = 'Token',
   Home = 'Home',
   Map = 'Map',
-  MapHelp = 'MapHelp',
-  Scan = 'Scan',
-  ScanHelp = 'ScanHelp',
+  Collector = 'Collector',
 }

@@ -4,13 +4,13 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 
 interface IMapModal {
-  isModalVisible: boolean;
-  toggleModal: () => void;
+  isVisible: boolean;
+  close: () => void;
 }
 
-const MapModal: React.FC<IMapModal> = ({ isModalVisible, toggleModal }) => {
+const MapModal: React.FC<IMapModal> = ({ isVisible, close }) => {
   return (
-    <Modal isVisible={isModalVisible}>
+    <Modal isVisible={isVisible}>
       <View
         style={{
           position: 'absolute',
@@ -39,7 +39,7 @@ const MapModal: React.FC<IMapModal> = ({ isModalVisible, toggleModal }) => {
           name="close-circle-outline"
           size={60}
           color="#00a7a7"
-          onPress={toggleModal}
+          onPress={close}
           style={{
             position: 'absolute',
             top: '0.5%',
