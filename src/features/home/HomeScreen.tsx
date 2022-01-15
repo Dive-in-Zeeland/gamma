@@ -11,6 +11,51 @@ import ColorText from 'features/collector/styles/ColorText';
 import TutorialModal from './components/TutorialModal';
 import FreeGiftModal from './components/FreeGiftModal';
 
+const ProgressCard: React.FC<{ progress: number }> = ({ progress }) => (
+  <ColorBox p="20px 30px" color="#617BCE" m="10px">
+    <Sizer m="0 0 10px 0">
+      <ColorText light>Collection Progress</ColorText>
+    </Sizer>
+    <Progress.Bar
+      progress={progress}
+      width={null}
+      color="#A4B8FF"
+      unfilledColor="#8399EF"
+      height={25}
+      borderWidth={0}
+    />
+  </ColorBox>
+);
+
+const SquareCard: React.FC<{
+  m: string;
+  icon: string;
+  onPress: () => void;
+}> = ({ m, icon, onPress, children }) => (
+  <Sizer flex={1} m={m} aspect={1}>
+    <ColorBox flex={1} color="#617BCE" center>
+      <Ionicons name={icon as any} size={60} color="white" onPress={onPress} />
+      <ColorText light>{children}</ColorText>
+    </ColorBox>
+  </Sizer>
+);
+
+const Title: React.FC<{
+  title: string;
+  subtitle: string;
+}> = ({ title, subtitle }) => (
+  <Sizer w="70%" m="0 0 20px 0">
+    <Sizer m="0 0 6px">
+      <ColorText bold size="28px" light align="left">
+        {title}
+      </ColorText>
+    </Sizer>
+    <ColorText size="16px" light align="left">
+      {subtitle}
+    </ColorText>
+  </Sizer>
+);
+
 const HomeScreen = () => {
   const [tutorialModalVisible, setTutorialModalVisible] = useState(false);
   const [giftModalVisible, setGiftModalVisible] = useState(false);
@@ -41,55 +86,29 @@ const HomeScreen = () => {
 
       <Sizer />
 
-      {/* Title */}
       <Sizer>
-        <Sizer w="70%" m="0 0 20px 0">
-          <Sizer m="0 0 6px">
-            <ColorText bold size="28px" light align="left">
-              Hello, Daniils!
-            </ColorText>
-          </Sizer>
-          <ColorText size="16px" light align="left">
-            Enjoy a Token collection game created by our powerful designers.
-          </ColorText>
-        </Sizer>
-        {/* Progress */}
-        <ColorBox p="20px 30px" color="#617BCE" m="10px">
-          <Sizer m="0 0 10px 0">
-            <ColorText light>Collection Progress</ColorText>
-          </Sizer>
-          <Progress.Bar
-            progress={getProgress()}
-            width={null}
-            color="#A4B8FF"
-            unfilledColor="#8399EF"
-            height={25}
-            borderWidth={0}
-          />
-        </ColorBox>
+        <Title
+          title="Hello, Daniils!"
+          subtitle="Enjoy a Token collection game created by our powerful designers."
+        />
+        <ProgressCard progress={getProgress()} />
+
         <Sizer row m="10px">
-          <Sizer flex={1} m="0 20px 0 0" aspect={1}>
-            <ColorBox flex={1} color="#617BCE" center>
-              <Ionicons
-                name="gift"
-                size={60}
-                color="white"
-                onPress={() => setGiftModalVisible(true)}
-              />
-              <ColorText light>Free Gift</ColorText>
-            </ColorBox>
-          </Sizer>
-          <Sizer flex={1} m="0 0 0 20px" aspect={1}>
-            <ColorBox flex={1} color="#617BCE" center>
-              <Ionicons
-                name="school"
-                size={60}
-                color="white"
-                onPress={() => setTutorialModalVisible(true)}
-              />
-              <ColorText light>Tutorial</ColorText>
-            </ColorBox>
-          </Sizer>
+          <SquareCard
+            m="0 20px 0 0"
+            icon="gift"
+            onPress={() => setGiftModalVisible(true)}
+          >
+            Free Gift
+          </SquareCard>
+
+          <SquareCard
+            m="0 0 0 20px"
+            icon="school"
+            onPress={() => setTutorialModalVisible(true)}
+          >
+            Tutorial
+          </SquareCard>
         </Sizer>
       </Sizer>
     </TitledScreen>

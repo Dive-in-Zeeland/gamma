@@ -1,80 +1,35 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import Modal from 'react-native-modal';
+import ColorModal, { IModal } from 'components/ColorModal';
+import styled from 'styled-components/native';
 
-interface IFreeGiftModal {
-  isVisible: boolean;
-  close: () => void;
-}
+const GiftCode = styled.View`
+  position: absolute;
+  z-index: 99;
+  left: 20%;
+  top: 27%;
+  background-color: #00a7a7;
+  height: 40%;
+  width: 60%;
+  border-radius: 12;
+`;
 
-const FreeGiftModal: React.FC<IFreeGiftModal> = ({ isVisible, close }) => {
+const Caption = styled.Text`
+  position: absolute;
+  z-index: 99;
+  left: 20%;
+  top: 70%;
+  width: 60%;
+  color: teal;
+  text-align: center;
+  font-weight: bold;
+`;
+
+const FreeGiftModal: React.FC<IModal> = ({ isVisible, close }) => {
   return (
-    <Modal isVisible={isVisible}>
-      <View
-        style={{
-          position: 'absolute',
-          height: '110%',
-          width: '110%',
-          top: 0,
-          left: '-5.5%',
-          backgroundColor: 'white',
-          borderRadius: 15,
-        }}
-      >
-        <Text
-          style={{
-            position: 'absolute',
-            zIndex: 99,
-            fontSize: 35,
-            fontWeight: 'bold',
-            color: '#00a7a7',
-            top: '3%',
-            left: '5%',
-          }}
-        >
-          Free gift
-        </Text>
-        <Ionicons
-          name="close-circle-outline"
-          size={60}
-          color="#00a7a7"
-          onPress={close}
-          style={{
-            position: 'absolute',
-            top: '0.5%',
-            left: '80%',
-          }}
-        />
-
-        <View
-          style={{
-            position: 'absolute',
-            zIndex: 99,
-            left: '20%',
-            top: '27%',
-            backgroundColor: '#00a7a7',
-            height: '40%',
-            width: '60%',
-            borderRadius: 12,
-          }}
-        />
-        <Text
-          style={{
-            position: 'absolute',
-            zIndex: 99,
-            left: '20%',
-            top: '70%',
-            width: '60%',
-            textAlign: 'center',
-            fontWeight: 'bold',
-            color: 'teal',
-          }}
-        >
-          Show this code to the gift wending machine.
-        </Text>
-      </View>
-    </Modal>
+    <ColorModal isVisible={isVisible} close={close} title="Free Gift">
+      <GiftCode />
+      <Caption>Show this code to the gift wending machine.</Caption>
+    </ColorModal>
   );
 };
 
