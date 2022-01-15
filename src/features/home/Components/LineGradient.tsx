@@ -6,16 +6,17 @@ const LineGradient = () => {
     <View
       style={{
         position: 'absolute',
-        zIndex: 9,
+        zIndex: 10,
         height: '100%',
         width: '100%',
       }}
+      pointerEvents="none"
     >
       <View
         style={{
           position: 'absolute',
           zIndex: 9999,
-          backgroundColor: '#00e2e2',
+          backgroundColor: '#C6D9FF',
           borderRadius: 30,
           left: '70%',
           top: '-1%',
@@ -28,7 +29,7 @@ const LineGradient = () => {
         style={{
           position: 'absolute',
           zIndex: 999,
-          backgroundColor: '#00cece',
+          backgroundColor: '#A4B8FF',
           borderRadius: 30,
           left: '55.5%',
           top: '-1%',
@@ -41,7 +42,7 @@ const LineGradient = () => {
         style={{
           position: 'absolute',
           zIndex: 99,
-          backgroundColor: '#00bbbb',
+          backgroundColor: '#8399EF',
           borderRadius: 30,
           left: '40%',
           height: '7%',
@@ -53,7 +54,7 @@ const LineGradient = () => {
         style={{
           position: 'absolute',
           zIndex: 99,
-          backgroundColor: '#00a7a7',
+          backgroundColor: '#617BCE',
           borderRadius: 30,
           left: '40.5%',
           top: '-10%',
@@ -66,7 +67,7 @@ const LineGradient = () => {
         style={{
           position: 'absolute',
           zIndex: 99,
-          backgroundColor: '#009494',
+          backgroundColor: '#3F5EAD',
           borderRadius: 30,
           left: '41%',
           top: '-20%',

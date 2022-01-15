@@ -1,51 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { TokenType } from 'store/tokens';
+import MapView, { Marker } from 'react-native-maps';
 
-export interface TokenBoxProps {
+export interface INotCollectedToken {
+  token: TokenType;
   onPress?: () => void;
-  tokenName: string;
-  cord1: number;
-  cord2: number;
-  place: string;
-  collected: boolean;
 }
 
-const TokenBox: React.FC<TokenBoxProps> = ({
-  onPress = undefined,
-  tokenName,
-  cord1,
-  cord2,
-  place,
-  collected,
+const NotCollectedToken: React.FC<INotCollectedToken> = ({
+  token,
+  onPress,
 }) => {
-  if (collected) {
-    return (
-      <View style={styles.TokenCollected}>
-        <Ionicons
-          name="checkmark-circle"
-          size={30}
-          color="white"
-          style={{
-            position: 'absolute',
-            zIndex: 999,
-            right: '3%',
-            top: '30%',
-          }}
-        />
-        <View style={styles.TokenNameCollected}>
-          <Text style={styles.TokenNameText}>{tokenName}</Text>
-        </View>
-
-        <View style={styles.DividerCollected} />
-
-        <View style={styles.TokenStatus}>
-          <Text style={styles.TokenPlaceText}>Token Collected</Text>
-        </View>
-      </View>
-    );
-  }
   return (
     <View style={styles.TokenContainer}>
       <Ionicons
@@ -61,10 +28,10 @@ const TokenBox: React.FC<TokenBoxProps> = ({
         onPress={onPress}
       />
       <View style={styles.TokenName}>
-        <Text style={styles.TokenNameText}>{tokenName}</Text>
+        <Text style={styles.TokenNameText}>{token.place}</Text>
       </View>
       <View style={styles.TokenPlace}>
-        <Text style={styles.TokenPlaceText}>Location: {place}</Text>
+        <Text style={styles.TokenPlaceText}>Location: {token.place}</Text>
       </View>
 
       <View style={styles.TokenContainerDivider} />
@@ -72,13 +39,18 @@ const TokenBox: React.FC<TokenBoxProps> = ({
         <MapView
           style={styles.TokenMapView}
           initialRegion={{
-            latitude: cord1,
-            longitude: cord2,
+            latitude: token.coords[0],
+            longitude: token.coords[1],
             latitudeDelta: 0.002,
             longitudeDelta: 0.002,
           }}
         >
-          <Marker coordinate={{ latitude: cord1, longitude: cord2 }} />
+          <Marker
+            coordinate={{
+              latitude: token.coords[0],
+              longitude: token.coords[1],
+            }}
+          />
         </MapView>
       </View>
     </View>
@@ -171,4 +143,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TokenBox;
+export default NotCollectedToken;

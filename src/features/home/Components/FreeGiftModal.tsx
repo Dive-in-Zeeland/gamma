@@ -4,16 +4,13 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import Modal from 'react-native-modal';
 
 interface IFreeGiftModal {
-  isModalVisible: boolean;
-  toggleModal: () => void;
+  isVisible: boolean;
+  close: () => void;
 }
 
-const FreeGiftModal: React.FC<IFreeGiftModal> = ({
-  isModalVisible,
-  toggleModal,
-}) => {
+const FreeGiftModal: React.FC<IFreeGiftModal> = ({ isVisible, close }) => {
   return (
-    <Modal isVisible={isModalVisible}>
+    <Modal isVisible={isVisible}>
       <View
         style={{
           position: 'absolute',
@@ -42,7 +39,7 @@ const FreeGiftModal: React.FC<IFreeGiftModal> = ({
           name="close-circle-outline"
           size={60}
           color="#00a7a7"
-          onPress={toggleModal}
+          onPress={close}
           style={{
             position: 'absolute',
             top: '0.5%',

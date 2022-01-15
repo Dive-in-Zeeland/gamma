@@ -7,9 +7,8 @@ import { Ionicons } from '@expo/vector-icons';
 import styled, { useTheme } from 'styled-components/native';
 import { Routes } from 'constants/navigation';
 import { IconsType, ScreensType } from 'types/navigation';
-import { TokenScreen, GameScreen, HomeScreen } from 'nav/screens';
+import { TokenScreen, GameScreen, HomeScreen, MapScreen } from 'nav/screens';
 import Collector from 'features/collector';
-import MapNavigator from './MapNavigator';
 
 export type MainNavigatorParamsList = {
   [Routes.Game]: undefined;
@@ -34,7 +33,7 @@ const SCREENS: ScreensType<MainNavigatorParamsList> = [
   { name: Routes.Game, component: GameScreen },
   { name: Routes.Token, component: TokenScreen },
   { name: Routes.Home, component: HomeScreen },
-  { name: Routes.Map, component: MapNavigator },
+  { name: Routes.Map, component: MapScreen },
   { name: Routes.Scan, component: Collector },
 ];
 
@@ -67,6 +66,8 @@ export default function MainNavigator() {
               height: 54,
               borderRadius: 12,
               elevation: 0,
+              backgroundColor: '#617BCE',
+              borderTopWidth: 0,
             },
             null,
           ],

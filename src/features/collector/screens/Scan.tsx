@@ -1,6 +1,5 @@
-import { useAtom } from 'jotai';
 import React from 'react';
-import tokensAtom from 'store/tokens';
+import tokensValt from 'store/tokens';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import TitledScreen from '../styles/TitledScreen';
 import Scanner, { IScanner } from '../components/Scanner';
@@ -10,26 +9,16 @@ import ColorBox from '../styles/ColorBox';
 type Props = NativeStackScreenProps<CollectorNavigationParams, 'Scan'>;
 
 const Scan: React.FC<Props> = ({ navigation }) => {
-  const [tokens, setTokens] = useAtom(tokensAtom);
-
   const onScan: IScanner['onScan'] = ({ data: tokenName }) => {
-    const token = tokenName in tokens ? tokens[tokenName] : null;
+    const tokenValt = tokensValt.find(tk => tk.name === tokenName);
 
-    if (!token) {
+    if (tokenValt === undefined) {
       navigation.navigate('Invalid');
       return;
     }
 
     navigation.push('Theory', {
-      token,
-      collect: () =>
-        setTokens(_tokens => ({
-          ..._tokens,
-          [tokenName]: {
-            ...token,
-            isCollected: true,
-          },
-        })),
+      tokenValt,
     });
   };
 

@@ -7,6 +7,7 @@ import styled from 'styled-components/native';
 import { ContentBox } from 'style/boxes/ContentBox';
 import ColorBox from './ColorBox';
 import ColorText from './ColorText';
+import Sizer from './Sizer';
 
 const Screen = styled.View`
   background-color: ${props => props.theme.colors.main};
@@ -25,14 +26,16 @@ interface ITitle {
 }
 
 const Title: React.FC<ITitle> = ({ title, subtitle }) => (
-  <ColorBox m="0 0 10px 10px">
+  <ColorBox m="0 0 15px 10px" w="70%">
     <ColorText light bold size="22px" align="left">
       {title}
     </ColorText>
     {subtitle ? (
-      <ColorText light bold size="16px" align="left">
-        {subtitle}
-      </ColorText>
+      <Sizer m="2px 0 0">
+        <ColorText light bold size="16px" align="left">
+          {subtitle}
+        </ColorText>
+      </Sizer>
     ) : (
       false
     )}

@@ -12,6 +12,8 @@ export interface ISizer {
   m?: string;
   p?: string;
   center?: boolean;
+  row?: boolean;
+  aspect?: number;
 }
 
 const Sizer = styled.View<ISizer>`
@@ -21,7 +23,9 @@ const Sizer = styled.View<ISizer>`
   ${props => (props.m ? `margin: ${props.m}` : '')};
   ${props => (props.p ? `padding: ${props.p}` : '')};
   ${props =>
-    props.center ? 'align-items: center; justify-content: center;' : ''}
+    props.center ? 'align-items: center; justify-content: center;' : ''};
+  flex-direction: ${p => (p.row ? 'row' : 'column')};
+  ${p => (p.aspect ? `aspect-ratio: ${p.aspect}` : '')}
 `;
 
 export default Sizer;

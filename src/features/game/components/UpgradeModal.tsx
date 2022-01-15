@@ -16,6 +16,7 @@ const UpgradeModal: React.FC<IUpgradeModal> = ({ isVisible, close }) => {
       isVisible={isVisible}
       swipeDirection={['down']}
       style={styles.modalContainer}
+      onSwipeComplete={close}
     >
       <View style={styles.UpgradeLabel}>
         <Text
