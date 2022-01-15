@@ -1,7 +1,5 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native';
-
-import TextBoxContainer from 'style/layout/TextBoxContainer';
+import { ScrollView } from 'react-native';
 import { MainNavigatorProp } from 'nav/MainNavigator';
 import { useNavigation } from '@react-navigation/core';
 import { Routes } from 'constants/navigation';
@@ -10,7 +8,7 @@ import tokensValt, { TokenType } from 'store/tokens';
 import mapValt from 'store/map';
 import { useSnapshot } from 'valtio';
 import TitledScreen from 'features/collector/styles/TitledScreen';
-import TokenBox from './TokenBox';
+import TokenBox from './components/TokenBox';
 
 const TokenScreen = () => {
   const tokensSnap = useSnapshot(tokensValt);

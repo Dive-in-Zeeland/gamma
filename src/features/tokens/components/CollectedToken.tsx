@@ -43,21 +43,6 @@ const styles = StyleSheet.create({
     height: 95,
     margin: 8,
   },
-  TokenContainer: {
-    backgroundColor: '#00bbbb',
-    borderRadius: 15,
-    borderWidth: 3,
-    borderColor: '#00bbbb',
-    height: 95,
-    width: '85%',
-    margin: 8,
-  },
-  TokenName: {
-    position: 'absolute',
-    zIndex: 99999,
-    left: '28%',
-    top: '25%',
-  },
   TokenNameCollected: {
     position: 'absolute',
     zIndex: 99999,
@@ -69,12 +54,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
-  TokenPlace: {
-    position: 'absolute',
-    zIndex: 99999,
-    left: '28%',
-    top: '58%',
-  },
   TokenStatus: {
     position: 'absolute',
     zIndex: 99999,
@@ -85,15 +64,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: 'white',
   },
-  TokenContainerDivider: {
-    position: 'absolute',
-    zIndex: 99999,
-    left: '28%',
-    top: '52%',
-    height: '2%',
-    width: '55%',
-    backgroundColor: 'white',
-  },
   DividerCollected: {
     position: 'absolute',
     zIndex: 99999,
@@ -102,20 +72,6 @@ const styles = StyleSheet.create({
     height: '2%',
     width: '78%',
     backgroundColor: 'white',
-  },
-  TokenMapContainer: {
-    position: 'absolute',
-    zIndex: 9999,
-    left: -3,
-    top: -3,
-    height: '100%',
-    width: '25%',
-  },
-  TokenMapView: {
-    height: '95%',
-    width: '95%',
-    borderRadius: 12,
-    margin: 5,
   },
 });
 

@@ -1,7 +1,3 @@
-/* 
-  Container that absolutery centers in its parent
-*/
-
 import Sizer from 'features/collector/styles/Sizer';
 import styled from 'styled-components/native';
 

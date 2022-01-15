@@ -58,15 +58,6 @@ const NotCollectedToken: React.FC<INotCollectedToken> = ({
 };
 
 const styles = StyleSheet.create({
-  TokenCollected: {
-    backgroundColor: '#00cece',
-    borderRadius: 15,
-    borderWidth: 3,
-    borderColor: 'white',
-    height: 95,
-    width: '85%',
-    margin: 8,
-  },
   TokenContainer: {
     backgroundColor: '#617BCE',
     borderRadius: 15,
@@ -81,12 +72,6 @@ const styles = StyleSheet.create({
     left: '28%',
     top: '25%',
   },
-  TokenNameCollected: {
-    position: 'absolute',
-    zIndex: 99999,
-    left: '5%',
-    top: '25%',
-  },
   TokenNameText: {
     fontSize: 15,
     color: 'white',
@@ -96,12 +81,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: 99999,
     left: '28%',
-    top: '58%',
-  },
-  TokenStatus: {
-    position: 'absolute',
-    zIndex: 99999,
-    left: '5%',
     top: '58%',
   },
   TokenPlaceText: {
@@ -117,15 +96,7 @@ const styles = StyleSheet.create({
     width: '55%',
     backgroundColor: 'white',
   },
-  DividerCollected: {
-    position: 'absolute',
-    zIndex: 99999,
-    left: '5%',
-    top: '52%',
-    height: '2%',
-    width: '78%',
-    backgroundColor: 'white',
-  },
+
   TokenMapContainer: {
     position: 'absolute',
     zIndex: 9999,

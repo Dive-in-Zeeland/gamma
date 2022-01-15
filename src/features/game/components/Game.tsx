@@ -4,8 +4,8 @@ import UpgradeModal from 'features/game/components/UpgradeModal';
 import UpgradeButton from 'features/game/components/UpgradeButton';
 
 import { useSnapshot } from 'valtio';
-import counterValt from './store/counter';
-import Aqua from './components/Aqua';
+import counterValt from '../store/counter';
+import Aqua from './Aqua';
 
 export default function Game() {
   const counterSnap = useSnapshot(counterValt);
