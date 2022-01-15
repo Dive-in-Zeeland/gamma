@@ -9,7 +9,9 @@
 let j = null;
 
 // Make j (jscodeshift) api globally available
-const globalizeJ = localJ => (j = localJ);
+const globalizeJ = localJ => {
+  j = localJ;
+};
 
 // Tipical compose function
 const compose =

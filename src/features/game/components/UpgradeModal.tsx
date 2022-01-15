@@ -1,30 +1,19 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
-import Card from 'features/game/Components/Card';
+import Card from 'features/game/components/Card';
 
-import {
-  Feeder,
-  FisherMan,
-  FishFarm,
-  Incubator,
-  FishFactory,
-  FeederAmount,
-  FisherManAmount,
-  FishFarmAmount,
-  IncubatorAmount,
-  FishFactoryAmount,
-  FeederPrice,
-  FisherManPrice,
-  FishFarmPrice,
-  IncubatorPrice,
-  FishFactoryPrice,
-} from '../Store/props';
+import upgradesValt from '../store/upgrades';
 
-export default function UpgradeModal(props) {
+interface IUpgradeModal {
+  isVisible: boolean;
+  close: () => void;
+}
+
+const UpgradeModal: React.FC<IUpgradeModal> = ({ isVisible, close }) => {
   return (
     <Modal
-      isVisible={props.isModalVisible}
+      isVisible={isVisible}
       swipeDirection={['down']}
       style={styles.modalContainer}
     >
@@ -40,32 +29,20 @@ export default function UpgradeModal(props) {
         </Text>
       </View>
 
-      <Card obj={Feeder} count={FeederAmount} price={FeederPrice} />
-
-      <Card obj={FisherMan} count={FisherManAmount} price={FisherManPrice} />
-
-      <Card obj={FishFarm} count={FishFarmAmount} price={FishFarmPrice} />
-
-      <Card obj={Incubator} count={IncubatorAmount} price={IncubatorPrice} />
-
-      <Card
-        obj={FishFactory}
-        count={FishFactoryAmount}
-        price={FishFactoryPrice}
-      />
+      {upgradesValt.map((valt, index) => (
+        <Card upgradeValt={valt} upgradeIndex={index} key={index} />
+      ))}
 
       <View style={styles.QuitButton}>
-        <TouchableOpacity
-          style={{}}
-          disabled={false}
-          onPress={props.toggleModal}
-        >
+        <TouchableOpacity onPress={close}>
           <Text style={styles.QuitButtonText}>Close</Text>
         </TouchableOpacity>
       </View>
     </Modal>
   );
-}
+};
+
+export default UpgradeModal;
 
 const styles = StyleSheet.create({
   modalContainer: {

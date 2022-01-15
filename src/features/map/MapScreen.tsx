@@ -6,17 +6,11 @@ import styled from 'styled-components/native';
 import { View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-import Geolocation from '@react-native-community/geolocation';
-
 import tokensAtom from 'store/tokens';
 import mapPositionAtom from 'store/mapPosition';
 import HelperButton from 'style/interactable/HelperButton';
 import Center from 'style/layout/Center';
-import BasicScreen from 'style/layout/BasicScreen';
 
-import { Routes } from 'constants/navigation';
-import { MapNavigatorProp } from 'nav/MapNavigator';
-import { useNavigation } from '@react-navigation/core';
 import BorderedBox from 'style/boxes/BorderedBox';
 
 import MapModal from 'features/map/components/MapModal';
@@ -27,7 +21,6 @@ const MyMap = styled(MapView)`
 `;
 
 const MapScreen = () => {
-  const navigation = useNavigation<MapNavigatorProp<Routes.Map>>();
   const [tokens] = useAtom(tokensAtom);
   const [mapPosition, setMapPosition] = useAtom(mapPositionAtom);
   const mapRef = useRef<InstanceType<typeof MapView>>(null);
@@ -41,13 +34,13 @@ const MapScreen = () => {
   };
 
   function centerMap() {
-    function getAvg(grades) {
-      const total = grades.reduce((acc, c) => acc + c, 0);
-      return total / grades.length;
+    function getAvg(numbers: number[]) {
+      const total = numbers.reduce((acc, c) => acc + c, 0);
+      return total / numbers.length;
     }
 
-    const arrayLt = [];
-    const arrayLn = [];
+    const arrayLt: number[] = [];
+    const arrayLn: number[] = [];
 
     Object.values(tokens).forEach(element => {
       arrayLt.push(element.coords[0]);

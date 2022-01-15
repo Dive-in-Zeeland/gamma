@@ -1,8 +1,12 @@
 import React from 'react';
-import { StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import AwesomeButton from 'react-native-really-awesome-button';
 
-export default function StartButton(props) {
+interface IStartButton {
+  press: () => void;
+}
+
+const StartButton: React.FC<IStartButton> = ({ press }) => {
   return (
     <View style={styles.Upgrades}>
       <AwesomeButton
@@ -10,20 +14,21 @@ export default function StartButton(props) {
         textColor="#abaec0"
         backgroundDarker="#bcc1db"
         backgroundActive="#ffffff"
-        onPress={() => {
-          props.press();
-        }}
+        onPress={press}
         borderWidth={2}
         borderColor="#ffffff"
         textSize={30}
         width={300}
         height={70}
-        raiseLevel={5}>
+        raiseLevel={5}
+      >
         Start
       </AwesomeButton>
     </View>
   );
-}
+};
+
+export default StartButton;
 
 const styles = StyleSheet.create({
   Upgrades: {

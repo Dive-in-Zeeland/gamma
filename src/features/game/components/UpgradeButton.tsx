@@ -2,7 +2,11 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import AwesomeButton from 'react-native-really-awesome-button';
 
-export default function UpgradeButton(props) {
+interface IUpgradeButton {
+  toggleModal: () => void;
+}
+
+const UpgradeButton: React.FC<IUpgradeButton> = ({ toggleModal }) => {
   return (
     <View style={styles.Upgrades}>
       <AwesomeButton
@@ -10,9 +14,7 @@ export default function UpgradeButton(props) {
         textColor="#abaec0"
         backgroundDarker="#bcc1db"
         backgroundActive="#ffffff"
-        onPress={() => {
-          props.toggleModal();
-        }}
+        onPress={toggleModal}
         borderWidth={2}
         borderColor="#ffffff"
         textSize={30}
@@ -24,7 +26,9 @@ export default function UpgradeButton(props) {
       </AwesomeButton>
     </View>
   );
-}
+};
+
+export default UpgradeButton;
 
 const styles = StyleSheet.create({
   Upgrades: {

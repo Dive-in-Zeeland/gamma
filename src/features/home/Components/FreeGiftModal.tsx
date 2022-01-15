@@ -1,75 +1,83 @@
-import React, { useState } from "react";
-import { View, Text, Button} from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import * as Progress from "react-native-progress";
-import { useAtom } from "jotai";
-import tokensAtom, { TokenType } from "store/tokens";
-import Modal from "react-native-modal";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import React from 'react';
+import { View, Text } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import Modal from 'react-native-modal';
 
-const FreeGiftModal = (props) => {
+interface IFreeGiftModal {
+  isModalVisible: boolean;
+  toggleModal: () => void;
+}
 
+const FreeGiftModal: React.FC<IFreeGiftModal> = ({
+  isModalVisible,
+  toggleModal,
+}) => {
   return (
-    <Modal isVisible={props.isModalVisible}>
-    <View style={{ 
-      position:'absolute', 
-      height: '110%', 
-      width: '110%', 
-      top:0, 
-      left:'-5.5%',
-      backgroundColor:'white',
-      borderRadius:15,
-      }}>
-      <Text style={{
-        position:'absolute',
-        zIndex:99,
-        fontSize:35,
-        fontWeight:'bold',
-        color:'#00a7a7',
-        top:'3%',
-        left:'5%',
-      }}>
-        Free gift
-      </Text>
-      <Ionicons
-        name="close-circle-outline"
-        size={60}
-        color="#00a7a7"
-        onPress={props.toggleModal}
+    <Modal isVisible={isModalVisible}>
+      <View
         style={{
-          position:'absolute',
-          top:'0.5%',
-          left:'80%',
+          position: 'absolute',
+          height: '110%',
+          width: '110%',
+          top: 0,
+          left: '-5.5%',
+          backgroundColor: 'white',
+          borderRadius: 15,
         }}
+      >
+        <Text
+          style={{
+            position: 'absolute',
+            zIndex: 99,
+            fontSize: 35,
+            fontWeight: 'bold',
+            color: '#00a7a7',
+            top: '3%',
+            left: '5%',
+          }}
+        >
+          Free gift
+        </Text>
+        <Ionicons
+          name="close-circle-outline"
+          size={60}
+          color="#00a7a7"
+          onPress={toggleModal}
+          style={{
+            position: 'absolute',
+            top: '0.5%',
+            left: '80%',
+          }}
         />
 
-          <View style={{
-            position:'absolute',
-            zIndex:99,
-            left:'20%',
-            top:'27%',
-            backgroundColor:'#00a7a7',
-            height:'40%',
-            width:'60%',
-            borderRadius:12,
-          }}>
-          </View>
-          <Text style={{
-            position:'absolute',
-            zIndex:99,
-            left:'20%',
-            top:'70%',
-            width:'60%',
-            textAlign:'center',
-            fontWeight:'bold',
-            color:'teal'
-          }}>
-           Show this code to the gift wending machine.
-          </Text>
-
-          
-    </View>
-  </Modal>
+        <View
+          style={{
+            position: 'absolute',
+            zIndex: 99,
+            left: '20%',
+            top: '27%',
+            backgroundColor: '#00a7a7',
+            height: '40%',
+            width: '60%',
+            borderRadius: 12,
+          }}
+        />
+        <Text
+          style={{
+            position: 'absolute',
+            zIndex: 99,
+            left: '20%',
+            top: '70%',
+            width: '60%',
+            textAlign: 'center',
+            fontWeight: 'bold',
+            color: 'teal',
+          }}
+        >
+          Show this code to the gift wending machine.
+        </Text>
+      </View>
+    </Modal>
   );
 };
 
