@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import * as Progress from 'react-native-progress';
 import tokensValt from 'store/tokens';
-import LineGradient from 'features/home/Components/LineGradient';
+import LineGradient from 'features/home/components/LineGradient';
 import { useSnapshot } from 'valtio';
 import TitledScreen from 'features/collector/styles/TitledScreen';
 import Sizer from 'features/collector/styles/Sizer';
 import ColorBox from 'features/collector/styles/ColorBox';
 import ColorText from 'features/collector/styles/ColorText';
-import ColorButton from 'features/collector/styles/ColorButton';
-import TutorialModal from './Components/TutorialModal';
-import FreeGiftModal from './Components/FreeGiftModal';
+import TutorialModal from './components/TutorialModal';
+import FreeGiftModal from './components/FreeGiftModal';
 
 const HomeScreen = () => {
   const [tutorialModalVisible, setTutorialModalVisible] = useState(false);

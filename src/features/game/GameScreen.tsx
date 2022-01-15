@@ -1,22 +1,9 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { StyleSheet, View } from 'react-native';
 import TitledScreen from 'features/collector/styles/TitledScreen';
 import StartButton from './components/StartButton';
 import IntroTittle from './components/IntroTittle';
-import Game from './Game';
-
-const Home = styled(View)`
-  flex: 1;
-  margin: 10px;
-  background-color: white;
-  border-radius: 15px;
-`;
-
-const Main = styled(View)`
-  flex: 1;
-  background-color: ${props => props.theme.colors.main};
-`;
+import Game from './components/Game';
 
 const GameScreen = () => {
   const [started, setStarted] = useState(false);

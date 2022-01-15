@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Pressable,
-} from 'react-native';
+import { StyleSheet, Text, View, Pressable } from 'react-native';
 import Modal from 'react-native-modal';
 import Card from 'features/game/components/Card';
 
