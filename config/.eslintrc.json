@@ -1,0 +1,32 @@
+{
+  "extends": [
+    "./default/.eslintrc.json"
+  ],
+  "ignorePatterns": "config/**/*",
+  "rules": {
+    "import/prefer-default-export": "off", // To fix we need to rewrite every export
+    "react/function-component-definition": "off", // Same as above
+    "import/no-extraneous-dependencies": "off", // Had problem with importing "@expo/vector-icons"
+    "global-require": "off", // For requiring images
+    "react/jsx-no-bind": "off", // https://stackoverflow.com/questions/36677733/why-shouldnt-jsx-props-use-arrow-functions-or-bind
+    "@typescript-eslint/ban-types": [ // To use {} as type
+      "error",
+      {
+        "extendDefaults": true,
+        "types": {
+          "{}": false
+        }
+      }
+    ],
+    "react/no-array-index-key": "off", /* "warn" */// Because this is sometimes OK
+    "no-void": "off", // To intentianally use void type
+    "@typescript-eslint/no-explicit-any": "off", // I said any, i want any,
+    "react/jsx-props-no-spreading": "off", // I want to use it with styled-components
+    "react/require-default-props": "off", // Didn't understand how to fix
+    "react/no-unstable-nested-components": [ // For tab icon in navigation
+      "error",
+      { "allowAsProps": true }
+    ],
+    "no-param-reassign": "off" // We are not fully functional
+  }
+}

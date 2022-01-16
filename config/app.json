@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "gamma",
+    "slug": "gamma",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "",
+    "splash": {
+      "image": "",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.DIZ.gamma"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "entryPoint": "./src/index.js",
+    "androidNavigationBar": {
+     "barStyle": "light-content",
+     "backgroundColor": "#4E6EBF"
+   }
+  }
+}
