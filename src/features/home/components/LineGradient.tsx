@@ -25,11 +25,11 @@ const LinesContainer = styled.View`
 const LineGradient = () => {
   return (
     <LinesContainer pointerEvents="none">
-      <Line color="#3F5EAD" left="70%" top="0%" />
-      <Line color="#617BCE" left="55%" top="0%" />
-      <Line color="#8399EF" left="40%" top="0%" />
-      <Line color="#A4B8FF" left="42%" top="-10%" />
-      <Line color="#C6D9FF" left="44%" top="-20%" />
+      <Line color="#5372c0" left="69.9%" top="0%" />
+      <Line color="#7089cb" left="54.9%" top="0%" />
+      <Line color="#9baddb" left="40%" top="0%" />
+      <Line color="#c6d0ea" left="40.1%" top="-10%" />
+      <Line color="#e3e8f5" left="40.3%" top="-20%" />
     </LinesContainer>
   );
 };

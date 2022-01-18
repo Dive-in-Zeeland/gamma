@@ -16,7 +16,7 @@ const Modal = styled(ModalRN as any)`
 const ModalTitleText = styled.Text`
   font-weight: bold;
   font-size: 35px;
-  color: #00a7a7;
+  color: #384E86;
   padding: 10px 15px;
 `;
 
@@ -29,14 +29,13 @@ const CloseButton: React.FC<{ close: () => void }> = ({ close }) => (
   <Ionicons
     name="close-circle-outline"
     size={60}
-    color="#00a7a7"
+    color="#384E86"
     onPress={close}
   />
 );
 
 const ModalContent = styled.View`
   flex: 1;
-  border: solid 2px gray; /* TODO: remove this border */
   padding: 10px;
 `;
 

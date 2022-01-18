@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Image } from 'react-native';
 import ColorModal, { IModal } from 'components/ColorModal';
 
 const MapModal: React.FC<IModal> = ({ isVisible, close }) => {
   return (
     <ColorModal isVisible={isVisible} close={close} title="Map Helper">
-      <Text>Map Helper</Text>
+      <Image style={{position:'absolute', left:'-2%', top:'5%', height: '100%', width: '110%',}} source={require('../../../../img/Map.png')}/>
     </ColorModal>
   );
 };

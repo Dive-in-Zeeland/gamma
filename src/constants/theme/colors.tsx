@@ -1,8 +1,8 @@
 export const colors = {
-  main: '#4E6EBF',
+  main: '#314a9c',
 
   tabActive: 'white',
-  tabInactive: '#C6D9FF',
+  tabInactive: '#9dade1',
 
   lightText: 'white',
   darkText: '#384E86',
