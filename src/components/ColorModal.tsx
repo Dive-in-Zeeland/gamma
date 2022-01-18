@@ -36,7 +36,6 @@ const CloseButton: React.FC<{ close: () => void }> = ({ close }) => (
 
 const ModalContent = styled.View`
   flex: 1;
-  border: solid 2px gray; /* TODO: remove this border */
   padding: 10px;
 `;
 
