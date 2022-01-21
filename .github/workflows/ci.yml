@@ -16,6 +16,9 @@ jobs:
       - name: Install React Native CLI
         run: |
           yarn global add react-native-cli
+      - name: Upgrade Depen
+        run: |
+          npm i -g npm@lates
       - name: Install NPM dependencies
         run: |
           npm install
