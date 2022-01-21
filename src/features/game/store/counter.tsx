@@ -10,7 +10,7 @@ const counterValt = proxy({
     this.image = source;
   },
   addOne() {
-    this.value += 10000;
+    this.value += 1;
   },
   tick(ms: number) {
     this.value += this.fps / (1000 / ms);
