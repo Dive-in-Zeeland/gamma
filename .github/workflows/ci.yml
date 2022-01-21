@@ -12,7 +12,7 @@ jobs:
       - name: Get Repo
         uses: actions/checkout@v2
       - name: Installing node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
       - name: Install React Native CLI
         run: |
           yarn global add react-native-cli
