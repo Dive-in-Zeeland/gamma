@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  tests:
+  ci-pipeline:
     runs-on: ubuntu-latest
     steps:
       - name: Get Repo
@@ -22,13 +22,8 @@ jobs:
       - name: Running test
         run: |
           yarn jest
-      - name: Lint Code Base
-        uses: github/super-linter@v4
-        env:
-          VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+          
   sonarcloud:
       name: SonarCloud
       runs-on: ubuntu-latest
